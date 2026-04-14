@@ -2,17 +2,30 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>🔐 بروكسي تيليجرام السريع</title>
+  
+  <!-- App Links لأندرويد -->
+  <meta property="al:android:url" content="tg://proxy?server=164.68.109.118&port=443&secret=ee51dc9b5458707fb9ea5e702e5b724ca1636c6f7564666c6172652e636f6d">
+  <meta property="al:android:package" content="org.telegram.messenger">
+  <meta property="al:android:class" content="org.telegram.messenger.ProxyActivity">
+  
+  <!-- Universal Links لـ iOS -->
+  <meta property="al:ios:url" content="tg://proxy?server=164.68.109.118&port=443&secret=ee51dc9b5458707fb9ea5e702e5b724ca1636c6f7564666c6172652e636f6d">
+  <meta property="al:ios:app_store_id" content="686449807">
+  <meta property="al:ios:app_name" content="Telegram">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="بروكسي تيليجرام السريع">
+  <meta property="og:description" content="اضغط للاتصال الفوري عبر بروكسي آمن">
+  <meta property="og:type" content="website">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
     :root {
       --primary: #0088cc;
@@ -24,8 +37,9 @@
       --light: #ffffff;
       --glass: rgba(255, 255, 255, 0.1);
       --glass-border: rgba(255, 255, 255, 0.2);
-      --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      --glow: 0 0 20px rgba(0, 136, 204, 0.6);
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      --glow: 0 0 25px rgba(0, 136, 204, 0.7);
+      --success: #00e676;
     }
 
     body {
@@ -33,89 +47,67 @@
       background: var(--darker);
       color: var(--light);
       min-height: 100vh;
-      overflow-x: hidden;
-      position: relative;
+      overflow-x: hidden;      position: relative;
     }
 
-    /* خلفية متحركة */
     .bg-animation {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0; width: 100%; height: 100%;
       z-index: -2;
       background: 
-        radial-gradient(ellipse at 20% 80%, rgba(108, 92, 231, 0.15) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(0, 210, 211, 0.15) 0%, transparent 50%),        radial-gradient(ellipse at 50% 50%, rgba(0, 136, 204, 0.1) 0%, transparent 70%);
+        radial-gradient(ellipse at 20% 80%, rgba(108, 92, 231, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 20%, rgba(0, 210, 211, 0.2) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(0, 136, 204, 0.15) 0%, transparent 70%);
       animation: bgPulse 15s ease-in-out infinite;
     }
 
     @keyframes bgPulse {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.05); }
+      50% { opacity: 0.85; transform: scale(1.05); }
     }
 
-    /* جزيئات عائمة */
     .particles {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      overflow: hidden;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1; overflow: hidden; pointer-events: none;
     }
 
     .particle {
       position: absolute;
-      width: 4px;
-      height: 4px;
+      width: 4px; height: 4px;
       background: var(--accent);
       border-radius: 50%;
-      opacity: 0.6;
+      opacity: 0.7;
       animation: float 20s infinite linear;
-      box-shadow: 0 0 10px var(--accent);
+      box-shadow: 0 0 12px var(--accent);
     }
 
     @keyframes float {
-      0% {
-        transform: translateY(100vh) translateX(0) rotate(0deg);
-        opacity: 0;
-      }
-      10% {
-        opacity: 0.8;
-      }
-      90% {
-        opacity: 0.8;
-      }
-      100% {
-        transform: translateY(-100px) translateX(100px) rotate(720deg);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+      10%, 90% { opacity: 0.8; }
+      100% { transform: translateY(-100px) translateX(80px) rotate(720deg); opacity: 0; }
     }
 
-    /* المحتوى الرئيسي */
-    .container {      min-height: 100vh;
+    .container {
+      min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+      padding: 15px;
       position: relative;
       z-index: 1;
     }
-
     .card {
       background: var(--glass);
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
       border: 1px solid var(--glass-border);
-      border-radius: 24px;
-      padding: 40px 30px;
-      max-width: 600px;
+      border-radius: 28px;
+      padding: 35px 25px;
+      max-width: 580px;
       width: 100%;
       text-align: center;
       box-shadow: var(--shadow), var(--glow);
-      animation: cardEnter 0.8s ease-out;
+      animation: cardEnter 0.7s ease-out;
       position: relative;
       overflow: hidden;
     }
@@ -123,18 +115,11 @@
     .card::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        45deg,
-        transparent,
-        rgba(255, 255, 255, 0.1),
-        transparent
-      );
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.12), transparent);
       transform: rotate(45deg);
-      animation: shine 3s infinite;
+      animation: shine 3.5s infinite;
       pointer-events: none;
     }
 
@@ -144,182 +129,180 @@
     }
 
     @keyframes cardEnter {
-      from {
-        opacity: 0;        transform: translateY(30px) scale(0.95);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      from { opacity: 0; transform: translateY(40px) scale(0.93); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
-    /* الشعار والأيقونة */
     .logo {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto 25px;
+      width: 110px; height: 110px;
+      margin: 0 auto 28px;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 48px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 52px;
       animation: pulse 2s infinite, floatIcon 3s ease-in-out infinite;
-      box-shadow: 0 0 30px rgba(0, 136, 204, 0.5);
+      box-shadow: 0 0 35px rgba(0, 136, 204, 0.6);
       position: relative;
     }
 
-    .logo::after {
-      content: '';
+    .logo::after {      content: '';
       position: absolute;
-      width: 120%;
-      height: 120%;
+      width: 125%; height: 125%;
       border: 2px solid var(--accent);
       border-radius: 50%;
-      animation: ringPulse 2s infinite;
-      opacity: 0.6;
+      animation: ringPulse 2.2s infinite;
+      opacity: 0.5;
     }
 
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-
-    @keyframes floatIcon {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.07); } }
+    @keyframes floatIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
     @keyframes ringPulse {
-      0% {
-        transform: scale(0.8);
-        opacity: 0.8;
-      }      100% {
-        transform: scale(1.5);
-        opacity: 0;
-      }
+      0% { transform: scale(0.7); opacity: 0.6; }
+      100% { transform: scale(1.6); opacity: 0; }
     }
 
-    /* العناوين */
     h1 {
-      font-size: 2rem;
+      font-size: 1.9rem;
       font-weight: 800;
-      margin-bottom: 15px;
+      margin-bottom: 18px;
       background: linear-gradient(90deg, var(--light), var(--accent), var(--primary));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
       animation: textGlow 3s ease-in-out infinite;
+      line-height: 1.3;
     }
 
     @keyframes textGlow {
-      0%, 100% { filter: drop-shadow(0 0 5px rgba(0, 210, 211, 0.5)); }
-      50% { filter: drop-shadow(0 0 15px rgba(0, 136, 204, 0.8)); }
+      0%, 100% { filter: drop-shadow(0 0 6px rgba(0, 210, 211, 0.6)); }
+      50% { filter: drop-shadow(0 0 18px rgba(0, 136, 204, 0.9)); }
     }
 
     .subtitle {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.85);
-      margin-bottom: 30px;
-      line-height: 1.6;
+      font-size: 1.05rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 28px;
+      line-height: 1.7;
+      padding: 0 5px;
     }
 
-    /* زر الاتصال */
+    .highlight {
+      color: var(--accent);
+      font-weight: 700;
+    }
+
+    /* زر الاتصال الرئيسي */
     .proxy-btn {
       display: inline-flex;
-      align-items: center;
-      gap: 12px;
+      align-items: center;      justify-content: center;
+      gap: 14px;
       background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: white;
       text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 700;
-      padding: 18px 40px;
-      border-radius: 50px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      padding: 20px 35px;
+      border-radius: 55px;
       border: none;
       cursor: pointer;
-      transition: all 0.4s ease;
-      box-shadow: 0 10px 30px rgba(0, 136, 204, 0.4);
+      transition: all 0.35s ease;
+      box-shadow: 0 12px 35px rgba(0, 136, 204, 0.5);
       position: relative;
       overflow: hidden;
       animation: btnPulse 2.5s infinite;
+      width: 100%;
+      max-width: 400px;
     }
+
     .proxy-btn::before {
       content: '';
       position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.5s;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+      transition: left 0.6s;
     }
 
-    .proxy-btn:hover::before {
-      left: 100%;
-    }
-
+    .proxy-btn:hover::before { left: 100%; }
     .proxy-btn:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 15px 40px rgba(0, 136, 204, 0.7), 0 0 30px rgba(108, 92, 231, 0.5);
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 18px 45px rgba(0, 136, 204, 0.8), 0 0 35px rgba(108, 92, 231, 0.6);
     }
-
-    .proxy-btn:active {
-      transform: translateY(1px) scale(0.98);
-    }
+    .proxy-btn:active { transform: translateY(2px) scale(0.99); }
 
     @keyframes btnPulse {
-      0%, 100% { box-shadow: 0 10px 30px rgba(0, 136, 204, 0.4); }
-      50% { box-shadow: 0 10px 40px rgba(0, 136, 204, 0.8), 0 0 25px rgba(108, 92, 231, 0.6); }
+      0%, 100% { box-shadow: 0 12px 35px rgba(0, 136, 204, 0.5); }
+      50% { box-shadow: 0 12px 50px rgba(0, 136, 204, 0.9), 0 0 30px rgba(108, 92, 231, 0.7); }
     }
 
-    .btn-icon {
-      font-size: 1.4rem;
-      animation: bounce 1.5s infinite;
+    .btn-icon { font-size: 1.5rem; animation: bounce 1.5s infinite; }
+    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+
+    /* حالة التوجيه */
+    .redirect-status {
+      margin-top: 22px;
+      padding: 14px 20px;
+      background: rgba(0, 230, 118, 0.15);
+      border: 1px solid rgba(0, 230, 118, 0.4);      border-radius: 14px;
+      display: none;
+      animation: fadeIn 0.4s ease;
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
+    .redirect-status.show { display: block; }
+    .redirect-status.error {
+      background: rgba(255, 82, 82, 0.15);
+      border-color: rgba(255, 82, 82, 0.4);
     }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .status-icon { font-size: 1.3rem; margin-left: 8px; vertical-align: middle; }
 
     /* معلومات البروكسي */
     .proxy-info {
-      margin-top: 35px;
-      padding-top: 25px;
+      margin-top: 30px;
+      padding-top: 22px;
       border-top: 1px solid var(--glass-border);
+    }
+
+    .info-title {
+      color: rgba(255,255,255,0.85);
+      font-size: 0.95rem;
+      margin-bottom: 15px;
     }
 
     .info-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));      gap: 15px;
-      margin-top: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
     }
 
     .info-item {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 12px 15px;
-      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.09);
+      padding: 14px 12px;
+      border-radius: 14px;
       transition: all 0.3s ease;
+      cursor: default;
     }
 
     .info-item:hover {
-      background: rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.18);
       transform: translateY(-3px);
     }
 
     .info-label {
-      font-size: 0.85rem;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 5px;
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.65);      margin-bottom: 6px;
     }
 
     .info-value {
       font-weight: 700;
       color: var(--accent);
-      font-family: monospace;
-      font-size: 0.95rem;
+      font-family: 'SF Mono', 'Consolas', monospace;
+      font-size: 0.9rem;
       word-break: break-all;
+      direction: ltr;
+      text-align: center;
     }
 
     /* شريط الحالة */
@@ -327,30 +310,59 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      margin-top: 20px;
+      gap: 10px;
+      margin-top: 25px;
       font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.8);
+      color: rgba(255, 255, 255, 0.85);
+      flex-wrap: wrap;
     }
 
     .status-dot {
-      width: 10px;
-      height: 10px;
-      background: #00e676;
+      width: 11px; height: 11px;
+      background: var(--success);
       border-radius: 50%;
       animation: statusPulse 1.5s infinite;
-      box-shadow: 0 0 10px #00e676;
-    }
-    @keyframes statusPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.7; transform: scale(0.9); }
+      box-shadow: 0 0 12px var(--success);
+      flex-shrink: 0;
     }
 
-    /* تذييل الصفحة */
-    .footer {
-      margin-top: 30px;
+    @keyframes statusPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.75; transform: scale(0.92); }
+    }
+
+    /* زر النسخ */
+    .copy-btn {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid var(--glass-border);
+      color: var(--light);
+      padding: 8px 16px;
+      border-radius: 10px;
       font-size: 0.85rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 10px;      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .copy-btn:hover {
+      background: rgba(255,255,255,0.2);
+      border-color: var(--accent);
+    }
+
+    .copy-btn.copied {
+      background: rgba(0, 230, 118, 0.25);
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    /* التذييل */
+    .footer {
+      margin-top: 28px;
+      font-size: 0.82rem;
       color: rgba(255, 255, 255, 0.6);
+      line-height: 1.6;
     }
 
     .footer a {
@@ -359,221 +371,321 @@
       transition: color 0.3s;
     }
 
-    .footer a:hover {
-      color: var(--primary);
+    .footer a:hover { color: var(--primary); }
+
+    /* تعليمات إضافية */
+    .tips {
+      background: rgba(108, 92, 231, 0.15);
+      border: 1px solid rgba(108, 92, 231, 0.4);
+      border-radius: 14px;
+      padding: 15px;
+      margin-top: 20px;
+      font-size: 0.9rem;
+      text-align: right;
     }
 
-    /* تأثيرات الجوال */
-    @media (max-width: 600px) {
-      .card {
-        padding: 30px 20px;
-        margin: 10px;
-      }
-      
-      h1 {
-        font-size: 1.7rem;
-      }
-      
-      .subtitle {
-        font-size: 1rem;
-      }
-      
-      .proxy-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 16px 25px;
-        font-size: 1.1rem;
-      }
-      
-      .logo {
-        width: 85px;
-        height: 85px;
-        font-size: 40px;
-      }
-    }
-    /* تأثير الظهور عند التمرير */
-    .fade-in {
-      animation: fadeInUp 0.6s ease-out forwards;
-      opacity: 0;
+    .tips ul {
+      padding-right: 20px;
+      margin-top: 8px;
     }
 
-    .fade-in:nth-child(1) { animation-delay: 0.2s; opacity: 1; }
-    .fade-in:nth-child(2) { animation-delay: 0.4s; opacity: 1; }
-    .fade-in:nth-child(3) { animation-delay: 0.6s; opacity: 1; }
-    .fade-in:nth-child(4) { animation-delay: 0.8s; opacity: 1; }
+    .tips li {
+      margin: 6px 0;      color: rgba(255,255,255,0.85);
+    }
+
+    /* للجوال */
+    @media (max-width: 500px) {
+      .card { padding: 28px 20px; border-radius: 24px; }
+      h1 { font-size: 1.65rem; }
+      .subtitle { font-size: 1rem; }
+      .proxy-btn { padding: 18px 25px; font-size: 1.15rem; }
+      .logo { width: 95px; height: 95px; font-size: 44px; }
+      .info-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* تأثيرات الظهور */
+    .fade-in { animation: fadeInUp 0.6s ease-out forwards; opacity: 0; }
+    .fade-in:nth-child(1) { animation-delay: 0.15s; opacity: 1; }
+    .fade-in:nth-child(2) { animation-delay: 0.3s; opacity: 1; }
+    .fade-in:nth-child(3) { animation-delay: 0.45s; opacity: 1; }
+    .fade-in:nth-child(4) { animation-delay: 0.6s; opacity: 1; }
 
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(25px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* مؤشر التحميل */
-    .loader {
-      display: inline-block;
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255,255,255,0.3);
-      border-radius: 50%;
-      border-top-color: var(--accent);
-      animation: spin 1s linear infinite;
-      margin-left: 10px;
-      vertical-align: middle;
-    }
-
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
+    /* منع التحديد النصي غير المرغوب */
+    .no-select { user-select: none; -webkit-user-select: none; }
   </style>
 </head>
 <body>
-  <!-- خلفية متحركة -->
   <div class="bg-animation"></div>
-  
-  <!-- جزيئات عائمة -->
   <div class="particles" id="particles"></div>
 
-  <!-- المحتوى الرئيسي -->
-  <div class="container">    <div class="card">
+  <div class="container">
+    <div class="card">
       <!-- الشعار -->
-      <div class="logo fade-in">⚡</div>
+      <div class="logo fade-in no-select">⚡</div>
       
       <!-- العنوان -->
       <h1 class="fade-in">🔐 بروكسي تيليجرام السريع</h1>
       <p class="subtitle fade-in">
-        اتصال آمن وسريع عبر خادم بروكسي مخصص. 
-        اضغط على الزر أدناه لتفعيل البروكسي في تطبيق تيليجرام مباشرة!
+        اضغط على الزر أدناه لفتح <span class="highlight">تطبيق تيليجرام مباشرة</span> 
+        وتفعيل البروكسي فوراً! 🚀
       </p>
 
       <!-- زر الاتصال -->
-      <a 
-        href="https://t.me/proxy?server=164.68.109.118&port=443&secret=ee51dc9b5458707fb9ea5e702e5b724ca1636c6f7564666c6172652e636f6d" 
-        class="proxy-btn fade-in"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span class="btn-icon">🚀</span>
-        تفعيل البروكسي الآن
-        <span class="loader" id="loader" style="display:none;"></span>
-      </a>
+      <button 
+        class="proxy-btn fade-in no-select"
+        id="connectBtn"
+        aria-label="تفعيل بروكسي تيليجرام"      >
+        <span class="btn-icon">📱</span>
+        فتح في تيليجرام الآن
+      </button>
+
+      <!-- حالة التوجيه -->
+      <div class="redirect-status" id="redirectStatus">
+        <span class="status-icon">🔄</span>
+        <span id="statusText">جاري فتح تيليجرام...</span>
+      </div>
 
       <!-- شريط الحالة -->
       <div class="status-bar fade-in">
         <div class="status-dot"></div>
-        <span>الخادم متصل وجاهز • سرعة عالية • تشفير كامل</span>
+        <span>الخادم نشط • سرعة عالية • تشفير MTProto</span>
       </div>
 
       <!-- معلومات البروكسي -->
       <div class="proxy-info fade-in">
-        <p style="color: rgba(255,255,255,0.7); font-size: 0.95rem;">
-          📋 تفاصيل الخادم:
-        </p>
+        <p class="info-title">📋 تفاصيل الخادم:</p>
         <div class="info-grid">
           <div class="info-item">
-            <div class="info-label">الخادم</div>
+            <div class="info-label">Server</div>
             <div class="info-value">164.68.109.118</div>
           </div>
           <div class="info-item">
-            <div class="info-label">المنفذ</div>
+            <div class="info-label">Port</div>
             <div class="info-value">443 🔒</div>
           </div>
           <div class="info-item">
-            <div class="info-label">النوع</div>
-            <div class="info-value">MTProto</div>
+            <div class="info-label">Protocol</div>
+            <div class="info-value">MTProto 2.0</div>
           </div>
           <div class="info-item">
-            <div class="info-label">الحالة</div>
-            <div class="info-value" style="color:#00e676;">✅ نشط</div>          </div>
+            <div class="info-label">Status</div>
+            <div class="info-value" style="color:var(--success);">✅ Active</div>
+          </div>
         </div>
+        
+        <!-- زر نسخ الرابط -->
+        <button class="copy-btn" id="copyBtn" onclick="copyProxyLink()">
+          📋 نسخ رابط البروكسي
+        </button>
+      </div>
+
+      <!-- تعليمات -->
+      <div class="tips fade-in">
+        <strong>💡 إذا لم يفتح التطبيق:</strong>
+        <ul>
+          <li>تأكد من تثبيت <strong>تطبيق تيليجرام الرسمي</strong></li>          <li>اضغط على "فتح في التطبيق" إذا ظهر لك خيار المتصفح</li>
+          <li>يمكنك نسخ الرابط اليدوي واستخدامه داخل تيليجرام</li>
+        </ul>
       </div>
 
       <!-- التذييل -->
       <div class="footer fade-in">
         <p>
-          💡 ملاحظة: تأكد من تحديث تطبيق تيليجرام لآخر إصدار.<br>
-          للاستفسارات: <a href="https://t.me/yourusername" target="_blank">@yourusername</a>
+          🔗 الرابط يعمل على: أندرويد • آيفون • تيليجرام ديسكتوب<br>
+          للاستفسار: <a href="https://t.me/yourusername" target="_blank" rel="noopener">@yourusername</a>
         </p>
       </div>
     </div>
   </div>
 
   <script>
-    // إنشاء الجزيئات العائمة
+    // ================= إعدادات البروكسي =================
+    const PROXY_CONFIG = {
+      server: '164.68.109.118',
+      port: '443',
+      secret: 'ee51dc9b5458707fb9ea5e702e5b724ca1636c6f7564666c6172652e636f6d',
+      // رابط البروتوكول المباشر لتيليجرام
+      tgUrl: `tg://proxy?server=164.68.109.118&port=443&secret=ee51dc9b5458707fb9ea5e702e5b724ca1636c6f7564666c6172652e636f6d`,
+      // رابط احتياطي للمتصفح
+      fallbackUrl: `https://t.me/proxy?server=164.68.109.118&port=443&secret=ee51dc9b5458707fb9ea5e702e5b724ca1636c6f7564666c6172652e636f6d`
+    };
+
+    // ================= إنشاء الجزيئات =================
     function createParticles() {
       const container = document.getElementById('particles');
-      const particleCount = 50;
+      const count = 45;
       
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
+      for (let i = 0; i < count; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDelay = Math.random() * 20 + 's';
+        p.style.animationDuration = (15 + Math.random() * 25) + 's';
+        p.style.width = p.style.height = (2 + Math.random() * 5) + 'px';
         
-        // مواضع عشوائية
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 20 + 's';
-        particle.style.animationDuration = (15 + Math.random() * 20) + 's';
-        particle.style.width = particle.style.height = (2 + Math.random() * 4) + 'px';
+        const colors = ['#00d2d3', '#6c5ce7', '#0088cc', '#a29bfe', '#00e676'];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+        p.style.background = color;
+        p.style.boxShadow = `0 0 12px ${color}`;
         
-        // ألوان متنوعة
-        const colors = ['#00d2d3', '#6c5ce7', '#0088cc', '#a29bfe'];
-        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-        particle.style.boxShadow = `0 0 10px ${particle.style.background}`;
-        
-        container.appendChild(particle);
+        container.appendChild(p);
       }
     }
 
-    // تأثير عند النقر على الزر
-    document.querySelector('.proxy-btn').addEventListener('click', function(e) {
-      const loader = document.getElementById('loader');
-      const btnText = this.querySelector('.btn-icon').nextSibling;
+    // ================= دالة فتح تيليجرام الذكي =================    function openTelegramProxy() {
+      const btn = document.getElementById('connectBtn');
+      const status = document.getElementById('redirectStatus');
+      const statusText = document.getElementById('statusText');
       
-      // إظهار مؤشر التحميل
-      loader.style.display = 'inline-block';
-      btnText.textContent = ' جاري التوجيه...';
-      
-      // إعادة النص بعد فترة قصيرة
-      setTimeout(() => {        loader.style.display = 'none';
-        btnText.textContent = ' تفعيل البروكسي الآن';
-      }, 3000);
-    });
+      // إظهار حالة التوجيه
+      status.className = 'redirect-status show';
+      statusText.textContent = '🔄 جاري فتح تيليجرام...';
+      status.classList.remove('error');
+      btn.disabled = true;
+      btn.style.opacity = '0.7';
 
-    // تأثيرات إضافية عند التحميل
+      // محاولة الفتح باستخدام البروتوكول المباشر أولاً
+      let appOpened = false;
+      const start = Date.now();
+
+      // محاولة فتح عبر tg://
+      window.location.href = PROXY_CONFIG.tgUrl;
+
+      // التحقق مما إذا تم فتح التطبيق (لأجهزة أندرويد)
+      const timeout = setTimeout(() => {
+        const elapsed = Date.now() - start;
+        
+        // إذا لم يفتح التطبيق خلال 2.5 ثانية، نستخدم الخطة البديلة
+        if (elapsed < 2800 && !document.hidden) {
+          // محاولة ثانية عبر نافذة منبثقة
+          const popup = window.open(PROXY_CONFIG.fallbackUrl, '_blank', 'width=500,height=600');
+          
+          if (!popup || popup.closed || typeof popup.closed === 'undefined') {
+            // الفشل في الفتح - عرض التعليمات
+            showFallbackInstructions();
+          } else {
+            // نجاح نسبي - إغلاق النافذة بعد فترة
+            setTimeout(() => {
+              if (!popup.closed) popup.close();
+              statusText.textContent = '✅ تم التوجيه! راجع تيليجرام';
+              setTimeout(() => { status.classList.remove('show'); }, 3000);
+            }, 2000);
+          }
+        }
+        
+        btn.disabled = false;
+        btn.style.opacity = '1';
+      }, 2500);
+
+      // إذا عاد المستخدم للصفحة (لم يفتح التطبيق)
+      document.addEventListener('visibilitychange', function handleVisibility() {
+        if (document.visibilityState === 'visible') {
+          // المستخدم عاد، ربما فشل الفتح
+          setTimeout(() => {            if (status.classList.contains('show') && !status.classList.contains('error')) {
+              showFallbackInstructions();
+            }
+          }, 500);
+        }
+        document.removeEventListener('visibilitychange', handleVisibility);
+      }, { once: true });
+
+      // دالة عرض التعليمات البديلة
+      function showFallbackInstructions() {
+        status.classList.add('error');
+        statusText.innerHTML = '⚠️ لم يفتح تيليجرام تلقائياً.<br><small>اضغط مطولاً على الزر أو انسخ الرابط يدوياً</small>';
+        
+        // تغيير نص الزر
+        btn.innerHTML = '<span class="btn-icon">📋</span> انسخ الرابط واستخدمه في تيليجرام';
+        btn.onclick = () => {
+          copyProxyLink();
+          statusText.textContent = '✅ تم النسخ! الصقه في تيليجرام';
+          status.classList.remove('error');
+        };
+      }
+    }
+
+    // ================= نسخ رابط البروكسي =================
+    function copyProxyLink() {
+      const link = PROXY_CONFIG.tgUrl;
+      
+      // محاولة النسخ الحديثة
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText(link).then(() => {
+          showCopyFeedback();
+        }).catch(() => fallbackCopy(link));
+      } else {
+        fallbackCopy(link);
+      }
+      
+      function fallbackCopy(text) {
+        const textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        
+        try {
+          document.execCommand('copy');
+          showCopyFeedback();
+        } catch (err) {
+          alert('📋 الرابط: \n' + text);        }
+        document.body.removeChild(textarea);
+      }
+      
+      function showCopyFeedback() {
+        const copyBtn = document.getElementById('copyBtn');
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = '✅ تم النسخ!';
+        copyBtn.classList.add('copied');
+        
+        setTimeout(() => {
+          copyBtn.innerHTML = originalText;
+          copyBtn.classList.remove('copied');
+        }, 2000);
+      }
+    }
+
+    // ================= كشف نظام التشغيل =================
+    function detectOS() {
+      const ua = navigator.userAgent || navigator.vendor || window.opera;
+      if (/android/i.test(ua)) return 'android';
+      if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) return 'ios';
+      return 'other';
+    }
+
+    // ================= التهيئة عند التحميل =================
     window.addEventListener('load', () => {
       createParticles();
       
-      // إضافة تأثيرات تفاعلية للعناصر
-      document.querySelectorAll('.info-item').forEach(item => {
-        item.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-5px) scale(1.02)';
-        });
-        item.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0) scale(1)';
-        });
-      });
-    });
-
-    // تأثير التمرير الناعم
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href')).scrollIntoView({
-          behavior: 'smooth'
-        });
-      });
-    });
-
-    // دعم لوحة المفاتيح للزر
-    document.querySelector('.proxy-btn').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        this.click();
+      // ربط زر الاتصال
+      document.getElementById('connectBtn').addEventListener('click', openTelegramProxy);
+      
+      // تحسينات للجوال
+      if (/Mobi|Android/i.test(navigator.userAgent)) {
+        document.body.style.fontSize = '16px'; // منع التكبير التلقائي
       }
+      
+      // دعم لوحة المفاتيح
+      document.getElementById('connectBtn').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          openTelegramProxy();
+        }
+      });
     });
+
+    // منع السحب للأسفل في الجوال (تحسين تجربة التطبيق)
+    document.addEventListener('touchmove', (e) => {
+      if (e.target.closest('.proxy-btn')) {
+        e.preventDefault();      }
+    }, { passive: false });
   </script>
 </body>
-    </html>
+</html>
