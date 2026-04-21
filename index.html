@@ -12,6 +12,7 @@
             --accent-gold: #D4AF37;
             --accent-gold-light: #F3E5AB;
             --accent-purple: #7C3AED;
+            --accent-green: #10B981;
             --text-dark: #0F172A;
             --text-light: #F8FAFC;
             --glass-bg: rgba(255, 255, 255, 0.82);
@@ -30,7 +31,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Header */
         header {
             position: relative;
             background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
@@ -72,7 +72,6 @@
         .wave svg { position: relative; display: block; width: calc(100% + 1.3px); height: 80px; }
         .wave .shape-fill { fill: #f8fafc; }
 
-        /* Main Container */
         .container {
             max-width: 1100px;
             margin: -60px auto 60px;
@@ -81,7 +80,6 @@
             z-index: 2;
         }
 
-        /* Sections */
         .section {
             background: var(--glass-bg);
             backdrop-filter: blur(14px);
@@ -96,9 +94,9 @@
             transform: translateY(40px);
             transition: var(--transition);
         }
-        .section.visible { opacity: 1; transform: translateY(0); }        .section::after {
-            content: ''; position: absolute; top: 0; right: 0; width: 6px; height: 100%;
-            background: linear-gradient(to bottom, var(--accent-gold), var(--accent-purple));
+        .section.visible { opacity: 1; transform: translateY(0); }
+        .section::after {
+            content: ''; position: absolute; top: 0; right: 0; width: 6px; height: 100%;            background: linear-gradient(to bottom, var(--accent-gold), var(--accent-purple));
             border-radius: 0 24px 24px 0;
         }
         .section::before {
@@ -145,9 +143,9 @@
             background: linear-gradient(120deg, rgba(212,175,55,0.3) 0%, rgba(212,175,55,0.3) 100%);
             background-repeat: no-repeat;
             background-size: 100% 40%;
-            background-position: 0 88%;            padding: 0 4px;
-            font-weight: 700;
-            color: inherit;
+            background-position: 0 88%;
+            padding: 0 4px;
+            font-weight: 700;            color: inherit;
         }
 
         .examples-grid { display: grid; gap: 25px; }
@@ -194,9 +192,9 @@
             background: #F8FAFC;
             border-radius: 12px;
             border-right: 4px solid #94A3B8;
-            transition: var(--transition);        }
-        .detail-box:hover { background: #F1F5F9; }
-        .detail-box strong {
+            transition: var(--transition);
+        }
+        .detail-box:hover { background: #F1F5F9; }        .detail-box strong {
             color: var(--accent-purple);
             display: block; margin-bottom: 8px; font-size: 1rem;
         }
@@ -205,7 +203,151 @@
             background: linear-gradient(135deg, #FFFBEB, #FFFFFF);
         }
 
-        /* Footer */
+        .exercises-header {
+            text-align: center;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, var(--accent-purple), var(--primary));
+            border-radius: 20px;
+            margin: 50px 0 30px;
+            color: white;
+            box-shadow: var(--shadow-soft);
+        }
+        .exercises-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+            border-right: 5px solid var(--accent-purple);
+            transition: var(--transition);
+        }
+        .question-card:hover {
+            transform: translateX(-5px);
+            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25);
+        }
+        .question-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px dashed #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .question-title::before {
+            content: "❓";
+            font-size: 1.5rem;        }
+
+        .exercise-item {
+            background: linear-gradient(135deg, #f8fafc, #ffffff);
+            padding: 20px;
+            border-radius: 14px;
+            margin-bottom: 15px;
+            border-right: 4px solid var(--accent-green);
+        }
+        .exercise-item .poem {
+            font-family: 'Amiri', serif;
+            font-size: 1.3rem;
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 15px;
+            padding: 12px;
+            background: #FFFBEB;
+            border-radius: 8px;
+            border-right: 3px solid var(--accent-gold);
+        }
+        .answer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+        .answer-box {
+            padding: 14px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+        }
+        .answer-box strong {
+            color: var(--accent-purple);
+            display: block;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+        .answer-box.tawriyah { border-right: 3px solid var(--accent-gold); }
+        .answer-box.close { border-right: 3px solid #3B82F6; }
+        .answer-box.far { border-right: 3px solid #8B5CF6; }
+
+        .tabaq-section {
+            background: linear-gradient(135deg, #f0f9ff, #ffffff);
+            border-radius: 16px;
+            padding: 25px;
+            margin: 20px 0;
+            border-right: 5px solid #0EA5E9;
+        }
+        .tabaq-title {
+            font-weight: 700;            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        .tabaq-pairs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .pair {
+            background: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .pair-type {
+            display: inline-block;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .definition-box {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            margin: 20px 0;
+            border: 2px solid var(--accent-purple);
+        }
+        .definition-box h4 {
+            color: var(--accent-purple);
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+        }
+        .types-list {
+            list-style: none;
+            padding-right: 10px;
+        }
+        .types-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }        .types-list li::before {
+            content: "✓";
+            color: var(--accent-green);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
         footer {
             text-align: center;
             padding: 50px 25px;
@@ -224,132 +366,336 @@
             margin-bottom: 12px;
         }
 
-        /* Print Optimization */
         @media print {
             body { background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
             header { padding: 30px 20px 60px !important; background: var(--primary) !important; }
             .section { box-shadow: none !important; border: 2px solid #cbd5e1 !important; opacity: 1 !important; transform: none !important; page-break-inside: avoid; }
-            .example-card:hover { transform: none !important; box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important; }
+            .example-card:hover, .question-card:hover { transform: none !important; box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important; }
             .logo, .footer-brand, .section-number, .wave svg { -webkit-print-color-adjust: exact !important; }
             header::before { animation: none !important; opacity: 0.3 !important; }
         }
 
-        /* Responsive */
         @media (max-width: 768px) {
             .logo { font-size: 3rem; letter-spacing: 3px; }
             .section { padding: 30px; margin-bottom: 35px; }
             .section-title { font-size: 1.9rem; gap: 12px; }
-            .details { grid-template-columns: 1fr; }
+            .details, .answer-grid { grid-template-columns: 1fr; }
             .container { padding: 0 15px; }
+            .question-card { padding: 20px; }
         }
     </style>
-</head><body>
+</head>
+<body>
     <header>
         <div class="logo">M-TAQE</div>
         <div class="subtitle">الملزمة العلمية | أنواع التورية في البلاغة العربية</div>
         <div class="wave">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.89,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.89,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
             </svg>
         </div>
     </header>
 
     <div class="container">
-        <!-- 1 -->
         <div class="section">
             <h2 class="section-title"><span class="section-number">1</span> التورية المجردة</h2>
-            <div class="definition">📖 <strong>التعريف:</strong> إذا لم توجد أي قرينة تدل على المعنى القريب أو البعيد فإنها: <mark>المجردة</mark></div>
+            <div class="definition">📖 التعريف: إذا لم توجد أي قرينة تدل على المعنى القريب أو البعيد فإنها: <mark>المجردة</mark></div>
             <div class="examples-grid">
                 <div class="example-card">
-                    <div class="example-text">"الرحمن على العرش استوى"</div>
+                    <div class="example-text">الرحمن على العرش استوى</div>
                     <div class="details">
                         <div class="detail-box"><strong>المعنى القريب</strong>الاستقرار / الجلوس على العرش</div>
                         <div class="detail-box"><strong>المعنى البعيد</strong>القدرة والسيطرة</div>
                     </div>
                 </div>
                 <div class="example-card">
-                    <div class="example-text">"من أنتم؟ قالوا: من ماء"</div>
+                    <div class="example-text">من أنتم؟ قالوا: من ماء</div>
                     <div class="details">
-                        <div class="detail-box"><strong>المعنى القريب</strong>قبيلة اسمها (ماء)</div>
+                        <div class="detail-box"><strong>المعنى القريب</strong>قبيلة اسمها ماء</div>
                         <div class="detail-box"><strong>المعنى البعيد</strong>مخلوقون من ماء</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 2 -->
         <div class="section">
             <h2 class="section-title"><span class="section-number">2</span> التورية المرشّحة</h2>
-            <div class="definition">📖 <strong>التعريف:</strong> إذا وُجدت قرينة تدل على <mark>المعنى القريب</mark> فإنها: <mark>المرشّحة</mark></div>
+            <div class="definition">📖 التعريف: إذا وُجدت قرينة تدل على <mark>المعنى القريب</mark> فإنها: <mark>المرشّحة</mark></div>
             <div class="examples-grid">
                 <div class="example-card">
-                    <div class="example-text">"والسماء بنيناها بأيد"</div>
+                    <div class="example-text">والسماء بنيناها بأيد</div>
                     <div class="details">
                         <div class="detail-box"><strong>المعنى القريب</strong>البناء باليد</div>
                         <div class="detail-box"><strong>المعنى البعيد</strong>القدرة</div>
-                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>(بأيد) تدل على اليد فتقوّي المعنى القريب</div>
+                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>بأيد تدل على اليد فتقوّي المعنى القريب</div>
                     </div>
                 </div>
                 <div class="example-card">
-                    <div class="example-text">"ولا نحن أغضينا الجفون على وتر"</div>
-                    <div class="details">                        <div class="detail-box"><strong>المعنى القريب</strong>جفن العين</div>
-                        <div class="detail-box"><strong>المعنى البعيد</strong>جفن السيف</div>
-                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>(أغضينا) تناسب جفن العين</div>
-                    </div>
-                </div>
-                <div class="example-card">
-                    <div class="example-text">"كأنّ للمجاورة اقتسمنا فقلبي جارهم ودمعي جاري"</div>
+                    <div class="example-text">ولا نحن أغضينا الجفون على وتر</div>
                     <div class="details">
-                        <div class="detail-box"><strong>المعنى القريب</strong>المجاورة (السكن قربهم)</div>
+                        <div class="detail-box"><strong>المعنى القريب</strong>جفن العين</div>
+                        <div class="detail-box"><strong>المعنى البعيد</strong>جفن السيف</div>
+                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>أغضينا تناسب جفن العين</div>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <div class="example-text">كأنّ للمجاورة اقتسمنا فقلبي جارهم ودمعي جاري</div>
+                    <div class="details">                        <div class="detail-box"><strong>المعنى القريب</strong>المجاورة السكن قربهم</div>
                         <div class="detail-box"><strong>المعنى البعيد</strong>المنفعة / المكسب</div>
-                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>(جارهم / جاري) تدعم معنى القرب</div>
+                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>جارهم / جاري تدعم معنى القرب</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 3 -->
         <div class="section">
             <h2 class="section-title"><span class="section-number">3</span> التورية المبينة</h2>
-            <div class="definition">📖 <strong>التعريف:</strong> إذا وُجدت قرينة تدل على <mark>المعنى البعيد</mark> فإنها: <mark>المبينة</mark></div>
+            <div class="definition">📖 التعريف: إذا وُجدت قرينة تدل على <mark>المعنى البعيد</mark> فإنها: <mark>المبينة</mark></div>
             <div class="examples-grid">
                 <div class="example-card">
-                    <div class="example-text">"أرى ذنب السرحان في الأفق ساطعاً"</div>
+                    <div class="example-text">أرى ذنب السرحان في الأفق ساطعاً</div>
                     <div class="details">
-                        <div class="detail-box"><strong>المعنى القريب</strong>السرحان (الذئب)</div>
-                        <div class="detail-box"><strong>المعنى البعيد</strong>ذنب السرحان (نجم في السماء)</div>
-                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>(في الأفق ساطعاً) تدل على السماء</div>
+                        <div class="detail-box"><strong>المعنى القريب</strong>السرحان الذئب</div>
+                        <div class="detail-box"><strong>المعنى البعيد</strong>ذنب السرحان نجم في السماء</div>
+                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>في الأفق ساطعاً تدل على السماء</div>
                     </div>
                 </div>
                 <div class="example-card">
-                    <div class="example-text">"فهل ممكن أن الغزالة تطلع"</div>
+                    <div class="example-text">فهل ممكن أن الغزالة تطلع</div>
                     <div class="details">
-                        <div class="detail-box"><strong>المعنى القريب</strong>الغزالة (الحيوان)</div>
+                        <div class="detail-box"><strong>المعنى القريب</strong>الغزالة الحيوان</div>
                         <div class="detail-box"><strong>المعنى البعيد</strong>الشمس</div>
-                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>(تطلع) تدل على الشمس</div>
+                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>تطلع تدل على الشمس</div>
                     </div>
                 </div>
                 <div class="example-card">
-                    <div class="example-text">"تملح في القلوب وتعذب"</div>
+                    <div class="example-text">تملح في القلوب وتعذب</div>
                     <div class="details">
-                        <div class="detail-box"><strong>المعنى القريب</strong>الملوحة (ضد العذوبة)</div>
+                        <div class="detail-box"><strong>المعنى القريب</strong>الملوحة ضد العذوبة</div>
                         <div class="detail-box"><strong>المعنى البعيد</strong>الجمال والحُسن</div>
-                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>(في القلوب وتعذب) تدل على الحسن</div>
+                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>في القلوب وتعذب تدل على الحسن</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- 4 -->
-        <div class="section">            <h2 class="section-title"><span class="section-number">4</span> التورية المهيّأة</h2>
-            <div class="definition">📖 <strong>التعريف:</strong> إذا كان السياق كله يهيئ لفهم <mark>المعنى البعيد</mark> فإنها: <mark>المهيّأة</mark></div>
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">4</span> التورية المهيّأة</h2>
+            <div class="definition">📖 التعريف: إذا كان السياق كله يهيئ لفهم <mark>المعنى البعيد</mark> فإنها: <mark>المهيّأة</mark></div>
             <div class="examples-grid">
                 <div class="example-card">
-                    <div class="example-text">"أيها المنكح الثريا سهيلاً، عمرك الله كيف يلتقيان؟"</div>
+                    <div class="example-text">أيها المنكح الثريا سهيلاً، عمرك الله كيف يلتقيان؟</div>
                     <div class="details">
-                        <div class="detail-box"><strong>المعنى القريب</strong>سهيل (نجم)</div>
+                        <div class="detail-box"><strong>المعنى القريب</strong>سهيل نجم</div>
                         <div class="detail-box"><strong>المعنى البعيد</strong>اسم امرأة</div>
                         <div class="detail-box qarina"><strong>التهيئة السياقية</strong>الكلام كله مهيأ لفكرة الاستحالة واللقاء</div>
+                    </div>                </div>
+            </div>
+        </div>
+
+        <div class="exercises-header">
+            <h2>📝 التمارين والحلول النموذجية</h2>
+            <p>اختبر فهمك مع حلول مفصلة وشرح وافي</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">5</span> تمارين التورية مع الحل</h2>
+            
+            <div class="question-card">
+                <div class="question-title">السؤال الأول: استخرج التورية مما يأتي مبيناً المعنى القريب والبعيد</div>
+                
+                <div class="exercise-item">
+                    <div class="poem">أقول وقد شنوا إلى حرب غارةٍ *** دعوني فإني آكل الخبز بالجن</div>
+                    <div class="answer-grid">
+                        <div class="answer-box tawriyah"><strong>التورية في</strong>الجن</div>
+                        <div class="answer-box close"><strong>المعنى القريب</strong>الجن المجانين</div>
+                        <div class="answer-box far"><strong>المعنى البعيد</strong>الجنان القلب</div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <div class="poem">كم قطع الجودُ من لساني *** قل من نظمه النحورا</div>
+                    <div class="answer-grid">
+                        <div class="answer-box tawriyah"><strong>التورية في</strong>لساني</div>
+                        <div class="answer-box close"><strong>المعنى القريب</strong>اللسان عضو الكلام</div>
+                        <div class="answer-box far"><strong>المعنى البعيد</strong>الشعر والكلام</div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <div class="poem">أبيات شرك كالقصور *** ولا قصور بها يعو</div>
+                    <div class="answer-grid">
+                        <div class="answer-box tawriyah"><strong>التورية في</strong>قصور</div>
+                        <div class="answer-box close"><strong>المعنى القريب</strong>القصور عن الشيء</div>
+                        <div class="answer-box far"><strong>المعنى البعيد</strong>القصور المباني العظيمة</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">6</span> تمارين الطباق مع الحل</h2>
+            
+            <div class="question-card">
+                <div class="question-title">السؤال الثاني: بين مواضع الطباق ونوعه في الأمثلة الآتية</div>
+                                <div class="exercise-item">
+                    <div class="poem">لا تعجبي يا سلم من رجلٍ *** ضحك المشيب برأسه فبكى</div>
+                    <div class="tabaq-section">
+                        <div class="tabaq-title">الطباق:</div>
+                        <div class="tabaq-pairs">
+                            <span class="pair">ضحك</span>
+                            <span class="pair">بكى</span>
+                        </div>
+                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span> جمع بين شيئين متضادين بالإثبات</div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <div class="poem">على أني راضٍ بأن احمل الهوى *** واخرج منه لا عليّ ولا ليا</div>
+                    <div class="tabaq-section">
+                        <div class="tabaq-title">الطباق:</div>
+                        <div class="tabaq-pairs">
+                            <span class="pair">عليّ</span>
+                            <span class="pair">ليا</span>
+                        </div>
+                        <div><strong>النوع:</strong> <span class="pair-type">طباق سلب</span> جمع بين كلمة ونفي ضدها</div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <div class="poem">يُقبضُ لي من حيثُ لا أعلمُ النوى *** ويسري إلي الشوقُ من حيثُ أعلمُ</div>
+                    <div class="tabaq-section">
+                        <div class="tabaq-title">الطباق:</div>
+                        <div class="tabaq-pairs">
+                            <span class="pair">لا أعلم</span>
+                            <span class="pair">أعلم</span>
+                        </div>
+                        <div><strong>النوع:</strong> <span class="pair-type">طباق سلب</span></div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <div class="poem">مكرٌ مفرٌ مقبلٌ مدبرٌ معاً *** كجلمود صخرٍ حطه السيلُ من علِ</div>
+                    <div class="tabaq-section">
+                        <div class="tabaq-title">الطباق:</div>
+                        <div class="tabaq-pairs">
+                            <span class="pair">مقبل</span>
+                            <span class="pair">مدبر</span>
+                        </div>
+                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span></div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <div class="poem">جزعتُ ولم أجزعْ من البينِ جزعاً *** وعزيتُ قلبـي بالكواكب مولعاً</div>                    <div class="tabaq-section">
+                        <div class="tabaq-title">الطباق:</div>
+                        <div class="tabaq-pairs">
+                            <span class="pair">جزعت</span>
+                            <span class="pair">لم أجزع</span>
+                        </div>
+                        <div><strong>النوع:</strong> <span class="pair-type">طباق سلب</span></div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <div class="poem">وَتَحْسَبُهُمْ أَيْقَاظاً وَهُمْ رُقُودٌ</div>
+                    <div class="tabaq-section">
+                        <div class="tabaq-title">الطباق:</div>
+                        <div class="tabaq-pairs">
+                            <span class="pair">أيقاظاً</span>
+                            <span class="pair">رقودٌ</span>
+                        </div>
+                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">7</span> تعريف الطباق وتمارين إضافية</h2>
+            
+            <div class="definition-box">
+                <h4>تعريف الطباق</h4>
+                <p>الطباق هو الجمع بين الشيء وضده في الكلام شعراً أو نثراً، وهو من المحسنات البديعية اللفظية.</p>
+            </div>
+            
+            <div class="definition-box">
+                <h4>أنواع الطباق</h4>
+                <ul class="types-list">
+                    <li><strong>طباق الإيجاب:</strong> الجمع بين شيئين متضادين بالإثبات</li>
+                    <li><strong>طباق السلب:</strong> الجمع بين كلمة ونفي ضدها</li>
+                </ul>
+            </div>
+            
+            <div class="question-card">
+                <div class="question-title">الإجابة عن الأمثلة الإضافية</div>
+                
+                <div class="exercise-item">
+                    <div class="poem">لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ</div>
+                    <div class="tabaq-section">
+                        <div class="tabaq-title">الطباق:</div>
+                        <div class="tabaq-pairs">
+                            <span class="pair">لها</span>
+                            <span class="pair">عليها</span>                        </div>
+                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span></div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <div class="poem">خيرُ المالِ عينٌ ساهرةٌ لعينٍ نائمةٍ</div>
+                    <div class="tabaq-section">
+                        <div class="tabaq-title">الطباق:</div>
+                        <div class="tabaq-pairs">
+                            <span class="pair">ساهرةٌ</span>
+                            <span class="pair">نائمةٍ</span>
+                        </div>
+                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span></div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <div class="poem">وننكرُ إن شئنا على الناسِ قولهم *** ولا ينكرون القولَ حينَ نقولُ</div>
+                    <div class="tabaq-section">
+                        <div class="tabaq-title">الطباق:</div>
+                        <div class="tabaq-pairs">
+                            <span class="pair">ننكر</span>
+                            <span class="pair">ينكرون</span>
+                        </div>
+                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span></div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <div class="poem">ما أنْ ترى الأحسابَ بيضاً وضحا *** إلا بحيثُ ترى المنايا سودا</div>
+                    <div class="tabaq-section">
+                        <div class="tabaq-title">الطباق:</div>
+                        <div class="tabaq-pairs">
+                            <span class="pair">بيضاً</span>
+                            <span class="pair">سودا</span>
+                        </div>
+                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span></div>
+                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <div class="poem">وَأَنَّهُ هُوَ أَضْحَكَ وَأَبْكَى</div>
+                    <div class="tabaq-section">
+                        <div class="tabaq-title">الطباق:</div>
+                        <div class="tabaq-pairs">
+                            <span class="pair">أضحك</span>
+                            <span class="pair">أبكى</span>
+                        </div>
+                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span> بين فعلين متضادين</div>                    </div>
+                </div>
+                
+                <div class="exercise-item">
+                    <div class="poem">يَسْتَخْفُونَ مِنَ النَّاسِ وَلا يَسْتَخْفُونَ مِنَ اللَّهِ</div>
+                    <div class="tabaq-section">
+                        <div class="tabaq-title">الطباق:</div>
+                        <div class="tabaq-pairs">
+                            <span class="pair">يستخفون</span>
+                            <span class="pair">لا يستخفون</span>
+                        </div>
+                        <div><strong>النوع:</strong> <span class="pair-type">طباق سلب</span></div>
                     </div>
                 </div>
             </div>
@@ -358,12 +704,11 @@
 
     <footer>
         <div class="footer-brand">M-TAQE</div>
-        <p>تم بحمده تعالى</p>
+        <p>تم التحرير العلمي بدقة عالية | مادة البلاغة العربية | قسم علم البديع</p>
         <p style="margin-top: 10px; opacity: 0.7;">© 2026 جميع الحقوق محفوظة</p>
     </footer>
 
     <script>
-        // Scroll Reveal Animation
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -376,11 +721,10 @@
             observer.observe(section);
         });
 
-        // Subtle Parallax on Header
         window.addEventListener('scroll', () => {
             const scrolled = window.pageYOffset;
             document.querySelector('header').style.transform = `translateY(${scrolled * 0.4}px)`;
         });
     </script>
 </body>
-              </html>
+    </html>
