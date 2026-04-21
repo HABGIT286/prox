@@ -3,728 +3,677 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M-TAQE | الملزمة العلمية - أنواع التورية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <title>اختبار حروف الجر الزمنية - مع الشرح</title>
     <style>
-        :root {
-            --primary: #0B1120;
-            --secondary: #1E293B;
-            --accent-gold: #D4AF37;
-            --accent-gold-light: #F3E5AB;
-            --accent-purple: #7C3AED;
-            --accent-green: #10B981;
-            --text-dark: #0F172A;
-            --text-light: #F8FAFC;
-            --glass-bg: rgba(255, 255, 255, 0.82);
-            --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.12);
-            --shadow-gold: 0 6px 24px rgba(212, 175, 55, 0.35);
-            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Cairo', 'Tajawal', sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-            color: var(--text-dark);
-            line-height: 1.9;
-            overflow-x: hidden;
-            scroll-behavior: smooth;
-        }
-
-        header {
-            position: relative;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent-purple) 100%);
-            color: var(--text-light);
-            padding: 100px 20px 120px;
-            text-align: center;
-            overflow: hidden;
-        }
-        header::before {
-            content: '';
-            position: absolute;
-            inset: -50%;
-            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
-            animation: spin 30s linear infinite;
-        }
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-                .logo {
-            font-size: 4.5rem;
-            font-weight: 800;
-            letter-spacing: 6px;
-            background: linear-gradient(90deg, var(--accent-gold), #FFF, var(--accent-gold));
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 4s linear infinite;
-            margin-bottom: 15px;
-        }
-        @keyframes shimmer { to { background-position: 200% center; } }
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap');
         
-        .subtitle {
-            font-size: 1.4rem;
-            font-weight: 600;
-            opacity: 0.9;
-            letter-spacing: 1px;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-        .wave {
-            position: absolute; bottom: 0; left: 0; width: 100%; line-height: 0;
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            overflow-x: hidden;
         }
-        .wave svg { position: relative; display: block; width: calc(100% + 1.3px); height: 80px; }
-        .wave .shape-fill { fill: #f8fafc; }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }            100% {
+                transform: translateY(-100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
 
         .container {
-            max-width: 1100px;
-            margin: -60px auto 60px;
-            padding: 0 25px;
-            position: relative;
-            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .section {
-            background: var(--glass-bg);
-            backdrop-filter: blur(14px);
-            border-radius: 24px;
-            padding: 45px;
-            margin-bottom: 50px;
-            box-shadow: var(--shadow-soft);
-            border: 1px solid rgba(255,255,255,0.6);
-            position: relative;
-            overflow: hidden;
-            opacity: 0;
-            transform: translateY(40px);
-            transition: var(--transition);
-        }
-        .section.visible { opacity: 1; transform: translateY(0); }
-        .section::after {
-            content: ''; position: absolute; top: 0; right: 0; width: 6px; height: 100%;            background: linear-gradient(to bottom, var(--accent-gold), var(--accent-purple));
-            border-radius: 0 24px 24px 0;
-        }
-        .section::before {
-            content: ''; position: absolute; bottom: -40px; left: -40px; width: 120px; height: 120px;
-            background: linear-gradient(135deg, rgba(212,175,55,0.1), transparent);
-            border-radius: 50%; filter: blur(30px);
-        }
-
-        .section-title {
-            font-size: 2.3rem;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-        }
-        .section-number {
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
-            color: var(--primary);
-            width: 55px; height: 55px;
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.6rem; font-weight: 800;
-            box-shadow: var(--shadow-gold);
-            position: relative;
-        }
-        .section-number::after {
-            content: ''; position: absolute; inset: -4px; border: 2px solid rgba(212,175,55,0.4);
-            border-radius: 50%;
-        }
-
-        .definition {
-            background: linear-gradient(135deg, #f8fafc, #ffffff);
-            padding: 22px 25px;
-            border-radius: 14px;
-            border-right: 5px solid var(--accent-gold);
-            margin-bottom: 35px;
-            font-size: 1.15rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
-            position: relative;
-        }
-        .definition mark {
-            background: linear-gradient(120deg, rgba(212,175,55,0.3) 0%, rgba(212,175,55,0.3) 100%);
-            background-repeat: no-repeat;
-            background-size: 100% 40%;
-            background-position: 0 88%;
-            padding: 0 4px;
-            font-weight: 700;            color: inherit;
-        }
-
-        .examples-grid { display: grid; gap: 25px; }
-
-        .example-card {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 18px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-            border: 2px solid transparent;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-        .example-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            border-color: var(--accent-gold);
-            box-shadow: var(--shadow-gold);
-        }
-        .example-text {
-            font-family: 'Amiri', serif;
-            font-size: 1.5rem;
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 20px;
-            padding: 18px;
-            background: linear-gradient(135deg, #FFFBEB, #FFFFFF);
-            border-radius: 12px;
-            border-right: 5px solid var(--accent-gold);
-            position: relative;
-        }
-        .example-text::before {
-            content: "❝"; position: absolute; top: -15px; right: 12px;
-            font-size: 3.5rem; color: rgba(212,175,55,0.15); font-family: serif;
-        }
-
-        .details {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 18px;
-        }
-        .detail-box {
-            padding: 18px;
-            background: #F8FAFC;
-            border-radius: 12px;
-            border-right: 4px solid #94A3B8;
-            transition: var(--transition);
-        }
-        .detail-box:hover { background: #F1F5F9; }        .detail-box strong {
-            color: var(--accent-purple);
-            display: block; margin-bottom: 8px; font-size: 1rem;
-        }
-        .detail-box.qarina {
-            border-right-color: var(--accent-gold);
-            background: linear-gradient(135deg, #FFFBEB, #FFFFFF);
-        }
-
-        .exercises-header {
+        .header {
             text-align: center;
-            padding: 40px 20px;
-            background: linear-gradient(135deg, var(--accent-purple), var(--primary));
-            border-radius: 20px;
-            margin: 50px 0 30px;
+            margin-bottom: 30px;
             color: white;
-            box-shadow: var(--shadow-soft);
+            position: relative;
+            z-index: 1;
         }
-        .exercises-header h2 {
-            font-size: 2rem;
+
+        .header h1 {
+            font-size: 2.5em;
+            font-weight: 900;
             margin-bottom: 10px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
-        .question-card {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 25px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-            border-right: 5px solid var(--accent-purple);
-            transition: var(--transition);
-        }
-        .question-card:hover {
-            transform: translateX(-5px);
-            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25);
-        }
-        .question-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px dashed #e2e8f0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .question-title::before {
-            content: "❓";
-            font-size: 1.5rem;        }
-
-        .exercise-item {
-            background: linear-gradient(135deg, #f8fafc, #ffffff);
-            padding: 20px;
-            border-radius: 14px;
-            margin-bottom: 15px;
-            border-right: 4px solid var(--accent-green);
-        }
-        .exercise-item .poem {
-            font-family: 'Amiri', serif;
-            font-size: 1.3rem;
-            color: var(--primary);
-            font-weight: 700;
-            margin-bottom: 15px;
-            padding: 12px;
-            background: #FFFBEB;
-            border-radius: 8px;
-            border-right: 3px solid var(--accent-gold);
-        }
-        .answer-grid {
+        .rules-section {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
         }
-        .answer-box {
-            padding: 14px;
-            background: white;
-            border-radius: 10px;
-            border: 1px solid #e2e8f0;
-        }
-        .answer-box strong {
-            color: var(--accent-purple);
-            display: block;
-            margin-bottom: 6px;
-            font-size: 0.95rem;
-        }
-        .answer-box.tawriyah { border-right: 3px solid var(--accent-gold); }
-        .answer-box.close { border-right: 3px solid #3B82F6; }
-        .answer-box.far { border-right: 3px solid #8B5CF6; }
 
-        .tabaq-section {
-            background: linear-gradient(135deg, #f0f9ff, #ffffff);
-            border-radius: 16px;
+        .rule-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
             padding: 25px;
-            margin: 20px 0;
-            border-right: 5px solid #0EA5E9;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            animation: slideIn 0.6s ease;
         }
-        .tabaq-title {
-            font-weight: 700;            color: var(--primary);
+
+        .rule-card:hover {
+            transform: translateY(-5px);
+        }
+
+        @keyframes slideIn {
+            from {                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .rule-card.at { border-top: 5px solid #e74c3c; }
+        .rule-card.on { border-top: 5px solid #3498db; }
+        .rule-card.in { border-top: 5px solid #2ecc71; }
+        .rule-card.zero { border-top: 5px solid #f39c12; }
+
+        .rule-title {
+            font-size: 1.8em;
+            font-weight: 900;
             margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-        .tabaq-pairs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-        .pair {
-            background: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: 600;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        .pair-type {
-            display: inline-block;
-            padding: 6px 14px;
-            background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .definition-box {
-            background: white;
-            padding: 25px;
-            border-radius: 16px;
-            margin: 20px 0;
-            border: 2px solid var(--accent-purple);
-        }
-        .definition-box h4 {
-            color: var(--accent-purple);
-            margin-bottom: 12px;
-            font-size: 1.3rem;
-        }
-        .types-list {
-            list-style: none;
-            padding-right: 10px;
-        }
-        .types-list li {
-            padding: 10px 0;
-            border-bottom: 1px dashed #e2e8f0;
             display: flex;
             align-items: center;
             gap: 10px;
-        }        .types-list li::before {
-            content: "✓";
-            color: var(--accent-green);
-            font-weight: bold;
-            font-size: 1.2rem;
         }
 
-        footer {
+        .rule-card.at .rule-title { color: #e74c3c; }
+        .rule-card.on .rule-title { color: #3498db; }
+        .rule-card.in .rule-title { color: #2ecc71; }
+        .rule-card.zero .rule-title { color: #f39c12; }
+
+        .rule-examples {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .rule-examples li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .rule-examples li:last-child {
+            border-bottom: none;
+        }
+
+        .rule-examples li::before {
+            content: "✓ ";
+            font-weight: bold;
+            margin-left: 5px;
+        }
+        .quiz-container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 1;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        .progress-bar {
+            background: #e0e0e0;
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .progress {
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .question-counter {
             text-align: center;
-            padding: 50px 25px;
-            background: var(--primary);
-            color: var(--text-light);
-            margin-top: 80px;
+            color: #667eea;
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+        }
+
+        .question-box {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .question-text {
+            font-size: 2em;
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        .question-number {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            line-height: 50px;
+            margin-left: 15px;
+            font-weight: 900;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .option-card {
+            background: white;
+            border: 3px solid #e0e0e0;
+            border-radius: 20px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
-        .footer-brand {
-            font-size: 2.2rem;
-            font-weight: 800;
-            background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-light));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
+
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);            transition: left 0.5s;
         }
 
-        @media print {
-            body { background: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-            header { padding: 30px 20px 60px !important; background: var(--primary) !important; }
-            .section { box-shadow: none !important; border: 2px solid #cbd5e1 !important; opacity: 1 !important; transform: none !important; page-break-inside: avoid; }
-            .example-card:hover, .question-card:hover { transform: none !important; box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important; }
-            .logo, .footer-brand, .section-number, .wave svg { -webkit-print-color-adjust: exact !important; }
-            header::before { animation: none !important; opacity: 0.3 !important; }
+        .option-card:hover::before {
+            left: 100%;
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .option-card.at { border-color: #e74c3c; }
+        .option-card.on { border-color: #3498db; }
+        .option-card.in { border-color: #2ecc71; }
+        .option-card.zero { border-color: #f39c12; }
+
+        .option-card.at:hover { border-color: #e74c3c; box-shadow: 0 15px 35px rgba(231, 76, 60, 0.3); }
+        .option-card.on:hover { border-color: #3498db; box-shadow: 0 15px 35px rgba(52, 152, 219, 0.3); }
+        .option-card.in:hover { border-color: #2ecc71; box-shadow: 0 15px 35px rgba(46, 204, 113, 0.3); }
+        .option-card.zero:hover { border-color: #f39c12; box-shadow: 0 15px 35px rgba(243, 156, 18, 0.3); }
+
+        .option-card.selected {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .option-card.at.selected { background: linear-gradient(135deg, #e74c3c, #c0392b); color: white; border-color: #e74c3c; }
+        .option-card.on.selected { background: linear-gradient(135deg, #3498db, #2980b9); color: white; border-color: #3498db; }
+        .option-card.in.selected { background: linear-gradient(135deg, #2ecc71, #27ae60); color: white; border-color: #2ecc71; }
+        .option-card.zero.selected { background: linear-gradient(135deg, #f39c12, #e67e22); color: white; border-color: #f39c12; }
+
+        .option-card.correct {
+            background: #48bb78 !important;
+            border-color: #48bb78 !important;
+            color: white !important;
+            animation: correctPulse 0.5s ease;
+        }
+
+        .option-card.wrong {
+            background: #f56565 !important;
+            border-color: #f56565 !important;
+            color: white !important;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1.05); }
+            50% { transform: scale(1.1); }
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0) scale(1.05); }
+            25% { transform: translateX(-10px) scale(1.05); }
+            75% { transform: translateX(10px) scale(1.05); }
+        }
+
+        .option-header {
+            font-size: 1.8em;
+            font-weight: 900;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .option-examples {
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .option-card.selected .option-examples {
+            color: rgba(255,255,255,0.9);
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.3em;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 0 auto;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        .btn:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;            transform: none;
+            box-shadow: none;
+        }
+
+        .result-box {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .result-box.show {
+            display: block;
+        }
+
+        .score-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #667eea calc(var(--score) * 1%), #e0e0e0 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
+            animation: rotateIn 1s ease;
+        }
+
+        @keyframes rotateIn {
+            from {
+                transform: rotate(-180deg) scale(0);
+            }
+            to {
+                transform: rotate(0deg) scale(1);
+            }
+        }
+
+        .score-inner {
+            width: 160px;
+            height: 160px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            font-weight: 900;
+            color: #667eea;
+        }
+
+        .score-text {            font-size: 1.3em;
+            color: #718096;
+            margin-top: 20px;
+        }
+
+        .quiz-box {
+            display: block;
+        }
+
+        .quiz-box.hide {
+            display: none;
         }
 
         @media (max-width: 768px) {
-            .logo { font-size: 3rem; letter-spacing: 3px; }
-            .section { padding: 30px; margin-bottom: 35px; }
-            .section-title { font-size: 1.9rem; gap: 12px; }
-            .details, .answer-grid { grid-template-columns: 1fr; }
-            .container { padding: 0 15px; }
-            .question-card { padding: 20px; }
+            .header h1 { font-size: 1.8em; }
+            .options-grid { grid-template-columns: 1fr; }
+            .rules-section { grid-template-columns: 1fr; }
+            .question-text { font-size: 1.5em; }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">M-TAQE</div>
-        <div class="subtitle">الملزمة العلمية | أنواع التورية في البلاغة العربية</div>
-        <div class="wave">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.89,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-            </svg>
-        </div>
-    </header>
-
+    <div class="particles" id="particles"></div>
+    
     <div class="container">
-        <div class="section">
-            <h2 class="section-title"><span class="section-number">1</span> التورية المجردة</h2>
-            <div class="definition">📖 التعريف: إذا لم توجد أي قرينة تدل على المعنى القريب أو البعيد فإنها: <mark>المجردة</mark></div>
-            <div class="examples-grid">
-                <div class="example-card">
-                    <div class="example-text">الرحمن على العرش استوى</div>
-                    <div class="details">
-                        <div class="detail-box"><strong>المعنى القريب</strong>الاستقرار / الجلوس على العرش</div>
-                        <div class="detail-box"><strong>المعنى البعيد</strong>القدرة والسيطرة</div>
-                    </div>
-                </div>
-                <div class="example-card">
-                    <div class="example-text">من أنتم؟ قالوا: من ماء</div>
-                    <div class="details">
-                        <div class="detail-box"><strong>المعنى القريب</strong>قبيلة اسمها ماء</div>
-                        <div class="detail-box"><strong>المعنى البعيد</strong>مخلوقون من ماء</div>
-                    </div>
-                </div>
-            </div>
+        <div class="header">
+            <h1>📝 اختبار حروف الجر الزمنية</h1>
+            <p style="font-size: 1.2em; opacity: 0.9;">اقرأ القواعد ثم أجب على الأسئلة</p>
         </div>
 
-        <div class="section">
-            <h2 class="section-title"><span class="section-number">2</span> التورية المرشّحة</h2>
-            <div class="definition">📖 التعريف: إذا وُجدت قرينة تدل على <mark>المعنى القريب</mark> فإنها: <mark>المرشّحة</mark></div>
-            <div class="examples-grid">
-                <div class="example-card">
-                    <div class="example-text">والسماء بنيناها بأيد</div>
-                    <div class="details">
-                        <div class="detail-box"><strong>المعنى القريب</strong>البناء باليد</div>
-                        <div class="detail-box"><strong>المعنى البعيد</strong>القدرة</div>
-                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>بأيد تدل على اليد فتقوّي المعنى القريب</div>
-                    </div>
+        <!-- قسم القواعد -->
+        <div class="rules-section">
+            <div class="rule-card at">
+                <div class="rule-title">
+                    <span>🕐</span>
+                    <span>AT</span>
                 </div>
-                <div class="example-card">
-                    <div class="example-text">ولا نحن أغضينا الجفون على وتر</div>
-                    <div class="details">
-                        <div class="detail-box"><strong>المعنى القريب</strong>جفن العين</div>
-                        <div class="detail-box"><strong>المعنى البعيد</strong>جفن السيف</div>
-                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>أغضينا تناسب جفن العين</div>
-                    </div>
-                </div>
-                <div class="example-card">
-                    <div class="example-text">كأنّ للمجاورة اقتسمنا فقلبي جارهم ودمعي جاري</div>
-                    <div class="details">                        <div class="detail-box"><strong>المعنى القريب</strong>المجاورة السكن قربهم</div>
-                        <div class="detail-box"><strong>المعنى البعيد</strong>المنفعة / المكسب</div>
-                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>جارهم / جاري تدعم معنى القرب</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title"><span class="section-number">3</span> التورية المبينة</h2>
-            <div class="definition">📖 التعريف: إذا وُجدت قرينة تدل على <mark>المعنى البعيد</mark> فإنها: <mark>المبينة</mark></div>
-            <div class="examples-grid">
-                <div class="example-card">
-                    <div class="example-text">أرى ذنب السرحان في الأفق ساطعاً</div>
-                    <div class="details">
-                        <div class="detail-box"><strong>المعنى القريب</strong>السرحان الذئب</div>
-                        <div class="detail-box"><strong>المعنى البعيد</strong>ذنب السرحان نجم في السماء</div>
-                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>في الأفق ساطعاً تدل على السماء</div>
-                    </div>
-                </div>
-                <div class="example-card">
-                    <div class="example-text">فهل ممكن أن الغزالة تطلع</div>
-                    <div class="details">
-                        <div class="detail-box"><strong>المعنى القريب</strong>الغزالة الحيوان</div>
-                        <div class="detail-box"><strong>المعنى البعيد</strong>الشمس</div>
-                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>تطلع تدل على الشمس</div>
-                    </div>
-                </div>
-                <div class="example-card">
-                    <div class="example-text">تملح في القلوب وتعذب</div>
-                    <div class="details">
-                        <div class="detail-box"><strong>المعنى القريب</strong>الملوحة ضد العذوبة</div>
-                        <div class="detail-box"><strong>المعنى البعيد</strong>الجمال والحُسن</div>
-                        <div class="detail-box qarina"><strong>القرينة الدالة</strong>في القلوب وتعذب تدل على الحسن</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title"><span class="section-number">4</span> التورية المهيّأة</h2>
-            <div class="definition">📖 التعريف: إذا كان السياق كله يهيئ لفهم <mark>المعنى البعيد</mark> فإنها: <mark>المهيّأة</mark></div>
-            <div class="examples-grid">
-                <div class="example-card">
-                    <div class="example-text">أيها المنكح الثريا سهيلاً، عمرك الله كيف يلتقيان؟</div>
-                    <div class="details">
-                        <div class="detail-box"><strong>المعنى القريب</strong>سهيل نجم</div>
-                        <div class="detail-box"><strong>المعنى البعيد</strong>اسم امرأة</div>
-                        <div class="detail-box qarina"><strong>التهيئة السياقية</strong>الكلام كله مهيأ لفكرة الاستحالة واللقاء</div>
-                    </div>                </div>
-            </div>
-        </div>
-
-        <div class="exercises-header">
-            <h2>📝 التمارين والحلول النموذجية</h2>
-            <p>اختبر فهمك مع حلول مفصلة وشرح وافي</p>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title"><span class="section-number">5</span> تمارين التورية مع الحل</h2>
-            
-            <div class="question-card">
-                <div class="question-title">السؤال الأول: استخرج التورية مما يأتي مبيناً المعنى القريب والبعيد</div>
-                
-                <div class="exercise-item">
-                    <div class="poem">أقول وقد شنوا إلى حرب غارةٍ *** دعوني فإني آكل الخبز بالجن</div>
-                    <div class="answer-grid">
-                        <div class="answer-box tawriyah"><strong>التورية في</strong>الجن</div>
-                        <div class="answer-box close"><strong>المعنى القريب</strong>الجن المجانين</div>
-                        <div class="answer-box far"><strong>المعنى البعيد</strong>الجنان القلب</div>
-                    </div>
-                </div>
-                
-                <div class="exercise-item">
-                    <div class="poem">كم قطع الجودُ من لساني *** قل من نظمه النحورا</div>
-                    <div class="answer-grid">
-                        <div class="answer-box tawriyah"><strong>التورية في</strong>لساني</div>
-                        <div class="answer-box close"><strong>المعنى القريب</strong>اللسان عضو الكلام</div>
-                        <div class="answer-box far"><strong>المعنى البعيد</strong>الشعر والكلام</div>
-                    </div>
-                </div>
-                
-                <div class="exercise-item">
-                    <div class="poem">أبيات شرك كالقصور *** ولا قصور بها يعو</div>
-                    <div class="answer-grid">
-                        <div class="answer-box tawriyah"><strong>التورية في</strong>قصور</div>
-                        <div class="answer-box close"><strong>المعنى القريب</strong>القصور عن الشيء</div>
-                        <div class="answer-box far"><strong>المعنى البعيد</strong>القصور المباني العظيمة</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title"><span class="section-number">6</span> تمارين الطباق مع الحل</h2>
-            
-            <div class="question-card">
-                <div class="question-title">السؤال الثاني: بين مواضع الطباق ونوعه في الأمثلة الآتية</div>
-                                <div class="exercise-item">
-                    <div class="poem">لا تعجبي يا سلم من رجلٍ *** ضحك المشيب برأسه فبكى</div>
-                    <div class="tabaq-section">
-                        <div class="tabaq-title">الطباق:</div>
-                        <div class="tabaq-pairs">
-                            <span class="pair">ضحك</span>
-                            <span class="pair">بكى</span>
-                        </div>
-                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span> جمع بين شيئين متضادين بالإثبات</div>
-                    </div>
-                </div>
-                
-                <div class="exercise-item">
-                    <div class="poem">على أني راضٍ بأن احمل الهوى *** واخرج منه لا عليّ ولا ليا</div>
-                    <div class="tabaq-section">
-                        <div class="tabaq-title">الطباق:</div>
-                        <div class="tabaq-pairs">
-                            <span class="pair">عليّ</span>
-                            <span class="pair">ليا</span>
-                        </div>
-                        <div><strong>النوع:</strong> <span class="pair-type">طباق سلب</span> جمع بين كلمة ونفي ضدها</div>
-                    </div>
-                </div>
-                
-                <div class="exercise-item">
-                    <div class="poem">يُقبضُ لي من حيثُ لا أعلمُ النوى *** ويسري إلي الشوقُ من حيثُ أعلمُ</div>
-                    <div class="tabaq-section">
-                        <div class="tabaq-title">الطباق:</div>
-                        <div class="tabaq-pairs">
-                            <span class="pair">لا أعلم</span>
-                            <span class="pair">أعلم</span>
-                        </div>
-                        <div><strong>النوع:</strong> <span class="pair-type">طباق سلب</span></div>
-                    </div>
-                </div>
-                
-                <div class="exercise-item">
-                    <div class="poem">مكرٌ مفرٌ مقبلٌ مدبرٌ معاً *** كجلمود صخرٍ حطه السيلُ من علِ</div>
-                    <div class="tabaq-section">
-                        <div class="tabaq-title">الطباق:</div>
-                        <div class="tabaq-pairs">
-                            <span class="pair">مقبل</span>
-                            <span class="pair">مدبر</span>
-                        </div>
-                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span></div>
-                    </div>
-                </div>
-                
-                <div class="exercise-item">
-                    <div class="poem">جزعتُ ولم أجزعْ من البينِ جزعاً *** وعزيتُ قلبـي بالكواكب مولعاً</div>                    <div class="tabaq-section">
-                        <div class="tabaq-title">الطباق:</div>
-                        <div class="tabaq-pairs">
-                            <span class="pair">جزعت</span>
-                            <span class="pair">لم أجزع</span>
-                        </div>
-                        <div><strong>النوع:</strong> <span class="pair-type">طباق سلب</span></div>
-                    </div>
-                </div>
-                
-                <div class="exercise-item">
-                    <div class="poem">وَتَحْسَبُهُمْ أَيْقَاظاً وَهُمْ رُقُودٌ</div>
-                    <div class="tabaq-section">
-                        <div class="tabaq-title">الطباق:</div>
-                        <div class="tabaq-pairs">
-                            <span class="pair">أيقاظاً</span>
-                            <span class="pair">رقودٌ</span>
-                        </div>
-                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <h2 class="section-title"><span class="section-number">7</span> تعريف الطباق وتمارين إضافية</h2>
-            
-            <div class="definition-box">
-                <h4>تعريف الطباق</h4>
-                <p>الطباق هو الجمع بين الشيء وضده في الكلام شعراً أو نثراً، وهو من المحسنات البديعية اللفظية.</p>
-            </div>
-            
-            <div class="definition-box">
-                <h4>أنواع الطباق</h4>
-                <ul class="types-list">
-                    <li><strong>طباق الإيجاب:</strong> الجمع بين شيئين متضادين بالإثبات</li>
-                    <li><strong>طباق السلب:</strong> الجمع بين كلمة ونفي ضدها</li>
+                <p style="color: #666; margin-bottom: 10px;">للأوقات الدقيقة والمحددة:</p>
+                <ul class="rule-examples">
+                    <li>الساعات: at 6 o'clock</li>
+                    <li>الليل: at night</li>
+                    <li>الظهيرة: at noon</li>
+                    <li>المنتصف: at midnight</li>
+                    <li>عطلة نهاية الأسبوع: at the weekend</li>
                 </ul>
             </div>
-            
-            <div class="question-card">
-                <div class="question-title">الإجابة عن الأمثلة الإضافية</div>
-                
-                <div class="exercise-item">
-                    <div class="poem">لَهَا مَا كَسَبَتْ وَعَلَيْهَا مَا اكْتَسَبَتْ</div>
-                    <div class="tabaq-section">
-                        <div class="tabaq-title">الطباق:</div>
-                        <div class="tabaq-pairs">
-                            <span class="pair">لها</span>
-                            <span class="pair">عليها</span>                        </div>
-                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span></div>
+
+            <div class="rule-card on">
+                <div class="rule-title">
+                    <span>📅</span>                    <span>ON</span>
+                </div>
+                <p style="color: #666; margin-bottom: 10px;">للأيام والتواريخ:</p>
+                <ul class="rule-examples">
+                    <li>الأيام: on Monday</li>
+                    <li>التواريخ: on January 18</li>
+                    <li>أيام + وقت: on Monday morning</li>
+                    <li>العطل: on Saturday</li>
+                </ul>
+            </div>
+
+            <div class="rule-card in">
+                <div class="rule-title">
+                    <span>📆</span>
+                    <span>IN</span>
+                </div>
+                <p style="color: #666; margin-bottom: 10px;">لفترات زمنية طويلة:</p>
+                <ul class="rule-examples">
+                    <li>الشهور: in December</li>
+                    <li>السنوات: in 1995</li>
+                    <li>الفصول: in summer</li>
+                    <li>أجزاء اليوم: in the evening</li>
+                </ul>
+            </div>
+
+            <div class="rule-card zero">
+                <div class="rule-title">
+                    <span>⭕</span>
+                    <span>Ø (بدون)</span>
+                </div>
+                <p style="color: #666; margin-bottom: 10px;">لا نستخدم حرف جر مع:</p>
+                <ul class="rule-examples">
+                    <li><strong>last/next:</strong> last night, next week</li>
+                    <li><strong>yesterday/tomorrow:</strong> yesterday evening, tomorrow morning</li>
+                    <li><strong>ago:</strong> two weeks ago, three days ago</li>
+                    <li><strong>every:</strong> every day, every week</li>
+                    <li><strong>this/that:</strong> this morning</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- الاختبار -->
+        <div class="quiz-container">
+            <div class="progress-bar">
+                <div class="progress" id="progressBar"></div>
+            </div>
+
+            <div class="quiz-box" id="quizBox">
+                <div class="question-counter">
+                    السؤال <span id="currentQ">1</span> من <span id="totalQ">12</span>                </div>
+
+                <div class="question-box">
+                    <div class="question-text">
+                        <span class="question-number" id="qNumber">1</span>
+                        <span id="questionText">six o'clock</span>
                     </div>
                 </div>
-                
-                <div class="exercise-item">
-                    <div class="poem">خيرُ المالِ عينٌ ساهرةٌ لعينٍ نائمةٍ</div>
-                    <div class="tabaq-section">
-                        <div class="tabaq-title">الطباق:</div>
-                        <div class="tabaq-pairs">
-                            <span class="pair">ساهرةٌ</span>
-                            <span class="pair">نائمةٍ</span>
+
+                <div class="options-grid" id="options">
+                    <div class="option-card at" data-value="at" onclick="selectOption(this)">
+                        <div class="option-header">🕐 AT</div>
+                        <div class="option-examples">
+                            للأوقات الدقيقة<br>
+                            at 6 o'clock, at night
                         </div>
-                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span></div>
+                    </div>
+                    <div class="option-card on" data-value="on" onclick="selectOption(this)">
+                        <div class="option-header">📅 ON</div>
+                        <div class="option-examples">
+                            للأيام والتواريخ<br>
+                            on Monday, on Jan 18
+                        </div>
+                    </div>
+                    <div class="option-card in" data-value="in" onclick="selectOption(this)">
+                        <div class="option-header">📆 IN</div>
+                        <div class="option-examples">
+                            للشهور والسنين<br>
+                            in December, in 1995
+                        </div>
+                    </div>
+                    <div class="option-card zero" data-value="Ø" onclick="selectOption(this)">
+                        <div class="option-header">⭕ Ø</div>
+                        <div class="option-examples">
+                            بدون حرف جر<br>
+                            last night, yesterday
+                        </div>
                     </div>
                 </div>
-                
-                <div class="exercise-item">
-                    <div class="poem">وننكرُ إن شئنا على الناسِ قولهم *** ولا ينكرون القولَ حينَ نقولُ</div>
-                    <div class="tabaq-section">
-                        <div class="tabaq-title">الطباق:</div>
-                        <div class="tabaq-pairs">
-                            <span class="pair">ننكر</span>
-                            <span class="pair">ينكرون</span>
-                        </div>
-                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span></div>
-                    </div>
-                </div>
-                
-                <div class="exercise-item">
-                    <div class="poem">ما أنْ ترى الأحسابَ بيضاً وضحا *** إلا بحيثُ ترى المنايا سودا</div>
-                    <div class="tabaq-section">
-                        <div class="tabaq-title">الطباق:</div>
-                        <div class="tabaq-pairs">
-                            <span class="pair">بيضاً</span>
-                            <span class="pair">سودا</span>
-                        </div>
-                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span></div>
-                    </div>
-                </div>
-                
-                <div class="exercise-item">
-                    <div class="poem">وَأَنَّهُ هُوَ أَضْحَكَ وَأَبْكَى</div>
-                    <div class="tabaq-section">
-                        <div class="tabaq-title">الطباق:</div>
-                        <div class="tabaq-pairs">
-                            <span class="pair">أضحك</span>
-                            <span class="pair">أبكى</span>
-                        </div>
-                        <div><strong>النوع:</strong> <span class="pair-type">طباق إيجاب</span> بين فعلين متضادين</div>                    </div>
-                </div>
-                
-                <div class="exercise-item">
-                    <div class="poem">يَسْتَخْفُونَ مِنَ النَّاسِ وَلا يَسْتَخْفُونَ مِنَ اللَّهِ</div>
-                    <div class="tabaq-section">
-                        <div class="tabaq-title">الطباق:</div>
-                        <div class="tabaq-pairs">
-                            <span class="pair">يستخفون</span>
-                            <span class="pair">لا يستخفون</span>
-                        </div>
-                        <div><strong>النوع:</strong> <span class="pair-type">طباق سلب</span></div>
-                    </div>
-                </div>
+
+                <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>السؤال التالي ←</button>
+            </div>
+
+            <div class="result-box" id="resultBox">
+                <h2 style="color: #667eea; font-size: 2.5em; margin-bottom: 20px;">🎉 انتهى الاختبار!</h2>
+                <div class="score-circle" id="scoreCircle" style="--score: 0">
+                    <div class="score-inner">
+                        <span id="scoreValue">0</span>
+                        <span style="font-size: 0.3em; color: #718096;">%</span>
+                    </div>                </div>
+                <div class="score-text" id="scoreText"></div>
+                <button class="btn" onclick="restartQuiz()" style="margin-top: 30px;">🔄 إعادة الاختبار</button>
             </div>
         </div>
     </div>
 
-    <footer>
-        <div class="footer-brand">M-TAQE</div>
-        <p>تم التحرير العلمي بدقة عالية | مادة البلاغة العربية | قسم علم البديع</p>
-        <p style="margin-top: 10px; opacity: 0.7;">© 2026 جميع الحقوق محفوظة</p>
-    </footer>
-
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
+        const questionsData = [
+            { id: 1, text: "six o'clock", answer: "at" },
+            { id: 2, text: "last night", answer: "Ø" },
+            { id: 3, text: "Monday morning", answer: "on" },
+            { id: 4, text: "the evening", answer: "in" },
+            { id: 5, text: "Saturday", answer: "on" },
+            { id: 6, text: "December", answer: "in" },
+            { id: 7, text: "summer", answer: "in" },
+            { id: 8, text: "yesterday evening", answer: "Ø" },
+            { id: 9, text: "1995", answer: "in" },
+            { id: 10, text: "the weekend", answer: "at" },
+            { id: 11, text: "two weeks ago", answer: "Ø" },
+            { id: 12, text: "January 18", answer: "on" }
+        ];
+
+        let currentQuestions = [];
+        let currentIndex = 0;
+        let score = 0;
+        let selectedAnswer = null;
+
+        function createParticles() {
+            const container = document.getElementById('particles');
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        function shuffleQuestions() {
+            currentQuestions = [...questionsData].sort(() => Math.random() - 0.5);
+        }
+
+        function showQuestion() {
+            const q = currentQuestions[currentIndex];
+            document.getElementById('qNumber').textContent = q.id;
+            document.getElementById('questionText').textContent = q.text;
+            document.getElementById('currentQ').textContent = currentIndex + 1;
+            document.getElementById('totalQ').textContent = questionsData.length;            
+            const progress = ((currentIndex) / questionsData.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            
+            document.querySelectorAll('.option-card').forEach(opt => {
+                opt.classList.remove('selected', 'correct', 'wrong');
             });
-        }, { threshold: 0.15 });
+            selectedAnswer = null;
+            document.getElementById('nextBtn').disabled = true;
+            
+            document.querySelector('.question-box').style.animation = 'none';
+            setTimeout(() => {
+                document.querySelector('.question-box').style.animation = 'fadeIn 0.5s ease';
+            }, 10);
+        }
 
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-        });
+        function selectOption(element) {
+            if (selectedAnswer) return;
+            
+            selectedAnswer = element.dataset.value;
+            document.querySelectorAll('.option-card').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            element.classList.add('selected');
+            document.getElementById('nextBtn').disabled = false;
+        }
 
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            document.querySelector('header').style.transform = `translateY(${scrolled * 0.4}px)`;
-        });
+        function nextQuestion() {
+            const q = currentQuestions[currentIndex];
+            const selectedOption = document.querySelector('.option-card.selected');
+            
+            if (selectedAnswer === q.answer) {
+                score++;
+                selectedOption.classList.add('correct');
+            } else {
+                selectedOption.classList.add('wrong');
+                document.querySelectorAll('.option-card').forEach(opt => {
+                    if (opt.dataset.value === q.answer) {
+                        opt.classList.add('correct');
+                    }
+                });
+            }
+            
+            setTimeout(() => {
+                currentIndex++;
+                if (currentIndex < currentQuestions.length) {
+                    showQuestion();
+                } else {
+                    showResults();
+                }            }, 1500);
+        }
+
+        function showResults() {
+            document.getElementById('quizBox').classList.add('hide');
+            document.getElementById('resultBox').classList.add('show');
+            document.getElementById('progressBar').style.width = '100%';
+            
+            const percentage = Math.round((score / questionsData.length) * 100);
+            document.getElementById('scoreValue').textContent = percentage;
+            document.getElementById('scoreCircle').style.setProperty('--score', percentage);
+            
+            let message = '';
+            if (percentage >= 90) {
+                message = '🌟 ممتاز! أداء رائع!';
+            } else if (percentage >= 70) {
+                message = '👍 جيد جداً! استمر في التقدم!';
+            } else if (percentage >= 50) {
+                message = '💪 جيد، لكن يمكنك التحسن!';
+            } else {
+                message = '📚 حاول مرة أخرى للمزيد من الممارسة!';
+            }
+            document.getElementById('scoreText').textContent = message;
+        }
+
+        function restartQuiz() {
+            currentIndex = 0;
+            score = 0;
+            shuffleQuestions();
+            document.getElementById('resultBox').classList.remove('show');
+            document.getElementById('quizBox').classList.remove('hide');
+            showQuestion();
+        }
+
+        window.onload = function() {
+            createParticles();
+            shuffleQuestions();
+            showQuestion();
+        };
     </script>
 </body>
-    </html>
+</html>
