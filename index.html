@@ -2,690 +2,438 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-  <title>🔐 بروكسي تيليجرام السريع</title>
-  
-  <!-- App Links لأندرويد -->
-  <meta property="al:android:url" content="tg://proxy?server=164.68.109.118&port=443&secret=ee51dc9b5458707fb9ea5e702e5b724ca1636c6f7564666c6172652e636f6d">
-  <meta property="al:android:package" content="org.telegram.messenger">
-  <meta property="al:android:class" content="org.telegram.messenger.ProxyActivity">
-  
-  <!-- Universal Links لـ iOS -->
-  <meta property="al:ios:url" content="tg://proxy?server=164.68.109.118&port=443&secret=ee51dc9b5458707fb9ea5e702e5b724ca1636c6f7564666c6172652e636f6d">
-  <meta property="al:ios:app_store_id" content="686449807">
-  <meta property="al:ios:app_name" content="Telegram">
-  
-  <!-- Open Graph -->
-  <meta property="og:title" content="بروكسي تيليجرام السريع">
-  <meta property="og:description" content="اضغط للاتصال الفوري عبر بروكسي آمن">
-  <meta property="og:type" content="website">
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🔗 اتصال فوري - بروكسي تيليجرام</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --primary: #0088cc;
-      --primary-dark: #006699;
-      --secondary: #6c5ce7;
-      --accent: #00d2d3;
-      --dark: #0f0f1a;
-      --darker: #0a0a12;
-      --light: #ffffff;
+      --primary: #0088cc; --primary-dark: #006699;
+      --secondary: #6c5ce7; --accent: #00d2d3;
+      --dark: #0f0c29; --darker: #0a071a;
+      --light: #f8f9fa;
       --glass: rgba(255, 255, 255, 0.1);
       --glass-border: rgba(255, 255, 255, 0.2);
-      --shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      --glow: 0 0 25px rgba(0, 136, 204, 0.7);
-      --success: #00e676;
+      --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      --glow: 0 0 20px rgba(0, 136, 204, 0.6);
     }
 
     body {
-      font-family: 'Cairo', sans-serif;
-      background: var(--darker);
+      font-family: 'Tajawal', sans-serif;
+      background: linear-gradient(135deg, var(--darker), var(--dark), #1a1a2e);
       color: var(--light);
       min-height: 100vh;
-      overflow-x: hidden;      position: relative;
+      overflow-x: hidden;
+      position: relative;
     }
 
+    /* خلفية متحركة */
     .bg-animation {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -2;
-      background: 
-        radial-gradient(ellipse at 20% 80%, rgba(108, 92, 231, 0.2) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 20%, rgba(0, 210, 211, 0.2) 0%, transparent 50%),
-        radial-gradient(ellipse at 50% 50%, rgba(0, 136, 204, 0.15) 0%, transparent 70%);
-      animation: bgPulse 15s ease-in-out infinite;
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; overflow: hidden;
     }
-
-    @keyframes bgPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.85; transform: scale(1.05); }
+    .bg-animation span {
+      position: absolute; display: block; width: 20px; height: 20px;
+      background: rgba(0, 136, 204, 0.3);
+      animation: float 25s linear infinite; bottom: -150px; border-radius: 50%;
+      box-shadow: 0 0 20px rgba(0, 136, 204, 0.8);
     }
-
-    .particles {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      z-index: -1; overflow: hidden; pointer-events: none;
-    }
-
-    .particle {
-      position: absolute;
-      width: 4px; height: 4px;
-      background: var(--accent);
-      border-radius: 50%;
-      opacity: 0.7;
-      animation: float 20s infinite linear;
-      box-shadow: 0 0 12px var(--accent);
-    }
-
+    .bg-animation span:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; animation-duration: 30s; }
+    .bg-animation span:nth-child(2) { left: 10%; width: 40px; height: 40px; animation-delay: 2s; animation-duration: 25s; }
+    .bg-animation span:nth-child(3) { left: 70%; width: 60px; height: 60px; animation-delay: 4s; animation-duration: 28s; }
+    .bg-animation span:nth-child(4) { left: 40%; width: 30px; height: 30px; animation-delay: 0s; animation-duration: 22s; }
+    .bg-animation span:nth-child(5) { left: 65%; width: 50px; height: 50px; animation-delay: 3s; animation-duration: 26s; }
+    .bg-animation span:nth-child(6) { left: 85%; width: 70px; height: 70px; animation-delay: 1s; animation-duration: 32s; }
+    .bg-animation span:nth-child(7) { left: 5%; width: 45px; height: 45px; animation-delay: 5s; animation-duration: 24s; }
+    .bg-animation span:nth-child(8) { left: 50%; width: 35px; height: 35px; animation-delay: 2s; animation-duration: 27s; }
     @keyframes float {
-      0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
-      10%, 90% { opacity: 0.8; }
-      100% { transform: translateY(-100px) translateX(80px) rotate(720deg); opacity: 0; }
+      0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+      100% { transform: translateY(-1000px) rotate(720deg) scale(0.3); opacity: 0; }
+    }
+
+    .grid-bg {
+      position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 136, 204, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 136, 204, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px; z-index: -1;
+      animation: gridMove 20s linear infinite;
+    }
+    @keyframes gridMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 50px 50px; }
     }
 
     .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 15px;
-      position: relative;
-      z-index: 1;
-    }
-    .card {
-      background: var(--glass);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--glass-border);
-      border-radius: 28px;
-      padding: 35px 25px;
-      max-width: 580px;
-      width: 100%;
-      text-align: center;
-      box-shadow: var(--shadow), var(--glow);
-      animation: cardEnter 0.7s ease-out;
-      position: relative;
-      overflow: hidden;
+      max-width: 1200px; margin: 0 auto; padding: 20px;
+      min-height: 100vh; display: flex; flex-direction: column;
+      justify-content: center; align-items: center; position: relative; z-index: 1;
     }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%;
-      width: 200%; height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.12), transparent);
-      transform: rotate(45deg);
-      animation: shine 3.5s infinite;
-      pointer-events: none;
-    }
-
-    @keyframes shine {
-      0% { transform: translateX(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) rotate(45deg); }
-    }
-
-    @keyframes cardEnter {
-      from { opacity: 0; transform: translateY(40px) scale(0.93); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
-
-    .logo {
-      width: 110px; height: 110px;
-      margin: 0 auto 28px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 52px;
-      animation: pulse 2s infinite, floatIcon 3s ease-in-out infinite;
-      box-shadow: 0 0 35px rgba(0, 136, 204, 0.6);
-      position: relative;
-    }
-
-    .logo::after {      content: '';
-      position: absolute;
-      width: 125%; height: 125%;
-      border: 2px solid var(--accent);
-      border-radius: 50%;
-      animation: ringPulse 2.2s infinite;
-      opacity: 0.5;
-    }
-
-    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.07); } }
-    @keyframes floatIcon { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-    @keyframes ringPulse {
-      0% { transform: scale(0.7); opacity: 0.6; }
-      100% { transform: scale(1.6); opacity: 0; }
-    }
-
-    h1 {
-      font-size: 1.9rem;
-      font-weight: 800;
-      margin-bottom: 18px;
-      background: linear-gradient(90deg, var(--light), var(--accent), var(--primary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: textGlow 3s ease-in-out infinite;
-      line-height: 1.3;
-    }
-
-    @keyframes textGlow {
-      0%, 100% { filter: drop-shadow(0 0 6px rgba(0, 210, 211, 0.6)); }
-      50% { filter: drop-shadow(0 0 18px rgba(0, 136, 204, 0.9)); }
-    }
-
-    .subtitle {
-      font-size: 1.05rem;
-      color: rgba(255, 255, 255, 0.9);
-      margin-bottom: 28px;
-      line-height: 1.7;
-      padding: 0 5px;
-    }
-
-    .highlight {
-      color: var(--accent);
-      font-weight: 700;
-    }
-
-    /* زر الاتصال الرئيسي */
-    .proxy-btn {
-      display: inline-flex;
-      align-items: center;      justify-content: center;
-      gap: 14px;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      color: white;
-      text-decoration: none;
-      font-size: 1.25rem;
-      font-weight: 800;
-      padding: 20px 35px;
-      border-radius: 55px;
-      border: none;
-      cursor: pointer;
-      transition: all 0.35s ease;
-      box-shadow: 0 12px 35px rgba(0, 136, 204, 0.5);
-      position: relative;
-      overflow: hidden;
-      animation: btnPulse 2.5s infinite;
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .proxy-btn::before {
-      content: '';
-      position: absolute;
-      top: 0; left: -100%;
-      width: 100%; height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
-      transition: left 0.6s;
-    }
-
-    .proxy-btn:hover::before { left: 100%; }
-    .proxy-btn:hover {
-      transform: translateY(-4px) scale(1.02);
-      box-shadow: 0 18px 45px rgba(0, 136, 204, 0.8), 0 0 35px rgba(108, 92, 231, 0.6);
-    }
-    .proxy-btn:active { transform: translateY(2px) scale(0.99); }
-
-    @keyframes btnPulse {
-      0%, 100% { box-shadow: 0 12px 35px rgba(0, 136, 204, 0.5); }
-      50% { box-shadow: 0 12px 50px rgba(0, 136, 204, 0.9), 0 0 30px rgba(108, 92, 231, 0.7); }
-    }
-
-    .btn-icon { font-size: 1.5rem; animation: bounce 1.5s infinite; }
-    @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
-
-    /* حالة التوجيه */
-    .redirect-status {
-      margin-top: 22px;
-      padding: 14px 20px;
-      background: rgba(0, 230, 118, 0.15);
-      border: 1px solid rgba(0, 230, 118, 0.4);      border-radius: 14px;
-      display: none;
-      animation: fadeIn 0.4s ease;
-    }
-
-    .redirect-status.show { display: block; }
-    .redirect-status.error {
-      background: rgba(255, 82, 82, 0.15);
-      border-color: rgba(255, 82, 82, 0.4);
-    }
-
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-    .status-icon { font-size: 1.3rem; margin-left: 8px; vertical-align: middle; }
-
-    /* معلومات البروكسي */
-    .proxy-info {
-      margin-top: 30px;
-      padding-top: 22px;
-      border-top: 1px solid var(--glass-border);
-    }
-
-    .info-title {
-      color: rgba(255,255,255,0.85);
-      font-size: 0.95rem;
-      margin-bottom: 15px;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 12px;
-    }
-
-    .info-item {
-      background: rgba(255, 255, 255, 0.09);
-      padding: 14px 12px;
-      border-radius: 14px;
-      transition: all 0.3s ease;
-      cursor: default;
-    }
-
-    .info-item:hover {
-      background: rgba(255, 255, 255, 0.18);
-      transform: translateY(-3px);
-    }
-
-    .info-label {
-      font-size: 0.8rem;
-      color: rgba(255, 255, 255, 0.65);      margin-bottom: 6px;
-    }
-
-    .info-value {
-      font-weight: 700;
-      color: var(--accent);
-      font-family: 'SF Mono', 'Consolas', monospace;
-      font-size: 0.9rem;
-      word-break: break-all;
-      direction: ltr;
-      text-align: center;
-    }
-
-    /* شريط الحالة */
-    .status-bar {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      margin-top: 25px;
-      font-size: 0.9rem;
-      color: rgba(255, 255, 255, 0.85);
-      flex-wrap: wrap;
-    }
-
-    .status-dot {
-      width: 11px; height: 11px;
-      background: var(--success);
-      border-radius: 50%;
-      animation: statusPulse 1.5s infinite;
-      box-shadow: 0 0 12px var(--success);
-      flex-shrink: 0;
-    }
-
-    @keyframes statusPulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.75; transform: scale(0.92); }
-    }
-
-    /* زر النسخ */
-    .copy-btn {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid var(--glass-border);
-      color: var(--light);
-      padding: 8px 16px;
-      border-radius: 10px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin-top: 10px;      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .copy-btn:hover {
-      background: rgba(255,255,255,0.2);
-      border-color: var(--accent);
-    }
-
-    .copy-btn.copied {
-      background: rgba(0, 230, 118, 0.25);
-      border-color: var(--success);
-      color: var(--success);
-    }
-
-    /* التذييل */
-    .footer {
-      margin-top: 28px;
-      font-size: 0.82rem;
-      color: rgba(255, 255, 255, 0.6);
-      line-height: 1.6;
-    }
-
-    .footer a {
-      color: var(--accent);
-      text-decoration: none;
-      transition: color 0.3s;
-    }
-
-    .footer a:hover { color: var(--primary); }
-
-    /* تعليمات إضافية */
-    .tips {
-      background: rgba(108, 92, 231, 0.15);
-      border: 1px solid rgba(108, 92, 231, 0.4);
-      border-radius: 14px;
-      padding: 15px;
-      margin-top: 20px;
-      font-size: 0.9rem;
-      text-align: right;
-    }
-
-    .tips ul {
-      padding-right: 20px;
-      margin-top: 8px;
-    }
-
-    .tips li {
-      margin: 6px 0;      color: rgba(255,255,255,0.85);
-    }
-
-    /* للجوال */
-    @media (max-width: 500px) {
-      .card { padding: 28px 20px; border-radius: 24px; }
-      h1 { font-size: 1.65rem; }
-      .subtitle { font-size: 1rem; }
-      .proxy-btn { padding: 18px 25px; font-size: 1.15rem; }
-      .logo { width: 95px; height: 95px; font-size: 44px; }
-      .info-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    /* تأثيرات الظهور */
-    .fade-in { animation: fadeInUp 0.6s ease-out forwards; opacity: 0; }
-    .fade-in:nth-child(1) { animation-delay: 0.15s; opacity: 1; }
-    .fade-in:nth-child(2) { animation-delay: 0.3s; opacity: 1; }
-    .fade-in:nth-child(3) { animation-delay: 0.45s; opacity: 1; }
-    .fade-in:nth-child(4) { animation-delay: 0.6s; opacity: 1; }
-
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(25px); }
+    header { text-align: center; padding: 40px 20px; animation: fadeInDown 1s ease; }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-30px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* منع التحديد النصي غير المرغوب */
-    .no-select { user-select: none; -webkit-user-select: none; }
+    .logo { font-size: 4rem; margin-bottom: 20px; animation: pulse 2s infinite; display: inline-block; }
+    @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+
+    h1 {
+      font-size: 3rem; font-weight: 900; margin-bottom: 15px;
+      background: linear-gradient(45deg, var(--accent), var(--primary), var(--secondary));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 0 30px rgba(0, 136, 204, 0.5);
+      animation: glowText 3s ease-in-out infinite alternate;
+    }
+    @keyframes glowText {
+      from { text-shadow: 0 0 20px rgba(0, 136, 204, 0.5); }
+      to { text-shadow: 0 0 40px rgba(108, 92, 231, 0.8), 0 0 60px rgba(0, 210, 211, 0.6); }
+    }
+
+    .subtitle {
+      font-size: 1.3rem; color: rgba(255, 255, 255, 0.85);
+      max-width: 600px; margin: 0 auto 30px; line-height: 1.6;    }
+
+    .card {
+      background: var(--glass); backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border); border-radius: 24px;
+      padding: 40px; max-width: 600px; width: 100%;
+      box-shadow: var(--shadow), var(--glow);
+      animation: fadeInUp 1s ease 0.3s both;
+      position: relative; overflow: hidden;
+    }
+    .card::before {
+      content: ''; position: absolute; top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(0, 136, 204, 0.1) 0%, transparent 70%);
+      animation: rotate 20s linear infinite; z-index: -1;
+    }
+    @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .proxy-info {
+      background: rgba(0, 0, 0, 0.2); border-radius: 16px;
+      padding: 20px; margin: 25px 0; border-left: 4px solid var(--accent);
+    }
+    .proxy-info-item {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .proxy-info-item:last-child { border-bottom: none; }
+    .proxy-info-label { color: rgba(255, 255, 255, 0.7); font-size: 0.95rem; }
+    .proxy-info-value {
+      font-weight: 600; color: var(--accent);
+      font-family: monospace; direction: ltr; display: inline-block;
+    }
+
+    .status-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: linear-gradient(45deg, #00b894, #00cec9);
+      padding: 8px 20px; border-radius: 50px;
+      font-weight: 600; font-size: 0.95rem; margin: 15px 0;
+      animation: statusPulse 2s infinite;
+    }
+    @keyframes statusPulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0.4); }
+      50% { box-shadow: 0 0 0 12px rgba(0, 184, 148, 0); }
+    }
+    .status-badge i { animation: blink 1s infinite; }
+    @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .connect-btn {
+      display: flex; align-items: center; justify-content: center; gap: 12px;
+      width: 100%; padding: 18px 30px; font-size: 1.3rem; font-weight: 700;
+      color: white; text-decoration: none;
+      background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent));
+      border: none; border-radius: 16px; cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 30px rgba(0, 136, 204, 0.4);
+      position: relative; overflow: hidden; margin-top: 10px;
+      animation: buttonGlow 3s ease-in-out infinite alternate;
+    }
+    @keyframes buttonGlow {
+      from { box-shadow: 0 10px 30px rgba(0, 136, 204, 0.4); }
+      to { box-shadow: 0 10px 50px rgba(108, 92, 231, 0.7), 0 0 30px rgba(0, 210, 211, 0.5); }
+    }
+    .connect-btn::before {
+      content: ''; position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transition: left 0.6s ease;
+    }
+    .connect-btn:hover::before { left: 100%; }
+    .connect-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(0, 136, 204, 0.6), 0 0 40px rgba(108, 92, 231, 0.5);
+    }
+    .connect-btn:active { transform: translateY(1px) scale(0.98); }
+    .connect-btn i { font-size: 1.5rem; animation: iconFloat 2s ease-in-out infinite; }
+    @keyframes iconFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .features {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px; margin-top: 30px; width: 100%;
+    }
+    .feature {
+      text-align: center; padding: 15px;
+      background: rgba(255, 255, 255, 0.05); border-radius: 12px;
+      transition: all 0.3s ease; border: 1px solid transparent;
+    }
+    .feature:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--accent); transform: translateY(-5px);
+    }
+    .feature i { font-size: 1.8rem; margin-bottom: 10px; color: var(--accent); }
+    .feature span { font-size: 0.9rem; color: rgba(255, 255, 255, 0.85); }
+    /* صندوق التعليمات */
+    .instructions {
+      background: rgba(255, 193, 7, 0.15);
+      border: 1px solid rgba(255, 193, 7, 0.4);
+      border-radius: 12px; padding: 15px; margin-top: 20px;
+      font-size: 0.95rem; color: rgba(255, 255, 255, 0.9);
+      animation: fadeIn 1s ease 0.6s both;
+    }
+    .instructions i { color: #ffc107; margin-left: 5px; }
+    .instructions ol { padding-right: 20px; margin-top: 10px; }
+    .instructions li { margin: 5px 0; }
+
+    footer {
+      text-align: center; padding: 30px 20px;
+      color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;
+      animation: fadeIn 2s ease 1s both;
+    }
+    @keyframes fadeIn { to { opacity: 1; } }
+
+    .telegram-link {
+      color: var(--primary); text-decoration: none; font-weight: 600;
+      transition: color 0.3s;
+    }
+    .telegram-link:hover {
+      color: var(--accent);
+      text-shadow: 0 0 10px rgba(0, 210, 211, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      h1 { font-size: 2.2rem; }
+      .subtitle { font-size: 1.1rem; }
+      .card { padding: 30px 25px; }
+      .logo { font-size: 3rem; }
+      .connect-btn { font-size: 1.1rem; padding: 16px 25px; }
+    }
+
+    .loading {
+      display: none; width: 24px; height: 24px;
+      border: 3px solid rgba(255,255,255,0.3);
+      border-top-color: white; border-radius: 50%;
+      animation: spin 1s linear infinite; margin-right: 10px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .connect-btn.loading .btn-text { display: none; }
+    .connect-btn.loading .loading { display: inline-block; }
+
+    /* رسالة التأكيد */
+    .toast {
+      position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+      background: linear-gradient(45deg, var(--secondary), var(--accent));      color: white; padding: 15px 30px; border-radius: 50px;
+      font-weight: 500; box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      z-index: 1000; transition: transform 0.4s ease;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast i { font-size: 1.2rem; }
   </style>
 </head>
 <body>
-  <div class="bg-animation"></div>
-  <div class="particles" id="particles"></div>
+  <div class="bg-animation">
+    <span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="grid-bg"></div>
 
   <div class="container">
-    <div class="card">
-      <!-- الشعار -->
-      <div class="logo fade-in no-select">⚡</div>
-      
-      <!-- العنوان -->
-      <h1 class="fade-in">🔐 بروكسي تيليجرام السريع</h1>
-      <p class="subtitle fade-in">
-        اضغط على الزر أدناه لفتح <span class="highlight">تطبيق تيليجرام مباشرة</span> 
-        وتفعيل البروكسي فوراً! 🚀
-      </p>
+    <header>
+      <div class="logo"><i class="fab fa-telegram-plane"></i></div>
+      <h1>اتصال فوري بالبروكسي</h1>
+      <p class="subtitle">اضغط على الزر أدناه لفتح تيليجرام والاتصال بالبروكسي تلقائياً. لا يحتاج لأي إعدادات يدوية!</p>
+    </header>
 
-      <!-- زر الاتصال -->
-      <button 
-        class="proxy-btn fade-in no-select"
-        id="connectBtn"
-        aria-label="تفعيل بروكسي تيليجرام"      >
-        <span class="btn-icon">📱</span>
-        فتح في تيليجرام الآن
-      </button>
-
-      <!-- حالة التوجيه -->
-      <div class="redirect-status" id="redirectStatus">
-        <span class="status-icon">🔄</span>
-        <span id="statusText">جاري فتح تيليجرام...</span>
-      </div>
-
-      <!-- شريط الحالة -->
-      <div class="status-bar fade-in">
-        <div class="status-dot"></div>
-        <span>الخادم نشط • سرعة عالية • تشفير MTProto</span>
-      </div>
-
-      <!-- معلومات البروكسي -->
-      <div class="proxy-info fade-in">
-        <p class="info-title">📋 تفاصيل الخادم:</p>
-        <div class="info-grid">
-          <div class="info-item">
-            <div class="info-label">Server</div>
-            <div class="info-value">164.68.109.118</div>
-          </div>
-          <div class="info-item">
-            <div class="info-label">Port</div>
-            <div class="info-value">443 🔒</div>
-          </div>
-          <div class="info-item">
-            <div class="info-label">Protocol</div>
-            <div class="info-value">MTProto 2.0</div>
-          </div>
-          <div class="info-item">
-            <div class="info-label">Status</div>
-            <div class="info-value" style="color:var(--success);">✅ Active</div>
-          </div>
+    <main class="card">
+      <div style="text-align: center;">
+        <div class="status-badge">
+          <i class="fas fa-circle"></i>
+          <span>البروكسي نشط وجاهز</span>
         </div>
-        
-        <!-- زر نسخ الرابط -->
-        <button class="copy-btn" id="copyBtn" onclick="copyProxyLink()">
-          📋 نسخ رابط البروكسي
-        </button>
       </div>
 
-      <!-- تعليمات -->
-      <div class="tips fade-in">
-        <strong>💡 إذا لم يفتح التطبيق:</strong>
-        <ul>
-          <li>تأكد من تثبيت <strong>تطبيق تيليجرام الرسمي</strong></li>          <li>اضغط على "فتح في التطبيق" إذا ظهر لك خيار المتصفح</li>
-          <li>يمكنك نسخ الرابط اليدوي واستخدامه داخل تيليجرام</li>
-        </ul>
+      <div class="proxy-info">
+        <div class="proxy-info-item">
+          <span class="proxy-info-label">الخادم</span>
+          <span class="proxy-info-value">164.68.109.118</span>
+        </div>
+        <div class="proxy-info-item">
+          <span class="proxy-info-label">المنفذ</span>
+          <span class="proxy-info-value">443 🔒</span>
+        </div>
+        <div class="proxy-info-item">
+          <span class="proxy-info-label">نوع التشفير</span>
+          <span class="proxy-info-value">MTProto EE</span>
+        </div>
+        <div class="proxy-info-item">
+          <span class="proxy-info-label">الحالة</span>
+          <span class="proxy-info-value" style="color: #00b894;">✅ متصل</span>
+        </div>
       </div>
+      <!-- الزر يستخدم tg:// أولاً ثم يفتح https كاحتياط -->
+      <a href="#" class="connect-btn" id="connectBtn">
+        <i class="fas fa-bolt"></i>
+        <span class="btn-text">اتصل بالبروكسي الآن</span>
+        <div class="loading"></div>
+      </a>
 
-      <!-- التذييل -->
-      <div class="footer fade-in">
-        <p>
-          🔗 الرابط يعمل على: أندرويد • آيفون • تيليجرام ديسكتوب<br>
-          للاستفسار: <a href="https://t.me/yourusername" target="_blank" rel="noopener">@yourusername</a>
+      <div class="instructions">
+        <strong><i class="fas fa-lightbulb"></i> كيفية الاتصال:</strong>
+        <ol>
+          <li>تأكد من تثبيت <strong>تطبيق تيليجرام</strong> على جهازك</li>
+          <li>اضغط على زر "اتصل بالبروكسي الآن"</li>
+          <li>عند ظهور نافذة تيليجرام، اضغط على <strong>"إضافة بروكسي"</strong></li>
+          <li>سيتم الاتصال تلقائياً! 🎉</li>
+        </ol>
+        <p style="margin-top: 10px; font-size: 0.9rem; opacity: 0.9;">
+          <i class="fas fa-info-circle"></i> 
+          إذا لم يفتح تيليجرام، <a href="https://telegram.org/dl" class="telegram-link" target="_blank">حمّله من هنا</a>
         </p>
       </div>
-    </div>
+
+      <div class="features">
+        <div class="feature">
+          <i class="fas fa-shield-alt"></i>
+          <span>أمان عالي</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-tachometer-alt"></i>
+          <span>سرعة فائقة</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-infinity"></i>
+          <span>غير محدود</span>
+        </div>
+        <div class="feature">
+          <i class="fas fa-mobile-alt"></i>
+          <span>يعمل على جميع الأجهزة</span>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>
+        <i class="fab fa-telegram"></i> 
+        يتم التوجيه إلى تطبيق 
+        <a href="https://telegram.org" class="telegram-link" target="_blank">تلجرام الرسمي</a>
+        لإتمام الاتصال الآمن
+      </p>
+      <p style="margin-top: 10px; font-size: 0.85rem; opacity: 0.7;">
+        ⚡ تم التصميم بعناية لتجربة مستخدم فاخرة وسلسة      </p>
+    </footer>
+  </div>
+
+  <!-- رسالة منبثقة -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toastMsg">جاري فتح تيليجرام...</span>
   </div>
 
   <script>
-    // ================= إعدادات البروكسي =================
-    const PROXY_CONFIG = {
+    // بيانات البروكسي
+    const PROXY = {
       server: '164.68.109.118',
       port: '443',
-      secret: 'ee51dc9b5458707fb9ea5e702e5b724ca1636c6f7564666c6172652e636f6d',
-      // رابط البروتوكول المباشر لتيليجرام
-      tgUrl: `tg://proxy?server=164.68.109.118&port=443&secret=ee51dc9b5458707fb9ea5e702e5b724ca1636c6f7564666c6172652e636f6d`,
-      // رابط احتياطي للمتصفح
-      fallbackUrl: `https://t.me/proxy?server=164.68.109.118&port=443&secret=ee51dc9b5458707fb9ea5e702e5b724ca1636c6f7564666c6172652e636f6d`
+      secret: 'ee51dc9b5458707fb9ea5e702e5b724ca1636c6f7564666c6172652e636f6d'
     };
 
-    // ================= إنشاء الجزيئات =================
-    function createParticles() {
-      const container = document.getElementById('particles');
-      const count = 45;
-      
-      for (let i = 0; i < count; i++) {
-        const p = document.createElement('div');
-        p.className = 'particle';
-        p.style.left = Math.random() * 100 + '%';
-        p.style.animationDelay = Math.random() * 20 + 's';
-        p.style.animationDuration = (15 + Math.random() * 25) + 's';
-        p.style.width = p.style.height = (2 + Math.random() * 5) + 'px';
-        
-        const colors = ['#00d2d3', '#6c5ce7', '#0088cc', '#a29bfe', '#00e676'];
-        const color = colors[Math.floor(Math.random() * colors.length)];
-        p.style.background = color;
-        p.style.boxShadow = `0 0 12px ${color}`;
-        
-        container.appendChild(p);
-      }
-    }
+    // إنشاء روابط البروكسي
+    const tgLink = `tg://proxy?server=${PROXY.server}&port=${PROXY.port}&secret=${PROXY.secret}`;
+    const httpsLink = `https://t.me/proxy?server=${PROXY.server}&port=${PROXY.port}&secret=${PROXY.secret}`;
 
-    // ================= دالة فتح تيليجرام الذكي =================    function openTelegramProxy() {
-      const btn = document.getElementById('connectBtn');
-      const status = document.getElementById('redirectStatus');
-      const statusText = document.getElementById('statusText');
-      
-      // إظهار حالة التوجيه
-      status.className = 'redirect-status show';
-      statusText.textContent = '🔄 جاري فتح تيليجرام...';
-      status.classList.remove('error');
-      btn.disabled = true;
-      btn.style.opacity = '0.7';
+    const btn = document.getElementById('connectBtn');
+    const toast = document.getElementById('toast');
+    const toastMsg = document.getElementById('toastMsg');
 
-      // محاولة الفتح باستخدام البروتوكول المباشر أولاً
-      let appOpened = false;
-      const start = Date.now();
-
-      // محاولة فتح عبر tg://
-      window.location.href = PROXY_CONFIG.tgUrl;
-
-      // التحقق مما إذا تم فتح التطبيق (لأجهزة أندرويد)
-      const timeout = setTimeout(() => {
-        const elapsed = Date.now() - start;
-        
-        // إذا لم يفتح التطبيق خلال 2.5 ثانية، نستخدم الخطة البديلة
-        if (elapsed < 2800 && !document.hidden) {
-          // محاولة ثانية عبر نافذة منبثقة
-          const popup = window.open(PROXY_CONFIG.fallbackUrl, '_blank', 'width=500,height=600');
-          
-          if (!popup || popup.closed || typeof popup.closed === 'undefined') {
-            // الفشل في الفتح - عرض التعليمات
-            showFallbackInstructions();
-          } else {
-            // نجاح نسبي - إغلاق النافذة بعد فترة
-            setTimeout(() => {
-              if (!popup.closed) popup.close();
-              statusText.textContent = '✅ تم التوجيه! راجع تيليجرام';
-              setTimeout(() => { status.classList.remove('show'); }, 3000);
-            }, 2000);
-          }
-        }
-        
-        btn.disabled = false;
-        btn.style.opacity = '1';
-      }, 2500);
-
-      // إذا عاد المستخدم للصفحة (لم يفتح التطبيق)
-      document.addEventListener('visibilitychange', function handleVisibility() {
-        if (document.visibilityState === 'visible') {
-          // المستخدم عاد، ربما فشل الفتح
-          setTimeout(() => {            if (status.classList.contains('show') && !status.classList.contains('error')) {
-              showFallbackInstructions();
-            }
-          }, 500);
-        }
-        document.removeEventListener('visibilitychange', handleVisibility);
-      }, { once: true });
-
-      // دالة عرض التعليمات البديلة
-      function showFallbackInstructions() {
-        status.classList.add('error');
-        statusText.innerHTML = '⚠️ لم يفتح تيليجرام تلقائياً.<br><small>اضغط مطولاً على الزر أو انسخ الرابط يدوياً</small>';
-        
-        // تغيير نص الزر
-        btn.innerHTML = '<span class="btn-icon">📋</span> انسخ الرابط واستخدمه في تيليجرام';
-        btn.onclick = () => {
-          copyProxyLink();
-          statusText.textContent = '✅ تم النسخ! الصقه في تيليجرام';
-          status.classList.remove('error');
-        };
-      }
-    }
-
-    // ================= نسخ رابط البروكسي =================
-    function copyProxyLink() {
-      const link = PROXY_CONFIG.tgUrl;
-      
-      // محاولة النسخ الحديثة
-      if (navigator.clipboard?.writeText) {
-        navigator.clipboard.writeText(link).then(() => {
-          showCopyFeedback();
-        }).catch(() => fallbackCopy(link));
+    // دالة عرض الرسالة المنبثقة
+    function showToast(message, type = 'info') {
+      toastMsg.textContent = message;
+      toast.className = 'toast show';
+      if (type === 'error') {
+        toast.style.background = 'linear-gradient(45deg, #e74c3c, #c0392b)';
       } else {
-        fallbackCopy(link);
+        toast.style.background = 'linear-gradient(45deg, var(--secondary), var(--accent))';
       }
-      
-      function fallbackCopy(text) {
-        const textarea = document.createElement('textarea');
-        textarea.value = text;
-        textarea.style.position = 'fixed';
-        textarea.style.opacity = '0';
-        document.body.appendChild(textarea);
-        textarea.focus();
-        textarea.select();
-        
-        try {
-          document.execCommand('copy');
-          showCopyFeedback();
-        } catch (err) {
-          alert('📋 الرابط: \n' + text);        }
-        document.body.removeChild(textarea);
-      }
-      
-      function showCopyFeedback() {
-        const copyBtn = document.getElementById('copyBtn');
-        const originalText = copyBtn.innerHTML;
-        copyBtn.innerHTML = '✅ تم النسخ!';
-        copyBtn.classList.add('copied');
-        
-        setTimeout(() => {
-          copyBtn.innerHTML = originalText;
-          copyBtn.classList.remove('copied');
-        }, 2000);
-      }
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
     }
 
-    // ================= كشف نظام التشغيل =================
-    function detectOS() {
-      const ua = navigator.userAgent || navigator.vendor || window.opera;
-      if (/android/i.test(ua)) return 'android';
-      if (/iPad|iPhone|iPod/.test(ua) && !window.MSStream) return 'ios';
-      return 'other';
-    }
+    // دالة محاولة فتح تيليجرام
+    function openTelegramProxy() {
+      btn.classList.add('loading');
+      showToast('جاري فتح تيليجرام...', 'info');
 
-    // ================= التهيئة عند التحميل =================
-    window.addEventListener('load', () => {
-      createParticles();
-      
-      // ربط زر الاتصال
-      document.getElementById('connectBtn').addEventListener('click', openTelegramProxy);
-      
-      // تحسينات للجوال
-      if (/Mobi|Android/i.test(navigator.userAgent)) {
-        document.body.style.fontSize = '16px'; // منع التكبير التلقائي
-      }
-      
-      // دعم لوحة المفاتيح
-      document.getElementById('connectBtn').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          openTelegramProxy();
+      // محاولة فتح tg:// أولاً (يفتح التطبيق مباشرة)
+      window.location.href = tgLink;
+
+      // إذا فشل (لم يفتح التطبيق)، نفتح الرابط البديل بعد 1.5 ثانية
+      setTimeout(() => {        // إذا كان المستخدم لا يزال في الصفحة، نجرب الرابط البديل
+        if (!document.hidden) {
+          window.open(httpsLink, '_blank');
+          showToast('إذا لم يفتح تيليجرام، تأكد من تثبيته أولاً', 'error');
         }
-      });
+        btn.classList.remove('loading');
+      }, 1500);
+    }
+
+    // التعامل مع النقر على الزر
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      openTelegramProxy();
     });
 
-    // منع السحب للأسفل في الجوال (تحسين تجربة التطبيق)
-    document.addEventListener('touchmove', (e) => {
-      if (e.target.closest('.proxy-btn')) {
-        e.preventDefault();      }
-    }, { passive: false });
+    // كشف إذا كان الجهاز محمولاً لعرض توجيه أفضل
+    document.addEventListener('DOMContentLoaded', function() {
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+      if (!isMobile) {
+        const instructions = document.querySelector('.instructions ol');
+        if (instructions) {
+          const li = document.createElement('li');
+          li.innerHTML = '<strong>على الكمبيوتر:</strong> تأكد من تشغيل تيليجرام ديسكتوب قبل النقر';
+          instructions.appendChild(li);
+        }
+      }
+    });
+
+    // تأثيرات دخول العناصر
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = 1;
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.feature').forEach(el => {
+      el.style.opacity = 0;
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'all 0.6s ease';
+      observer.observe(el);
+    });
   </script>
 </body>
 </html>
