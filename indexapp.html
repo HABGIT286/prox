@@ -1490,26 +1490,35 @@
        Browser cannot verify Telegram's final state.
        ========================================== */
 
-    function activateProxy() {
-      const button = $("connectButton");
+    
+function activateProxy() {
+  const proxyURL =
+    "https://t.me/proxy?server=utkapay.life&port=443&secret=eec0ab2dc91cd75da14bf8bde752ca8222766473696e612e7275";
 
-      button.disabled = true;
+  const button = document.getElementById("connectButton");
 
-      $("connectHint").textContent =
-        "إذا لم يفتح تيليجرام، تحقق من تثبيت التطبيق.";
+  if (button.disabled) return;
 
-      showToast("جاري فتح إعداد البروكسي في تيليجرام");
+  button.disabled = true;
 
-      try {
-        window.location.href = CONFIG.proxyURL;
-      } catch (error) {
-        showToast("تعذّر فتح تيليجرام من هذا المتصفح");
-      }
+  const hint = document.getElementById("connectHint");
 
-      setTimeout(() => {
-        button.disabled = false;
-      }, 1800);
-    }
+  hint.textContent = "جاري تحويلك إلى تطبيق تيليجرام...";
+
+  try {
+    // فتح رابط تيليجرام مباشرة من تفاعل المستخدم
+    window.location.assign(proxyURL);
+
+  } catch (error) {
+    hint.textContent = "تعذّر فتح الرابط. حاول مجدداً.";
+    button.disabled = false;
+  }
+
+  setTimeout(() => {
+    button.disabled = false;
+  }, 2500);
+}
+
 
     /* ==========================================
        SPEED CHART
