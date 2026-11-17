@@ -843,6 +843,40 @@
     .bot-save { background: linear-gradient(135deg,#e6cc94,#a78348); color: #17130c; }
     .bot-cancel { background: #171819; color: var(--text); }
 
+
+    .proxy-feed { margin-top: 24px; }
+    .feed-summary { display:grid; grid-template-columns:repeat(3,1fr); gap:8px; margin:12px 0; }
+    .feed-stat { padding:12px 8px; text-align:center; border:1px solid rgba(216,184,120,.14); border-radius:14px; background:rgba(255,255,255,.025); }
+    .feed-stat strong { display:block; color:#f0dfbd; font:700 19px "Oxanium",sans-serif; direction:ltr; }
+    .feed-stat span { display:block; margin-top:4px; color:#898173; font-size:9px; }
+    .feed-toolbar { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:12px 2px; color:#9b927f; font-size:10px; }
+    .feed-refresh { border:1px solid rgba(216,184,120,.22); background:rgba(216,184,120,.07); color:#e7d4aa; border-radius:11px; padding:9px 12px; font-size:10px; }
+    .proxy-list { display:grid; gap:10px; }
+    .proxy-item { position:relative; overflow:hidden; padding:14px; border:1px solid rgba(255,255,255,.075); border-radius:17px; background:linear-gradient(145deg,rgba(29,30,31,.9),rgba(14,15,17,.94)); }
+    .proxy-item.best { border-color:rgba(119,215,161,.35); box-shadow:inset 0 0 22px rgba(119,215,161,.035); }
+    .proxy-item.selected { border-color:rgba(216,184,120,.55); }
+    .proxy-item-head { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .proxy-country { display:flex; align-items:center; gap:9px; min-width:0; }
+    .proxy-flag { font-size:21px; }
+    .proxy-country strong { display:block; color:#e9d8b7; font-size:12px; }
+    .proxy-country small { display:block; color:#81796c; font:9px "Sora",sans-serif; direction:ltr; margin-top:4px; }
+    .proxy-state { flex-shrink:0; border-radius:20px; padding:5px 9px; font-size:9px; border:1px solid rgba(119,215,161,.25); color:#8de0b1; background:rgba(119,215,161,.07); }
+    .proxy-state.down { border-color:rgba(228,124,120,.25); color:#e99b96; background:rgba(228,124,120,.07); }
+    .proxy-state.unknown { border-color:rgba(216,184,120,.25); color:#d9bd83; background:rgba(216,184,120,.07); }
+    .proxy-item-meta { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; margin-top:13px; }
+    .proxy-item-meta div { padding:8px; border-radius:10px; background:rgba(255,255,255,.025); }
+    .proxy-item-meta span { display:block; color:#7f786c; font-size:8px; margin-bottom:5px; }
+    .proxy-item-meta b { color:#dfcfad; font:600 11px "Sora",sans-serif; direction:ltr; display:block; }
+    .proxy-item-actions { display:flex; gap:8px; margin-top:11px; }
+    .proxy-item-actions button { flex:1; min-height:39px; border-radius:11px; font-size:10px; font-weight:700; cursor:pointer; }
+    .proxy-select-btn { border:1px solid rgba(216,184,120,.25); color:#e5d2a9; background:rgba(216,184,120,.07); }
+    .proxy-connect-btn { border:1px solid rgba(255,226,174,.45); color:#17130c; background:linear-gradient(110deg,#b28d4f,#e3c58b); }
+    .feed-more { width:100%; margin-top:12px; min-height:45px; border:1px solid rgba(216,184,120,.22); border-radius:13px; color:#e3d0a8; background:rgba(216,184,120,.06); font-size:11px; }
+    .feed-note { margin-top:10px; color:#777165; font-size:9px; line-height:1.9; }
+    .feed-error { padding:16px; text-align:center; border:1px dashed rgba(228,124,120,.3); border-radius:15px; color:#d99b96; font-size:11px; line-height:1.9; }
+    .fixed-proxy-tag { display:inline-block; margin-top:8px; color:#d9bd83; font-size:9px; }
+    @media (max-width:360px) { .proxy-item-meta { gap:5px; } .proxy-item-meta div { padding:7px 5px; } }
+
   </style>
 </head>
 
@@ -890,13 +924,13 @@
         </div>
 
         <div class="proxy-title">ONX PROXY</div>
-        <div class="proxy-description">SECURE TELEGRAM GATEWAY</div>
+        <div class="proxy-description">DYNAMIC MTProto GATEWAY</div>
 
         <div class="card-divider"></div>
 
         <div class="connection-row">
           <div>
-            <div class="info-label">حالة فحص الخادم</div>
+            <div class="info-label">حالة البروكسي المحدد</div>
             <div class="connection-value">
               <span class="connection-lamp" id="proxyLamp"></span>
               <span id="proxyStatus">بانتظار الفحص</span>
@@ -929,7 +963,7 @@
         </button>
 
         <div class="connect-hint" id="connectHint">
-          اضغط تفعيل لإرسال إعداد البروكسي إلى تطبيق تيليجرام المثبّت
+          اختر بروكسياً من القائمة أو استخدم رابطك الثابت الاحتياطي
         </div>
 
         <button class="proxy-fallback-button" id="proxyWebButton" type="button">
@@ -939,13 +973,36 @@
 
         <div class="bot-panel">
           <div class="bot-panel-title">تشغيل البوت عبر نفس البروكسي</div>
-          <div class="bot-panel-note" id="botStatusText">أضف معرف البوت مرة واحدة. بعد تفعيل البروكسي في تطبيق تيليجرام، افتح البوت من هنا وسيستخدم التطبيق نفس إعداد البروكسي.</div>
+          <div class="bot-panel-note" id="botStatusText">اكتب معرف البوت عند الحاجة. لا يتم حفظه؛ يبقى في ذاكرة الصفحة الحالية فقط.</div>
           <button class="bot-open-button" id="botOpenButton" type="button">
             <i data-lucide="bot"></i>
             <span id="botButtonLabel">إعداد وفتح البوت</span>
           </button>
         </div>
       </div>
+    </section>
+
+
+    <!-- LIVE TELEGRAM PROXY DIRECTORY -->
+    <div class="section-heading">
+      <h2>دليل البروكسيات المباشر</h2>
+      <span>LIVE MTProto NODES</span>
+    </div>
+    <section class="proxy-feed">
+      <div class="feed-summary">
+        <div class="feed-stat"><strong id="feedOnline">--</strong><span>اتصالات فعّالة</span></div>
+        <div class="feed-stat"><strong id="feedDead">--</strong><span>اتصالات متوقفة</span></div>
+        <div class="feed-stat"><strong id="feedTotal">--</strong><span>إجمالي البروكسيات</span></div>
+      </div>
+      <div class="feed-toolbar">
+        <span id="feedUpdated">بانتظار تحميل القائمة...</span>
+        <button class="feed-refresh" id="feedRefreshButton" type="button">تحديث الآن</button>
+      </div>
+      <div class="proxy-list" id="proxyList" aria-live="polite">
+        <div class="feed-error">جارٍ تحميل البروكسيات المباشرة...</div>
+      </div>
+      <button class="feed-more" id="feedMoreButton" type="button" hidden>تحميل المزيد من البروكسيات</button>
+      <div class="feed-note">الترتيب: البروكسيات الفعّالة أولاً، ثم الأقل زمناً في الاستجابة (Ping). بيانات الدولة والسرعة والحالة مصدرها API الخدمة، وليست فحصاً من داخل تطبيق تيليجرام.</div>
     </section>
 
     <!-- INTERNET PERFORMANCE -->
@@ -976,7 +1033,7 @@
           <span id="pingValue">---</span>
           <span class="stat-unit">ms</span>
         </div>
-        <div class="stat-caption">زمن استجابة الشبكة</div>
+        <div class="stat-caption">Ping الإنترنت (ليس سرعة البروكسي)</div>
       </div>
 
       <div class="stat-card">
@@ -1071,11 +1128,11 @@
   <div class="bot-modal" id="botModal" role="dialog" aria-modal="true" aria-labelledby="botModalTitle">
     <div class="bot-modal-card">
       <div class="bot-modal-title" id="botModalTitle">معرّف بوت تيليجرام</div>
-      <div class="bot-modal-desc">اكتب اسم المستخدم الخاص بالبوت فقط، مع أو بدون @. سيُحفظ على هذا الجهاز حتى تفتحه لاحقاً بضغطة واحدة.</div>
+      <div class="bot-modal-desc">اكتب اسم المستخدم الخاص بالبوت فقط، مع أو بدون @. لن يتم حفظه بعد إغلاق الصفحة.</div>
       <input class="bot-input" id="botUsernameInput" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="my_bot">
       <div class="bot-modal-actions">
         <button class="bot-cancel" id="botCancelButton" type="button">إلغاء</button>
-        <button class="bot-save" id="botSaveButton" type="button">حفظ وفتح البوت</button>
+        <button class="bot-save" id="botSaveButton" type="button">فتح البوت</button>
       </div>
     </div>
   </div>
@@ -1096,7 +1153,10 @@
       proxyWebURL:
         "https://t.me/proxy?server=utkapay.life&port=443&secret=eec0ab2dc91cd75da14bf8bde752ca8222766473696e612e7275",
 
-      botStorageKey: "onx_proxy_bot_username_v1",
+      proxyApi: "https://api.telegramvpn.org/proxies",
+      statsApi: "https://api.telegramvpn.org/stats",
+      refreshMs: 45000,
+      pageSize: 20,
 
       telegramAccount: "https://t.me/ONX44",
 
@@ -1120,6 +1180,13 @@
     let speedHistory = [];
     let testRunning = false;
     let toastTimer = null;
+    let botUsernameSession = "";
+    let proxyRows = [];
+    let currentProxyPage = 0;
+    let totalProxyPages = 1;
+    let proxyRefreshBusy = false;
+    let selectedProxy = null;
+    let proxyRefreshTimer = null;
 
     /* ==========================================
        UI HELPERS
@@ -1577,14 +1644,16 @@
       button.disabled = true;
       $("connectHint").textContent =
         "إذا لم يظهر تيليجرام، اضغط زر فتح الرابط واختيار التطبيق أسفل هذا الزر.";
-      launchTelegramLink(CONFIG.proxyURL,
-        "تم إرسال رابط البروكسي. أكمل الإضافة من شاشة تيليجرام إذا ظهرت.");
+      const selectedLink = selectedProxy ? normalizeProxyLink(selectedProxy) : "";
+      launchTelegramLink(selectedLink || CONFIG.proxyURL,
+        "تم فتح رابط البروكسي. أكمل الاتصال من شاشة تيليجرام إذا ظهرت.");
       setTimeout(() => { button.disabled = false; }, 1400);
     }
 
     function openProxyUniversal() {
-      launchTelegramLink(CONFIG.proxyWebURL,
-        "نحاول فتح رابط البروكسي عبر تطبيق تيليجرام المتاح على جهازك.");
+      const selectedLink = selectedProxy ? normalizeProxyLink(selectedProxy) : "";
+      const webLink = selectedLink ? selectedLink.replace(/^tg:\/\/proxy\?/i, "https://t.me/proxy?") : CONFIG.proxyWebURL;
+      launchTelegramLink(webLink, "نحاول فتح رابط البروكسي عبر تطبيق تيليجرام المتاح على جهازك.");
     }
 
     function normalizeBotUsername(value) {
@@ -1596,8 +1665,7 @@
     }
 
     function openBotModal() {
-      const saved = localStorage.getItem(CONFIG.botStorageKey) || "";
-      $("botUsernameInput").value = saved;
+      $("botUsernameInput").value = botUsernameSession;
       $("botModal").classList.add("open");
       setTimeout(() => $("botUsernameInput").focus(), 80);
     }
@@ -1607,14 +1675,13 @@
     }
 
     function openConfiguredBot() {
-      const username = normalizeBotUsername(localStorage.getItem(CONFIG.botStorageKey));
+      const username = normalizeBotUsername(botUsernameSession);
       if (!isValidBotUsername(username)) {
         openBotModal();
         return;
       }
-      const botURL = "https://t.me/" + encodeURIComponent(username);
-      launchTelegramLink(botURL,
-        "يتم فتح البوت في تيليجرام. سيستخدم البروكسي إذا كان مفعّلاً داخل نفس نسخة التطبيق.");
+      launchTelegramLink("https://t.me/" + encodeURIComponent(username),
+        "يتم فتح البوت. إذا كان البروكسي مفعّلاً داخل تيليجرام فسيستخدمه التطبيق.");
     }
 
     function saveAndOpenBot() {
@@ -1624,19 +1691,14 @@
         $("botUsernameInput").focus();
         return;
       }
-      localStorage.setItem(CONFIG.botStorageKey, username);
+      botUsernameSession = username;
       $("botButtonLabel").textContent = "فتح البوت @" + username;
-      $("botStatusText").textContent = "تم حفظ @" + username + " على هذا الجهاز. تأكد أولاً من إضافة البروكسي داخل تيليجرام.";
+      $("botStatusText").textContent = "المعرف @" + username + " موجود مؤقتاً في ذاكرة الصفحة فقط، ولن يُحفظ على الجهاز.";
       closeBotModal();
       openConfiguredBot();
     }
 
     function initializeBotControls() {
-      const saved = normalizeBotUsername(localStorage.getItem(CONFIG.botStorageKey));
-      if (isValidBotUsername(saved)) {
-        $("botButtonLabel").textContent = "فتح البوت @" + saved;
-        $("botStatusText").textContent = "البوت المحفوظ: @" + saved + ". سيعمل عبر اتصال تيليجرام الحالي إذا كان البروكسي مفعّلاً فيه.";
-      }
       $("botOpenButton").addEventListener("click", openConfiguredBot);
       $("botSaveButton").addEventListener("click", saveAndOpenBot);
       $("botCancelButton").addEventListener("click", closeBotModal);
@@ -1646,6 +1708,209 @@
       $("botUsernameInput").addEventListener("keydown", event => {
         if (event.key === "Enter") saveAndOpenBot();
         if (event.key === "Escape") closeBotModal();
+      });
+    }
+
+    /* ==========================================
+       LIVE PROXY DIRECTORY — NO USER DATA STORAGE
+       ========================================== */
+
+    function escapeHTML(value) {
+      return String(value ?? "").replace(/[&<>"']/g, char => ({
+        "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+      })[char]);
+    }
+
+    const FIXED_USER_PROXY = Object.freeze({
+      id: "onx-fixed-user-proxy",
+      server: "utkapay.life",
+      port: 443,
+      country_name: "بروكسيك الثابت",
+      city: "الرابط الذي زوّدتني به",
+      flag: "◆",
+      status: "",
+      ping: null,
+      uptime: null,
+      url: CONFIG.proxyURL
+    });
+
+    function proxyIsActive(proxy) {
+      return String(proxy?.status || "").toLowerCase() === "active";
+    }
+
+    function sortProxyRows(rows) {
+      return [...rows].sort((a, b) => {
+        const activeDiff = Number(proxyIsActive(b)) - Number(proxyIsActive(a));
+        if (activeDiff) return activeDiff;
+        const ap = Number.isFinite(Number(a.ping)) && a.ping !== null ? Number(a.ping) : Infinity;
+        const bp = Number.isFinite(Number(b.ping)) && b.ping !== null ? Number(b.ping) : Infinity;
+        return ap - bp;
+      });
+    }
+
+    function normalizeProxyLink(proxy) {
+      if (proxy?.url && /^tg:\/\/proxy\?/i.test(proxy.url)) return proxy.url;
+      if (proxy?.server && proxy?.port && proxy?.secret) {
+        const params = new URLSearchParams({ server: proxy.server, port: String(proxy.port), secret: proxy.secret });
+        return "tg://proxy?" + params.toString();
+      }
+      return "";
+    }
+
+    function renderProxyList() {
+      const list = $("proxyList");
+      if (!proxyRows.length) {
+        list.innerHTML = '<div class="feed-error">لم ترجع الخدمة أي بروكسيات في الوقت الحالي.</div>';
+        return;
+      }
+      const ordered = sortProxyRows(proxyRows);
+      list.innerHTML = ordered.map((proxy, index) => {
+        const active = proxyIsActive(proxy);
+        const ping = proxy.ping === null || proxy.ping === undefined || proxy.ping === "" ? "—" : escapeHTML(proxy.ping) + " ms";
+        const country = proxy.country_name || proxy.country || "غير محددة";
+        const city = proxy.city || proxy.server || "—";
+        const flag = proxy.flag || "🌐";
+        const statusText = active ? "فعّال" : (proxy.status ? "متوقف" : "غير معروف");
+        const statusClass = active ? "" : (proxy.status ? "down" : "unknown");
+        const url = normalizeProxyLink(proxy);
+        const selected = selectedProxy && String(selectedProxy.id) === String(proxy.id);
+        return `<article class="proxy-item ${index === 0 && active ? "best" : ""} ${selected ? "selected" : ""}" data-proxy-id="${escapeHTML(proxy.id)}">
+          <div class="proxy-item-head">
+            <div class="proxy-country"><span class="proxy-flag">${escapeHTML(flag)}</span><div><strong>${escapeHTML(country)}</strong><small>${escapeHTML(city)} · ${escapeHTML(proxy.server || "")}</small></div></div>
+            <span class="proxy-state ${statusClass}">${statusText}</span>
+          </div>
+          <div class="proxy-item-meta">
+            <div><span>زمن الاستجابة</span><b>${ping}</b></div>
+            <div><span>مدة التوفر</span><b>${proxy.uptime == null ? "—" : escapeHTML(proxy.uptime) + "%"}</b></div>
+            <div><span>المنفذ</span><b>${proxy.port == null ? "—" : escapeHTML(proxy.port)}</b></div>
+          </div>
+          <div class="proxy-item-actions">
+            <button class="proxy-select-btn" type="button" data-action="select" data-id="${escapeHTML(proxy.id)}">اختيار التفاصيل</button>
+            <button class="proxy-connect-btn" type="button" data-action="connect" data-id="${escapeHTML(proxy.id)}" ${!url ? "disabled" : ""}>اتصال عبر تيليجرام</button>
+          </div>
+        </article>`;
+      }).join("");
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function updateFeedStats(stats) {
+      const data = stats?.stats || stats || {};
+      if (data.online != null) $("feedOnline").textContent = Number(data.online).toLocaleString("en-US");
+      if (data.dead != null) $("feedDead").textContent = Number(data.dead).toLocaleString("en-US");
+      if (data.total != null) $("feedTotal").textContent = Number(data.total).toLocaleString("en-US");
+    }
+
+    async function fetchProxyPage(page) {
+      const url = new URL(CONFIG.proxyApi);
+      url.search = new URLSearchParams({
+        page: String(page), per: String(CONFIG.pageSize), sort: "ping", status: "active", for: "IQ"
+      }).toString();
+      const response = await fetch(url.toString(), { cache: "no-store", headers: { "Accept": "application/json" }, signal: AbortSignal.timeout(12000) });
+      if (!response.ok) throw new Error("Proxy API HTTP " + response.status);
+      const payload = await response.json();
+      if (!payload || !Array.isArray(payload.proxies)) throw new Error("صيغة قائمة البروكسيات غير متوقعة");
+      totalProxyPages = Math.max(1, Number(payload.pages) || 1);
+      return payload;
+    }
+
+    async function fetchFeedStats() {
+      try {
+        const response = await fetch(CONFIG.statsApi, { cache: "no-store", headers: { "Accept": "application/json" }, signal: AbortSignal.timeout(9000) });
+        if (response.ok) updateFeedStats(await response.json());
+      } catch (_) { /* Stats are optional; the proxy list remains usable. */ }
+    }
+
+    async function refreshProxyDirectory({ quiet = false, reloadPages = false } = {}) {
+      if (proxyRefreshBusy || !navigator.onLine) return;
+      proxyRefreshBusy = true;
+      const refreshButton = $("feedRefreshButton");
+      if (refreshButton) { refreshButton.disabled = true; refreshButton.textContent = "جارٍ التحديث..."; }
+      try {
+        const pagesToLoad = reloadPages ? Math.max(1, currentProxyPage || 1) : 1;
+        const pageResults = await Promise.all(Array.from({ length: pagesToLoad }, (_, i) => fetchProxyPage(i + 1)));
+        const byId = new Map();
+        pageResults.forEach(result => (result.proxies || []).forEach(proxy => byId.set(String(proxy.id), proxy)));
+        proxyRows = sortProxyRows([...byId.values(), FIXED_USER_PROXY]);
+        currentProxyPage = pagesToLoad;
+        const retained = selectedProxy && proxyRows.find(proxy => String(proxy.id) === String(selectedProxy.id));
+        selectedProxy = retained || proxyRows.find(proxyIsActive) || FIXED_USER_PROXY;
+        renderProxyList();
+        selectProxyById(selectedProxy.id);
+        $("feedUpdated").textContent = "آخر تحديث: " + new Date().toLocaleTimeString("ar-IQ", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+        $("feedMoreButton").hidden = currentProxyPage >= totalProxyPages;
+        await fetchFeedStats();
+        if (!quiet) showToast("تم تحديث قائمة البروكسيات");
+      } catch (error) {
+        if (!proxyRows.length) $("proxyList").innerHTML = '<div class="feed-error">تعذّر جلب قائمة البروكسيات. قد تكون الخدمة غير متاحة أو تمنع طلبات المتصفح (CORS). أعد المحاولة بعد قليل.</div>';
+        $("feedUpdated").textContent = "فشل التحديث · " + (error?.message || "Network error");
+        if (!quiet) showToast("تعذّر تحديث قائمة البروكسيات");
+      } finally {
+        proxyRefreshBusy = false;
+        if (refreshButton) { refreshButton.disabled = false; refreshButton.textContent = "تحديث الآن"; }
+      }
+    }
+
+    async function loadMoreProxyPages() {
+      if (proxyRefreshBusy || currentProxyPage >= totalProxyPages) return;
+      proxyRefreshBusy = true;
+      const button = $("feedMoreButton");
+      button.disabled = true; button.textContent = "جارٍ تحميل المزيد...";
+      try {
+        const nextPage = currentProxyPage + 1;
+        const payload = await fetchProxyPage(nextPage);
+        const byId = new Map(proxyRows.map(proxy => [String(proxy.id), proxy]));
+        (payload.proxies || []).forEach(proxy => byId.set(String(proxy.id), proxy));
+        proxyRows = sortProxyRows([...byId.values(), FIXED_USER_PROXY]);
+        currentProxyPage = nextPage;
+        renderProxyList();
+        button.hidden = currentProxyPage >= totalProxyPages;
+      } catch (error) {
+        showToast("تعذّر تحميل الصفحة التالية");
+      } finally {
+        proxyRefreshBusy = false;
+        button.disabled = false; button.textContent = "تحميل المزيد من البروكسيات";
+      }
+    }
+
+    function selectProxyById(id) {
+      const proxy = proxyRows.find(item => String(item.id) === String(id));
+      if (!proxy) return;
+      selectedProxy = proxy;
+      const country = proxy.country_name || proxy.country || "غير معروفة";
+      $("serverCountry").textContent = country;
+      $("serverCity").textContent = [proxy.city, proxy.server].filter(Boolean).join(" · ");
+      const knownStatus = Boolean(proxy.status);
+      $("proxyStatus").textContent = proxyIsActive(proxy) ? "فعّال حسب الخدمة" : (knownStatus ? "متوقف حسب الخدمة" : "رابط ثابت · الحالة غير مفحوصة");
+      $("proxyLamp").classList.toggle("online", proxyIsActive(proxy));
+      $("proxyLamp").classList.toggle("offline", knownStatus && !proxyIsActive(proxy));
+      const ping = proxy.ping == null ? "غير متاح" : proxy.ping + " ms";
+      $("connectHint").textContent = "البروكسي المحدد: " + country + " · Ping " + ping + ". افتح تيليجرام لإتمام الاتصال.";
+      renderProxyList();
+    }
+
+    function connectProxyById(id) {
+      const proxy = proxyRows.find(item => String(item.id) === String(id));
+      if (!proxy) return;
+      const link = normalizeProxyLink(proxy);
+      if (!link) { showToast("رابط الاتصال غير متوفر لهذا البروكسي"); return; }
+      selectProxyById(id);
+      launchTelegramLink(link, "تم فتح رابط البروكسي في تيليجرام. أكمل الاتصال من التطبيق.");
+    }
+
+    function initializeProxyDirectory() {
+      $("feedRefreshButton").addEventListener("click", () => refreshProxyDirectory({ quiet: false, reloadPages: true }));
+      $("feedMoreButton").addEventListener("click", loadMoreProxyPages);
+      $("proxyList").addEventListener("click", event => {
+        const button = event.target.closest("button[data-action]");
+        if (!button) return;
+        const id = button.dataset.id;
+        if (button.dataset.action === "select") selectProxyById(id);
+        if (button.dataset.action === "connect") connectProxyById(id);
+      });
+      refreshProxyDirectory({ quiet: true });
+      proxyRefreshTimer = setInterval(() => refreshProxyDirectory({ quiet: true, reloadPages: true }), CONFIG.refreshMs);
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) refreshProxyDirectory({ quiet: true, reloadPages: true });
       });
     }
 
@@ -1769,6 +2034,7 @@
       $("connectButton").addEventListener("click", activateProxy);
       $("proxyWebButton").addEventListener("click", openProxyUniversal);
       initializeBotControls();
+      initializeProxyDirectory();
 
       $("testButton").addEventListener("click", runSpeedTest);
 
