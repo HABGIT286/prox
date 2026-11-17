@@ -846,6 +846,21 @@
 
     .proxy-directory{margin:22px 0}.proxy-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0}.proxy-stat{padding:12px 6px;text-align:center;border:1px solid rgba(216,184,120,.18);border-radius:13px;background:#ffffff06}.proxy-stat b{display:block;color:#e7d3a9;font:700 19px Oxanium,sans-serif}.proxy-stat small{color:#918878;font-size:9px}.proxy-list{display:grid;gap:10px}.proxy-entry{padding:13px;border:1px solid #ffffff16;border-radius:15px;background:linear-gradient(145deg,#222321,#111213)}.proxy-entry.best{border-color:#77d7a166}.proxy-entry-top{display:flex;justify-content:space-between;gap:8px;align-items:center}.proxy-entry-name{color:#ead8b4;font-size:12px;font-weight:700}.proxy-entry-sub{color:#8c8578;font-size:9px;margin-top:4px;direction:ltr;text-align:right}.proxy-badge{font-size:9px;padding:5px 8px;border-radius:20px;color:#8de0b1;background:#77d7a116}.proxy-badge.down{color:#e99b96;background:#e47c7818}.proxy-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-top:12px}.proxy-metrics div{background:#ffffff08;border-radius:9px;padding:8px}.proxy-metrics small{display:block;color:#81796d;font-size:8px}.proxy-metrics b{display:block;color:#dfcfad;font:600 11px Sora,sans-serif;margin-top:4px}.proxy-actions{display:flex;gap:8px;margin-top:10px}.proxy-actions button{flex:1;padding:10px;border-radius:10px;font-size:10px;font-weight:700}.proxy-go{background:linear-gradient(110deg,#b28d4f,#e3c58b);color:#17130c;border:0}.proxy-refresh{background:#d8b87812;border:1px solid #d8b87844;color:#e5d2a9}.proxy-error{padding:14px;text-align:center;color:#e99b96;border:1px dashed #e47c7855;border-radius:13px;font-size:10px;line-height:1.9}.proxy-toolbar{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:10px 0;color:#9b927f;font-size:9px}.proxy-more{width:100%;margin-top:10px;padding:12px;border:1px solid #d8b87844;border-radius:11px;color:#e5d2a9;background:#d8b87810}
 
+
+/* ONX OBSERVABILITY MODULE */
+.monitor-nav{display:flex;gap:8px;overflow:auto;padding:4px 1px 10px;margin:18px 0 4px;scrollbar-width:none}
+.monitor-nav button{flex:0 0 auto;border:1px solid rgba(216,184,120,.22);background:#d8b8780c;color:#cbb88e;border-radius:12px;padding:10px 14px;font-size:10px}
+.monitor-nav button.active{background:linear-gradient(110deg,#b28d4f,#e3c58b);color:#17130c;border-color:#e3c58b;font-weight:800}
+.monitor-panel{border:1px solid rgba(216,184,120,.2);border-radius:20px;background:linear-gradient(145deg,rgba(30,29,26,.94),rgba(13,14,16,.96));padding:15px;margin-top:10px;box-shadow:inset 0 1px rgba(255,255,255,.04)}
+.monitor-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:12px}.monitor-head strong{font-size:12px;color:#f0dfbd}.monitor-head small{font-size:9px;color:#988b72}
+.monitor-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.monitor-tile{border:1px solid #ffffff12;border-radius:14px;background:#ffffff06;padding:12px;min-width:0}.monitor-tile span{display:block;color:#928878;font-size:9px}.monitor-tile b{display:block;color:#e9d6ae;font:700 20px Oxanium,sans-serif;margin-top:6px;overflow:hidden;text-overflow:ellipsis;direction:ltr;text-align:right}
+.monitor-chart{height:145px;width:100%;display:block}.monitor-legend{display:flex;justify-content:space-between;color:#8f8779;font-size:9px;margin-top:6px}
+.monitor-warning{border:1px solid #d8b87838;background:#d8b8780c;color:#c9b992;border-radius:13px;padding:11px;font-size:10px;line-height:1.9;margin-top:11px}
+.monitor-actions{display:flex;gap:8px;margin-top:12px}.monitor-actions button{flex:1;min-height:42px;border-radius:12px;border:1px solid #d8b87844;background:#d8b87812;color:#e7d3aa;font-size:10px;font-weight:700}.monitor-actions button.primary{background:linear-gradient(110deg,#b28d4f,#e3c58b);color:#17130c;border:0}
+.monitor-log{display:grid;gap:7px;max-height:340px;overflow:auto}.monitor-log-item{display:flex;justify-content:space-between;gap:10px;padding:10px;border-radius:12px;background:#ffffff07;border:1px solid #ffffff0c}.monitor-log-item div{min-width:0}.monitor-log-item b{display:block;color:#e4d4b5;font-size:10px}.monitor-log-item small{display:block;color:#8f8779;font-size:9px;margin-top:4px;line-height:1.6}.monitor-log-item time{color:#a88f5d;font:9px Sora,sans-serif;white-space:nowrap;direction:ltr}
+.monitor-empty{text-align:center;color:#8d8578;padding:24px 8px;font-size:10px}
+.monitor-tabs-section{scroll-margin-top:14px}
+
   </style>
 </head>
 
@@ -959,6 +974,40 @@
       <div class="proxy-list" id="pxList"><div class="proxy-error">جارٍ جلب البروكسيات...</div></div>
       <button class="proxy-more" id="pxMore" hidden>تحميل المزيد</button>
       <p class="feed-note">يعرض Ping زمن الاستجابة المعلن من الخدمة وليس سرعة التنزيل. حالة Telegram الفعلية لا يمكن تأكيدها من صفحة الويب بعد فتح رابط tg://proxy.</p>
+    </section>
+
+
+    <div class="section-heading monitor-tabs-section" id="monitorSection"><h2>مركز مراقبة النفق</h2><span>LOCAL TELEMETRY</span></div>
+    <div class="monitor-nav" role="tablist" aria-label="أقسام المراقبة">
+      <button class="active" type="button" data-monitor-tab="overview">نظرة عامة</button>
+      <button type="button" data-monitor-tab="history">السجل التاريخي</button>
+      <button type="button" data-monitor-tab="storage">التخزين والتصدير</button>
+    </div>
+    <section class="monitor-panel" id="monitorOverview">
+      <div class="monitor-head"><strong>مؤشرات النشاط المسجّل</strong><small id="monitorLastSeen">لم يبدأ التسجيل بعد</small></div>
+      <div class="monitor-grid">
+        <div class="monitor-tile"><span>أحداث الموقع المسجلة</span><b id="monEvents">0</b></div>
+        <div class="monitor-tile"><span>محاولات فتح Telegram</span><b id="monLaunches">0</b></div>
+        <div class="monitor-tile"><span>اختبارات الإنترنت</span><b id="monTests">0</b></div>
+        <div class="monitor-tile"><span>تحديثات دليل البروكسي</span><b id="monRefresh">0</b></div>
+      </div>
+      <div class="monitor-head" style="margin-top:17px"><strong>نشاط القياسات عبر الزمن</strong><small>قياسات الإنترنت العامة فقط</small></div>
+      <svg class="monitor-chart" id="monitorChart" viewBox="0 0 600 150" role="img" aria-label="رسم بياني لاختبارات سرعة الإنترنت"><path d="M20 125H580 M20 85H580 M20 45H580" stroke="#ffffff18" stroke-dasharray="4 6" fill="none"/><polyline id="monitorLine" points="20,125 580,125" fill="none" stroke="#d8b878" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g id="monitorDots"></g></svg>
+      <div class="monitor-legend"><span>الأقدم</span><span>سرعة التنزيل Mbps</span><span>الأحدث</span></div>
+      <div class="monitor-warning"><b>حدود الرصد:</b> هذه الصفحة لا تملك صلاحية قراءة جلسة Telegram أو حركة MTProto داخل التطبيق. لا تعرض حجم البيانات الحقيقي المار في النفق، ولا الرسائل أو المواقع أو الأجهزة المتصلة بالخادم. حالة زر الاتصال تعني «تم فتح رابط» فقط، وليست تأكيداً أن Telegram اتصل.</div>
+    </section>
+    <section class="monitor-panel" id="monitorHistory" hidden>
+      <div class="monitor-head"><strong>آخر الأحداث</strong><small id="monitorLogCount">0 سجل</small></div>
+      <div class="monitor-log" id="monitorLog"><div class="monitor-empty">لا توجد أحداث محفوظة بعد.</div></div>
+    </section>
+    <section class="monitor-panel" id="monitorStorage" hidden>
+      <div class="monitor-head"><strong>قاعدة السجل المحلية</strong><small>على هذا المتصفح فقط</small></div>
+      <div class="monitor-grid">
+        <div class="monitor-tile"><span>حجم السجل التقريبي</span><b id="monStorage">0 KB</b></div>
+        <div class="monitor-tile"><span>عدد السجلات المحفوظة</span><b id="monStored">0</b></div>
+      </div>
+      <div class="monitor-warning">يُحفظ كل ما يستطيع الموقع رصده محلياً في مساحة المتصفح على هذا الجهاز، ولا يُرسل إلى خادم أو GitHub. يخضع الحجم لسعة المتصفح؛ عند امتلائها صدّر نسخة JSON ثم امسح السجل القديم. قد يمسحه المستخدم أو النظام عند تنظيف بيانات المتصفح. لا يتم حفظ أسرار بروكسي MTProto أو محتوى Telegram.</div>
+      <div class="monitor-actions"><button class="primary" id="monitorExport" type="button">تصدير السجل JSON</button><button id="monitorClear" type="button">مسح السجل المحلي</button></div>
     </section>
 
     <!-- INTERNET PERFORMANCE -->
@@ -1441,6 +1490,7 @@
         note.textContent =
           "اكتمل الاختبار. النتائج تخص اتصال الإنترنت بين جهازك وخادم القياس، ولا تمثل سرعة بروكسي تيليجرام.";
 
+        monAdd("speed_test","اكتمال اختبار الإنترنت",`Download ${download.toFixed(2)} Mbps · Ping ${ping==null?"N/A":ping+" ms"}`,{download,ping});
         showToast("اكتمل اختبار أداء الإنترنت");
 
       } catch (error) {
@@ -1592,12 +1642,14 @@
       button.disabled = true;
       $("connectHint").textContent =
         "إذا لم يظهر تيليجرام، اضغط زر فتح الرابط واختيار التطبيق أسفل هذا الزر.";
+      monAdd("telegram_open","محاولة فتح بروكسي Telegram الثابت","تم إرسال رابط tg://proxy إلى التطبيق؛ لا يمكن تأكيد الاتصال النهائي.",{server:"utkapay.life",port:443});
       launchTelegramLink(CONFIG.proxyURL,
         "تم إرسال رابط البروكسي. أكمل الإضافة من شاشة تيليجرام إذا ظهرت.");
       setTimeout(() => { button.disabled = false; }, 1400);
     }
 
     function openProxyUniversal() {
+      monAdd("telegram_open","فتح رابط بروكسي Telegram","تم فتح رابط الويب؛ لا يعني ذلك أن النفق أصبح متصلاً.",{server:"utkapay.life",port:443});
       launchTelegramLink(CONFIG.proxyWebURL,
         "نحاول فتح رابط البروكسي عبر تطبيق تيليجرام المتاح على جهازك.");
     }
@@ -1765,8 +1817,63 @@
     function pxRender(){let list=$('pxList');if(!pxRows.length){list.innerHTML='<div class="proxy-error">لا توجد نتائج بروكسيات حالياً.</div>';return;}list.innerHTML=pxSort(pxRows).map((p,i)=>{let active=pxActive(p),country=p.country_name||p.country||p.country_code||'دولة غير معروفة',link=pxLink(p);return `<article class="proxy-entry ${i===0&&active?'best':''}"><div class="proxy-entry-top"><div><div class="proxy-entry-name">${pxEsc(p.flag||'🌐')} ${pxEsc(country)}</div><div class="proxy-entry-sub">${pxEsc(p.city||'')} · ${pxEsc(p.server||'')}</div></div><span class="proxy-badge ${active?'':'down'}">${active?'فعّال حسب API':(p.status==='unknown'?'رابط ثابت':'متوقف حسب API')}</span></div><div class="proxy-metrics"><div><small>Ping</small><b>${p.ping==null?'—':pxEsc(p.ping)+' ms'}</b></div><div><small>Uptime</small><b>${p.uptime==null?'—':pxEsc(p.uptime)+'%'}</b></div><div><small>Port</small><b>${p.port==null?'—':pxEsc(p.port)}</b></div></div><div class="proxy-actions"><button class="proxy-go" data-px-connect="${pxEsc(p.id)}" ${link?'':'disabled'}>اتصال عبر Telegram</button></div></article>`;}).join('');}
     async function pxRequest(path){let base=CONFIG.proxyApiBase;if(base.includes('REPLACE-WITH-YOUR-WORKER'))throw Error('لم يتم ضبط رابط وسيط Cloudflare Worker بعد');let r=await fetch(base.replace(/\/$/,'')+path,{cache:'no-store',headers:{Accept:'application/json'},signal:AbortSignal.timeout(15000)});let body=await r.text();if(!r.ok)throw Error('Worker HTTP '+r.status+': '+body.slice(0,180));try{return JSON.parse(body)}catch{throw Error('استجابة الوسيط ليست JSON: '+body.slice(0,120));}}
     async function pxStats(){try{let s=await pxRequest('/stats');s=s.stats||s.data||s;$('pxOnline').textContent=s.online??s.active??'—';$('pxDead').textContent=s.dead??s.inactive??'—';$('pxTotal').textContent=s.total??'—';}catch(e){console.warn('stats:',e.message);}}
-    async function pxLoad(more=false){if(pxBusy)return;pxBusy=true;$('pxRefresh').disabled=true;try{let page=more?pxPage+1:1;let q='?page='+page+'&per='+CONFIG.proxyPageSize+'&sort=ping&status=active&for=IQ';let j=await pxRequest('/proxies'+q);let a=pxNormalize(j);pxPages=Number(j.pages||j.pagination?.pages||j.meta?.pages||1);if(!more)pxRows=[];let m=new Map(pxRows.map(x=>[String(x.id),x]));a.forEach((p,i)=>{if(p.id==null)p.id=p.server+':'+p.port;m.set(String(p.id),p);});m.set(PX_FIXED.id,PX_FIXED);pxRows=pxSort([...m.values()]);pxPage=page;pxRender();$('pxUpdated').textContent='آخر تحديث '+new Date().toLocaleTimeString('ar-IQ');$('pxMore').hidden=pxPage>=pxPages;await pxStats();}catch(e){console.error(e);$('pxUpdated').textContent='فشل الاتصال بالخدمة';if(!pxRows.length)$('pxList').innerHTML='<div class="proxy-error">تعذّر جلب البروكسيات: '+pxEsc(e.message)+'<br>تحقق من نشر Cloudflare Worker وضبط رابطه في CONFIG.proxyApiBase.</div>';}finally{pxBusy=false;$('pxRefresh').disabled=false;}}
-    function pxInit(){ $('pxRefresh').addEventListener('click',()=>pxLoad(false));$('pxMore').addEventListener('click',()=>pxLoad(true));$('pxList').addEventListener('click',e=>{let b=e.target.closest('[data-px-connect]');if(!b)return;let p=pxRows.find(x=>String(x.id)===b.dataset.pxConnect);let u=p&&pxLink(p);if(u)launchTelegramLink(u,'تم فتح رابط البروكسي في Telegram. أكمل الاتصال داخل التطبيق.');});pxLoad(false);setInterval(()=>{if(!document.hidden)pxLoad(false);},CONFIG.proxyRefreshMs);}
+    async function pxLoad(more=false){if(pxBusy)return;pxBusy=true;$('pxRefresh').disabled=true;try{let page=more?pxPage+1:1;let q='?page='+page+'&per='+CONFIG.proxyPageSize+'&sort=ping&status=active&for=IQ';let j=await pxRequest('/proxies'+q);let a=pxNormalize(j);pxPages=Number(j.pages||j.pagination?.pages||j.meta?.pages||1);if(!more)pxRows=[];let m=new Map(pxRows.map(x=>[String(x.id),x]));a.forEach((p,i)=>{if(p.id==null)p.id=p.server+':'+p.port;m.set(String(p.id),p);});m.set(PX_FIXED.id,PX_FIXED);pxRows=pxSort([...m.values()]);pxPage=page;pxRender();monAdd('proxy_directory','تحديث دليل البروكسيات','عدد النتائج المستلمة: '+pxRows.length,{count:pxRows.length,page});$('pxUpdated').textContent='آخر تحديث '+new Date().toLocaleTimeString('ar-IQ');$('pxMore').hidden=pxPage>=pxPages;await pxStats();}catch(e){console.error(e);$('pxUpdated').textContent='فشل الاتصال بالخدمة';if(!pxRows.length)$('pxList').innerHTML='<div class="proxy-error">تعذّر جلب البروكسيات: '+pxEsc(e.message)+'<br>تحقق من نشر Cloudflare Worker وضبط رابطه في CONFIG.proxyApiBase.</div>';}finally{pxBusy=false;$('pxRefresh').disabled=false;}}
+    function pxInit(){ $('pxRefresh').addEventListener('click',()=>pxLoad(false));$('pxMore').addEventListener('click',()=>pxLoad(true));$('pxList').addEventListener('click',e=>{let b=e.target.closest('[data-px-connect]');if(!b)return;let p=pxRows.find(x=>String(x.id)===b.dataset.pxConnect);let u=p&&pxLink(p);if(u){monAdd('telegram_open','فتح بروكسي من الدليل','تم إرسال الرابط إلى Telegram؛ حالة الاتصال النهائية غير متاحة للصفحة.',{proxy_id:p.id,server:p.server||'',port:p.port||''});launchTelegramLink(u,'تم فتح رابط البروكسي في Telegram. أكمل الاتصال داخل التطبيق.');}});pxLoad(false);setInterval(()=>{if(!document.hidden)pxLoad(false);},CONFIG.proxyRefreshMs);}
+
+
+    /* ==========================================
+       LOCAL PROXY OBSERVABILITY
+       Records browser-visible events only. It cannot inspect Telegram app traffic.
+       ========================================== */
+    const MONITOR_KEY = 'onx_proxy_observability_v1';
+    let monitorRows = [];
+    function monLoad(){
+      try { const raw=localStorage.getItem(MONITOR_KEY); const parsed=raw?JSON.parse(raw):[]; monitorRows=Array.isArray(parsed)?parsed:[]; }
+      catch(_){ monitorRows=[]; }
+      monRender();
+    }
+    function monSave(){
+      try { localStorage.setItem(MONITOR_KEY,JSON.stringify(monitorRows)); }
+      catch(e){ showToast('مساحة التخزين المحلية ممتلئة؛ صدّر السجل ثم امسح القديم.'); }
+      monRender();
+    }
+    function monAdd(type,title,detail='',data={}){
+      const row={id:(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random()),ts:new Date().toISOString(),type,title:String(title).slice(0,100),detail:String(detail).slice(0,300),data};
+      monitorRows.push(row); monSave();
+    }
+    function monFormatTime(ts){try{return new Date(ts).toLocaleString('ar-IQ',{dateStyle:'short',timeStyle:'medium'});}catch(_){return ts;}}
+    function monRender(){
+      const count=monitorRows.length;
+      const launches=monitorRows.filter(x=>x.type==='telegram_open').length;
+      const tests=monitorRows.filter(x=>x.type==='speed_test').length;
+      const refresh=monitorRows.filter(x=>x.type==='proxy_directory').length;
+      const el=id=>document.getElementById(id);
+      if(!el('monEvents'))return;
+      el('monEvents').textContent=count.toLocaleString('en-US');el('monLaunches').textContent=launches.toLocaleString('en-US');el('monTests').textContent=tests.toLocaleString('en-US');el('monRefresh').textContent=refresh.toLocaleString('en-US');
+      el('monitorLastSeen').textContent=count?'آخر تسجيل: '+monFormatTime(monitorRows[count-1].ts):'لم يبدأ التسجيل بعد';
+      el('monitorLogCount').textContent=count.toLocaleString('en-US')+' سجل';el('monStored').textContent=count.toLocaleString('en-US');
+      let bytes=0;try{bytes=new Blob([JSON.stringify(monitorRows)]).size;}catch(_){}el('monStorage').textContent=bytes<1024?bytes+' B':(bytes/1024).toFixed(1)+' KB';
+      const rows=monitorRows.slice(-60).reverse();
+      el('monitorLog').innerHTML=rows.length?rows.map(r=>`<article class="monitor-log-item"><div><b>${monEsc(r.title)}</b><small>${monEsc(r.detail)}</small></div><time>${monEsc(new Date(r.ts).toLocaleTimeString('ar-IQ'))}</time></article>`).join(''):'<div class="monitor-empty">لا توجد أحداث محفوظة بعد.</div>';
+      const points=monitorRows.filter(x=>x.type==='speed_test'&&Number.isFinite(Number(x.data.download))).slice(-20);
+      const line=el('monitorLine'),dots=el('monitorDots');
+      if(!points.length){line.setAttribute('points','20,125 580,125');dots.innerHTML='';return;}
+      const max=Math.max(1,...points.map(x=>Number(x.data.download)));
+      const coords=points.map((x,i)=>({x:points.length===1?300:20+i*560/(points.length-1),y:125-(Number(x.data.download)/max)*100,v:Number(x.data.download)}));
+      line.setAttribute('points',coords.map(p=>p.x+','+p.y).join(' '));
+      dots.innerHTML=coords.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="3.5" fill="#f3dfb1"><title>${p.v.toFixed(2)} Mbps</title></circle>`).join('');
+    }
+    function monEsc(v){return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+    function monInit(){
+      monLoad();monAdd('page_open','فتح لوحة ONX PROXY','تم فتح صفحة الموقع على هذا الجهاز');
+      document.querySelectorAll('[data-monitor-tab]').forEach(btn=>btn.addEventListener('click',()=>{
+        document.querySelectorAll('[data-monitor-tab]').forEach(x=>x.classList.toggle('active',x===btn));
+        const tab=btn.dataset.monitorTab;document.getElementById('monitorOverview').hidden=tab!=='overview';document.getElementById('monitorHistory').hidden=tab!=='history';document.getElementById('monitorStorage').hidden=tab!=='storage';
+      }));
+      $('monitorExport').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({product:'ONX PROXY local observability',exported_at:new Date().toISOString(),scope:'Browser-visible events only; not Telegram tunnel traffic',records:monitorRows},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='onx-proxy-monitor-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);monAdd('export','تصدير نسخة من السجل','تم إنشاء ملف JSON محلي');});
+      $('monitorClear').addEventListener('click',()=>{const panel=document.createElement('div');panel.style.cssText='position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:22px;background:#000b;backdrop-filter:blur(10px)';panel.innerHTML='<div style="width:min(100%,360px);padding:22px;border:1px solid #d8b87855;border-radius:20px;background:#171716;color:#eee"><b style="color:#f3dfb1">تأكيد مسح السجل</b><p style="font-size:12px;line-height:1.9;color:#aaa">سيتم حذف السجلات المحلية من هذا المتصفح. يُفضّل تصدير نسخة أولاً.</p><div style="display:flex;gap:9px"><button id="monCancel" style="flex:1;padding:12px;border-radius:10px;background:#292929;color:#eee;border:1px solid #555">إلغاء</button><button id="monConfirm" style="flex:1;padding:12px;border-radius:10px;background:#b28d4f;color:#17130c;border:0">مسح السجل</button></div></div>';document.body.appendChild(panel);panel.querySelector('#monCancel').onclick=()=>panel.remove();panel.querySelector('#monConfirm').onclick=()=>{monitorRows=[];try{localStorage.removeItem(MONITOR_KEY);}catch(_){}panel.remove();monRender();showToast('تم مسح السجل المحلي');};});
+      window.addEventListener('online',()=>monAdd('network_online','عودة اتصال الإنترنت','أبلغ المتصفح عن عودة الاتصال'));window.addEventListener('offline',()=>monAdd('network_offline','انقطاع اتصال الإنترنت','أبلغ المتصفح عن انقطاع الاتصال'));
+    }
 
     /* ==========================================
        APP INITIALIZATION
@@ -1779,6 +1886,7 @@
 
       readNetworkType();
       drawChart();
+      monInit();
 
       if (navigator.onLine) {
         setInternetStatus(true, "INTERNET AVAILABLE");
