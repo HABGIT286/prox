@@ -858,7 +858,7 @@
 .stats-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.proxy-list{grid-template-columns:repeat(2,minmax(0,1fr))}
 .proxy-entry,.stat-card{transition:transform .25s,border-color .25s,box-shadow .25s}.proxy-entry:hover,.stat-card:hover{transform:translateY(-4px);border-color:#d8b87866;box-shadow:0 18px 45px #0006}
 .chart-wrap{height:145px}
-.vip-tabs{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px;padding:9px;margin:18px 0 24px;border:1px solid var(--line);border-radius:20px;background:#101318d9;backdrop-filter:blur(18px);position:sticky;top:82px;z-index:25}
+.vip-tabs{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;padding:9px;margin:18px 0 24px;border:1px solid var(--line);border-radius:20px;background:#101318d9;backdrop-filter:blur(18px);position:sticky;top:82px;z-index:25}
 .vip-tab{display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:9px 8px;border:1px solid transparent;border-radius:13px;background:transparent;color:#9b9588;font-size:11px;cursor:pointer;transition:.25s}
 .vip-tab i{width:16px;height:16px}.vip-tab.active{color:#f2dfb8;background:linear-gradient(135deg,#d7b87525,#d7b87509);border-color:#d7b87555;box-shadow:inset 0 1px #ffffff12,0 5px 22px #0004}
 .vip-panel{display:none;animation:panelIn .35s ease both}.vip-panel.active{display:block}
@@ -880,6 +880,23 @@
 .storage-meter{height:8px;background:#ffffff12;border-radius:20px;overflow:hidden;margin:13px 0}.storage-meter span{display:block;height:100%;width:0;background:linear-gradient(90deg,#98713a,#f0d59e);border-radius:20px}
 .admin-state{padding:12px;border-radius:12px;background:#ffffff08;color:#aaa18e;font-size:10px;line-height:1.8;margin-top:12px}
 .admin-table{width:100%;border-collapse:collapse;font-size:10px;margin-top:12px}.admin-table th,.admin-table td{padding:10px 7px;border-bottom:1px solid #ffffff12;text-align:right}.admin-table th{color:#d8bd84}.admin-table td{color:#b9b2a4}
+/* ONX silver-gold command center */
+.admin-launch{width:43px;height:43px;display:grid;place-items:center;border:1px solid #d9c99d88;border-radius:14px;background:linear-gradient(145deg,#f5f1e6,#a9a9a5 45%,#8a6b35);color:#171717;box-shadow:0 0 24px #d8bd8430,inset 0 1px #fff;cursor:pointer;transition:.25s}
+.admin-launch:hover{transform:translateY(-2px) rotate(-4deg);box-shadow:0 0 32px #e4d4a866}.admin-launch svg{width:20px;height:20px}
+.admin-gate{position:fixed;inset:0;z-index:1000;display:none;align-items:center;justify-content:center;padding:18px;background:#030508d9;backdrop-filter:blur(18px)}.admin-gate.open{display:flex;animation:panelIn .25s ease}
+.admin-gate-card{width:min(100%,430px);padding:27px;border:1px solid #d7c18a66;border-radius:25px;background:linear-gradient(145deg,#22252a,#0b0e13 70%);box-shadow:0 35px 110px #000c,inset 0 1px #ffffff18;position:relative;overflow:hidden}
+.admin-gate-card:before{content:"";position:absolute;inset:-70% -20%;background:linear-gradient(110deg,transparent 40%,#e8d7ad12 50%,transparent 60%);transform:rotate(20deg);pointer-events:none}
+.admin-gate-emblem{width:66px;height:66px;margin:0 auto 15px;display:grid;place-items:center;border-radius:20px;background:linear-gradient(145deg,#f0e5c9,#aaa9a4 55%,#8c6c37);color:#171717;box-shadow:0 12px 35px #d9b87533}.admin-gate-emblem svg{width:30px;height:30px}
+.admin-gate-card h2{text-align:center;margin:0;color:#eee5d2;font:700 19px Alexandria,sans-serif}.admin-gate-card p{text-align:center;color:#99958c;font-size:11px;line-height:1.9;margin:9px 0 18px}
+.admin-gate-card .vip-input{text-align:center;font:600 16px Oxanium,sans-serif;letter-spacing:3px}.admin-gate-actions{display:flex;gap:9px}.admin-gate-actions>*{flex:1}
+.admin-console{display:none;margin:18px 0 35px;padding:clamp(14px,3vw,26px);border:1px solid #c9b78366;border-radius:25px;background:linear-gradient(145deg,#24272cdd,#0a0d12f5 65%);box-shadow:0 28px 90px #0009,inset 0 1px #fff1}.admin-console.open{display:block;animation:panelIn .35s ease}
+.admin-console-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:18px}.admin-console-title{font:700 clamp(18px,3vw,25px) Alexandria,sans-serif;background:linear-gradient(90deg,#f6f0df,#b6b7b8,#d9b875);background-clip:text;color:transparent}.admin-console-sub{color:#8d8d8b;font-size:10px;margin-top:5px}
+.admin-kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}.admin-kpi{padding:16px;border:1px solid #c4b17c38;border-radius:17px;background:linear-gradient(145deg,#ffffff0b,#ffffff02);box-shadow:inset 0 1px #fff1}.admin-kpi small{display:block;color:#aaa49a;font-size:10px}.admin-kpi strong{display:block;margin-top:9px;color:#e7d8b7;font:700 25px Oxanium,sans-serif;direction:ltr}
+.admin-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:17px 0}.admin-toolbar .vip-action{min-height:38px}.admin-section{margin-top:15px;padding:16px;border:1px solid #bda66d2b;border-radius:19px;background:#080b10a8}.admin-section-title{display:flex;align-items:center;gap:9px;color:#e1d0a9;font:600 13px Alexandria,sans-serif;margin-bottom:12px}.admin-section-title svg{width:17px;height:17px;color:#c8b078}
+.admin-proxy-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.admin-proxy{padding:14px;border:1px solid #ffffff17;border-radius:15px;background:linear-gradient(140deg,#ffffff0b,#ffffff02);cursor:pointer;transition:.2s}.admin-proxy:hover{border-color:#d7bd7a88;transform:translateY(-2px)}.admin-proxy-top{display:flex;justify-content:space-between;gap:8px}.admin-proxy-name{font-weight:700;color:#e9dfc9;font-size:12px;overflow-wrap:anywhere}.admin-proxy-state{font-size:9px;color:#91d9ae}.admin-proxy-state.down{color:#ed8882}.admin-proxy-meta{display:flex;gap:12px;flex-wrap:wrap;color:#99958d;font:10px Oxanium,sans-serif;direction:ltr;margin-top:10px}
+.admin-detail-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.admin-detail{padding:11px;border-radius:12px;background:#ffffff08;border:1px solid #ffffff10;min-width:0}.admin-detail small{display:block;color:#918c82;font-size:9px}.admin-detail b{display:block;margin-top:6px;color:#e5d8bd;font-size:11px;overflow-wrap:anywhere}
+#adminMap{height:310px;border:1px solid #bda66d55;border-radius:15px;overflow:hidden;background:#111}.admin-event{display:flex;align-items:center;gap:10px;padding:11px 2px;border-bottom:1px solid #ffffff10;color:#c6c0b5;font-size:10px}.admin-event:last-child{border:0}.admin-event i{color:#d5bd82}.admin-alert{position:fixed;z-index:1100;top:18px;left:50%;transform:translate(-50%,-20px);opacity:0;pointer-events:none;padding:13px 18px;border:1px solid #d8bd84aa;border-radius:15px;background:linear-gradient(120deg,#292a2a,#11151b);color:#f0dfb8;box-shadow:0 15px 50px #000a;transition:.35s;font-size:11px;max-width:90vw}.admin-alert.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){.admin-kpis{grid-template-columns:repeat(2,minmax(0,1fr))}.admin-proxy-grid{grid-template-columns:1fr}.admin-detail-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#adminMap{height:260px}}
 @media(max-width:760px){.vip-tabs{grid-template-columns:repeat(3,minmax(0,1fr));top:76px}.vip-tab{font-size:10px;min-height:43px}.stats-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.vip-grid{grid-template-columns:1fr 1fr}.proxy-list{grid-template-columns:1fr}.clockbox{margin-inline:8px;min-width:74px}.clockbox strong{font-size:15px}.topbar{padding:10px}.top-status{font-size:8px;padding:8px}.premium-card{padding:22px 17px}}
 @media(max-width:420px){.vip-grid{grid-template-columns:1fr}.brand-name{font-size:15px}.brand-sub{font-size:7px}.vip-tabs{gap:5px;padding:6px}.vip-tab{gap:5px;padding:7px 3px}.vip-tab i{width:14px;height:14px}}
 
@@ -904,6 +921,7 @@
       </div>
 
       <div class="clockbox"><strong id="vipClock">--:--:--</strong><small id="vipDate">--</small></div>
+      <button class="admin-launch" id="adminLaunch" type="button" aria-label="لوحة تحكم المسؤول" title="لوحة تحكم المسؤول"><i data-lucide="shield-check"></i></button>
       <div class="top-status">
         <span class="live-dot" id="internetLamp"></span>
         <span id="internetStatus">CHECKING NETWORK</span>
@@ -1117,7 +1135,6 @@
       <button class="vip-tab" data-tab="performance"><i data-lucide="activity"></i>الأداء</button>
       <button class="vip-tab" data-tab="usage"><i data-lucide="database"></i>التخزين</button>
       <button class="vip-tab" data-tab="themes"><i data-lucide="palette"></i>المظهر</button>
-      <button class="vip-tab" data-tab="admin"><i data-lucide="shield-check"></i>الإدارة</button>
     </nav>
     <div class="vip-panel" id="panel-usage">
       <div class="panel-intro"><div><h2>التخزين والاستخدام</h2><p>معلومات محلية من هذا المتصفح فقط</p></div><i data-lucide="database"></i></div>
@@ -1142,24 +1159,16 @@
         </div>
       </article>
     </div>
-    <div class="vip-panel" id="panel-admin">
-      <div class="panel-intro"><div><h2>بوابة المسؤول</h2><p>دخول آمن عبر API خلفي دون كشف الرمز في HTML</p></div><i data-lucide="lock-keyhole"></i></div>
-      <article class="vip-tile"><div class="vip-tile-head"><i data-lucide="key-round"></i> تسجيل دخول المدير</div>
-        <label for="adminPassword" style="display:block;color:#a79c86;font-size:10px;margin-top:14px">رمز المسؤول</label>
-        <input class="vip-input" id="adminPassword" type="password" autocomplete="current-password" placeholder="Admin password">
-        <div class="vip-row"><button class="vip-action primary" id="adminLoginButton"><i data-lucide="log-in"></i> تسجيل الدخول</button><button class="vip-action" id="adminLogoutButton" hidden>تسجيل الخروج</button></div>
-        <div class="admin-state" id="adminMessage">غير مسجل الدخول. يحتاج هذا القسم API خلفياً يتحقق من السر المخزن على الخادم.</div>
-      </article>
-      <section id="adminDashboard" hidden style="margin-top:14px">
-        <div class="vip-grid">
-          <article class="vip-tile"><div class="vip-tile-head"><i data-lucide="users"></i> المستخدمون</div><strong class="big" id="adminUsersTotal">—</strong></article>
-          <article class="vip-tile"><div class="vip-tile-head"><i data-lucide="radio-tower"></i> النشطون</div><strong class="big" id="adminUsersActive">—</strong></article>
-          <article class="vip-tile"><div class="vip-tile-head"><i data-lucide="ban"></i> المحظورون</div><strong class="big" id="adminUsersBlocked">—</strong></article>
-        </div>
-        <article class="vip-tile" style="margin-top:13px;overflow:auto"><div class="vip-tile-head"><i data-lucide="list"></i> سجل المستخدمين</div><div id="adminUsersTable" class="admin-state">بانتظار بيانات الخادم...</div></article>
-      </section>
-      <div class="admin-state">تنبيه: GitHub Actions Secrets لا تصل تلقائياً إلى موقع GitHub Pages. يجب إعداد السر كـ Secret في خدمة Worker/Backend أيضاً، مع مسارات login وoverview وblock. لا يمكن للصفحة حظر اتصال MTProto نفسه.</div>
-    </div>
+    <section class="admin-console" id="adminConsole" aria-label="لوحة تحكم المسؤول">
+      <div class="admin-console-head"><div><div class="admin-console-title">ONX · COMMAND CENTER</div><div class="admin-console-sub">SILVER & GOLD PROXY INTELLIGENCE · LIVE DATA</div></div><div class="vip-row"><button class="vip-action" id="adminRefresh"><i data-lucide="refresh-cw"></i> تحديث</button><button class="vip-action" id="adminExport"><i data-lucide="file-down"></i> تنزيل TXT</button><button class="vip-action" id="adminClose"><i data-lucide="x"></i> إغلاق</button></div></div>
+      <div class="admin-kpis"><article class="admin-kpi"><small>كل البروكسيات</small><strong id="adProxyTotal">—</strong></article><article class="admin-kpi"><small>البروكسيات العاملة</small><strong id="adProxyUp">—</strong></article><article class="admin-kpi"><small>البروكسيات المتوقفة</small><strong id="adProxyDown">—</strong></article><article class="admin-kpi"><small>مستخدمون مسجلون</small><strong id="adUsers">—</strong></article></div>
+      <div class="admin-toolbar"><button class="vip-action primary" data-proxy-filter="all">الكل</button><button class="vip-action" data-proxy-filter="active">العاملة</button><button class="vip-action" data-proxy-filter="inactive">المتوقفة</button><span class="admin-console-sub" id="adUpdated">بانتظار اتصال الخادم</span></div>
+      <section class="admin-section"><div class="admin-section-title"><i data-lucide="server"></i> فهرس البروكسيات · اختر بروكسياً لعرض تفاصيله</div><div class="admin-proxy-grid" id="adProxyList"><div class="admin-state">يتم تحميل البيانات من الخادم بعد تسجيل الدخول.</div></div></section>
+      <section class="admin-section"><div class="admin-section-title"><i data-lucide="scan-eye"></i> ملف البروكسي المحدد</div><div id="adProxyDetail" class="admin-state">اختر بروكسياً من القائمة لعرض بياناته المتاحة.</div></section>
+      <section class="admin-section"><div class="admin-section-title"><i data-lucide="map-pinned"></i> الخريطة الجغرافية للبروكسيات</div><div id="adminMap"></div><div class="admin-state">تظهر العلامات عندما يرسل مصدر البيانات إحداثيات صحيحة (latitude / longitude). لا يتم تخمين مواقع الخوادم.</div></section>
+      <section class="admin-section"><div class="admin-section-title"><i data-lucide="users"></i> المستخدمون والاتصالات الجديدة</div><div class="admin-detail-grid"><div class="admin-detail"><small>إجمالي المستخدمين</small><b id="adUserTotal">—</b></div><div class="admin-detail"><small>الجدد مؤخراً</small><b id="adNewUsers">—</b></div><div class="admin-detail"><small>إجمالي أحداث الاتصال</small><b id="adConnections">—</b></div></div><div id="adEvents" class="admin-state">لا توجد أحداث بعد.</div></section>
+      <div class="admin-state">الحسابات الفعلية لكل بروكسي، المستخدم الجديد، وملف JSON على GitHub تتطلب أن يسجل الخادم أحداث اتصال حقيقية. فتح tg://proxy وحده لا يكشف للموقع من اتصل ولا يتيح حظر مستخدم MTProto.</div>
+    </section>
     <footer class="footer">
       <div class="footer-logo">ONX PROXY · ELITE</div>
       <div class="footer-copy">PRIVATE ACCESS EXPERIENCE · 2026</div>
@@ -1180,6 +1189,8 @@
     </div>
   </div>
 
+  <div class="admin-gate" id="adminGate" role="dialog" aria-modal="true" aria-labelledby="adminGateTitle"><div class="admin-gate-card"><div class="admin-gate-emblem"><i data-lucide="shield-check"></i></div><h2 id="adminGateTitle">دخول الإدارة المحمي</h2><p>أدخل كلمة مرور المسؤول للتحقق من الخادم وفتح مركز التحكم</p><input class="vip-input" id="adminPassword" type="password" autocomplete="current-password" placeholder="PASSWORD"><div class="admin-gate-actions"><button class="vip-action" id="adminGateCancel">إلغاء</button><button class="vip-action primary" id="adminLoginButton">تحقق وفتح اللوحة</button></div><div class="admin-state" id="adminMessage">يتم التحقق من كلمة المرور على الخادم فقط.</div></div></div>
+  <div class="admin-alert" id="adminAlert"></div>
   <div class="toast" id="toast"></div>
 
   <script>
@@ -1895,25 +1906,18 @@
       document.querySelectorAll("[data-bg]").forEach(x=>x.addEventListener("click",()=>bg(x.dataset.bg)));
       theme(localStorage.getItem("onx-vip-theme")||"gold");bg(localStorage.getItem("onx-vip-bg")||"default");
     }
-    let adminToken=null;
-    async function adminReq(path,options={}){
-      const base=CONFIG.proxyApiBase.replace(/\/$/,"");const headers={"Accept":"application/json",...(options.body?{"Content-Type":"application/json"}:{}),...(adminToken?{"Authorization":"Bearer "+adminToken}:{})};
-      const r=await fetch(base+path,{...options,headers,cache:"no-store",signal:AbortSignal.timeout(12000)});const t=await r.text();let j={};try{j=JSON.parse(t)}catch{}
-      if(!r.ok)throw Error(j.error||j.message||("HTTP "+r.status+" — مسار الإدارة غير مهيأ"));return j;
-    }
-    async function adminRefresh(){
-      const d=await adminReq("/admin/overview"),s=d.stats||d.overview||d;
-      $("adminUsersTotal").textContent=s.total_users??s.total??"—";$("adminUsersActive").textContent=s.active_users??s.active??"—";$("adminUsersBlocked").textContent=s.blocked_users??s.blocked??"—";
-      const users=d.users||[];$("adminUsersTable").innerHTML=users.length?`<table class="admin-table"><thead><tr><th>المستخدم</th><th>آخر نشاط</th><th>الحالة</th><th>إجراء</th></tr></thead><tbody>${users.map(u=>`<tr><td>${pxEsc(u.username||u.display_name||u.id||"مستخدم")}</td><td>${pxEsc(u.last_seen||"—")}</td><td>${u.blocked?"محظور":"نشط"}</td><td><button class="vip-action" data-user-block="${pxEsc(u.id)}" data-blocked="${u.blocked?"1":"0"}">${u.blocked?"رفع الحظر":"حظر"}</button></td></tr>`).join("")}</tbody></table>`:"لا توجد سجلات مستخدمين من الخادم.";
-      $("adminDashboard").hidden=false;
-    }
-    function adminInit(){
-      $("adminLoginButton").addEventListener("click",async()=>{const password=$("adminPassword").value;if(!password)return $("adminMessage").textContent="أدخل الرمز أولاً.";
-        const b=$("adminLoginButton");b.disabled=true;try{const d=await adminReq("/admin/login",{method:"POST",body:JSON.stringify({password})});if(!d.token)throw Error("لم يرجع الخادم رمز جلسة");adminToken=d.token;$("adminPassword").value="";$("adminLogoutButton").hidden=false;$("adminMessage").textContent="تم التحقق من بيانات الدخول.";await adminRefresh();}
-        catch(e){$("adminMessage").textContent="تعذر الدخول: "+e.message;$("adminDashboard").hidden=true;}finally{b.disabled=false;}});
-      $("adminLogoutButton").addEventListener("click",()=>{adminToken=null;$("adminDashboard").hidden=true;$("adminLogoutButton").hidden=true;$("adminMessage").textContent="تم إنهاء الجلسة.";});
-      $("adminUsersTable").addEventListener("click",async e=>{const b=e.target.closest("[data-user-block]");if(!b||!adminToken)return;const blocked=b.dataset.blocked!=="1";if(!confirm(blocked?"تأكيد حظر المستخدم؟":"تأكيد رفع الحظر؟"))return;b.disabled=true;try{await adminReq("/admin/users/"+encodeURIComponent(b.dataset.userBlock)+"/block",{method:"POST",body:JSON.stringify({blocked})});await adminRefresh();}catch(err){$("adminMessage").textContent="فشل الإجراء: "+err.message;b.disabled=false;}});
-    }
+    let adminToken=null,adminData=null,adminMap=null,adminMarkers=[],adminFilter='all',adminAlertTimer=null;
+    const adminEsc=v=>String(v??'—').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    function adminNotify(message){const el=$('adminAlert');el.textContent=message;el.classList.add('show');clearTimeout(adminAlertTimer);adminAlertTimer=setTimeout(()=>el.classList.remove('show'),4600);}
+    async function adminReq(path,options={}){const base=CONFIG.proxyApiBase.replace(/\/$/,''),headers={'Accept':'application/json',...(options.body?{'Content-Type':'application/json'}:{}),...(adminToken?{'Authorization':'Bearer '+adminToken}:{})};const r=await fetch(base+path,{...options,headers,cache:'no-store',signal:AbortSignal.timeout(18000)});const t=await r.text();let j={};try{j=JSON.parse(t)}catch{}if(!r.ok)throw Error(j.error||j.message||('HTTP '+r.status+' · API الإدارة غير مهيأ'));return j;}
+    function adminProxies(){const p=adminData?.proxies;return Array.isArray(p)?p:(Array.isArray(p?.items)?p.items:[]);}
+    function adminIsUp(p){const s=String(p.status??p.state??'').toLowerCase();return p.active===true||['active','online','working','up','alive'].includes(s);}
+    function adminRenderProxies(){let rows=adminProxies();if(adminFilter==='active')rows=rows.filter(adminIsUp);if(adminFilter==='inactive')rows=rows.filter(p=>!adminIsUp(p));$('adProxyList').innerHTML=rows.length?rows.map((p,i)=>{let id=p.id??p.server+':'+p.port;return `<article class="admin-proxy" data-admin-proxy="${adminEsc(id)}"><div class="admin-proxy-top"><div class="admin-proxy-name">${adminEsc(p.country_name||p.country||p.name||'Proxy')} · ${adminEsc(p.city||p.server||'')}</div><span class="admin-proxy-state ${adminIsUp(p)?'':'down'}">${adminIsUp(p)?'● ACTIVE':'● OFFLINE'}</span></div><div class="admin-proxy-meta"><span>${adminEsc(p.server||'—')}</span><span>PORT ${adminEsc(p.port||'—')}</span><span>PING ${p.ping==null?'—':adminEsc(p.ping)+'ms'}</span><span>USERS ${adminEsc(p.users_count??p.user_count??p.connections??'—')}</span></div></article>`}).join(''):'<div class="admin-state">لا توجد سجلات ضمن هذا التصنيف في بيانات الخادم.';}
+    function adminShowProxy(id){const p=adminProxies().find(x=>String(x.id??x.server+':'+x.port)===String(id));if(!p)return;const fields=[['الحالة',adminIsUp(p)?'يعمل':'متوقف'],['عنوان الخادم',p.server],['المنفذ',p.port],['النوع',p.type||'MTProto'],['الدولة',p.country_name||p.country],['المدينة',p.city],['Ping',p.ping==null?null:p.ping+' ms'],['Uptime',p.uptime==null?null:p.uptime+'%'],['عدد المستخدمين',p.users_count??p.user_count],['الاتصالات',p.connections??p.connection_count],['آخر فحص',p.last_check||p.checked_at],['آخر نشاط',p.last_seen],['السر',p.secret],['رابط الاتصال',p.url||p.link],['خط العرض',p.latitude??p.lat],['خط الطول',p.longitude??p.lon],['المعرّف',p.id]];$('adProxyDetail').innerHTML=`<div class="admin-detail-grid">${fields.filter(x=>x[1]!=null&&x[1]!=='').map(x=>`<div class="admin-detail"><small>${adminEsc(x[0])}</small><b>${adminEsc(x[1])}</b></div>`).join('')}</div>`;if(p.latitude!=null&&p.longitude!=null&&adminMap){adminMap.setView([Number(p.latitude),Number(p.longitude)],7);}}
+    function adminMapRender(){if(!window.L)return;let mapEl=$('adminMap');if(!adminMap){adminMap=L.map(mapEl,{zoomControl:true,scrollWheelZoom:false}).setView([25,45],3);L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:18,attribution:'© OpenStreetMap'}).addTo(adminMap);}adminMarkers.forEach(m=>m.remove());adminMarkers=[];adminProxies().forEach(p=>{let lat=Number(p.latitude??p.lat),lon=Number(p.longitude??p.lon);if(!Number.isFinite(lat)||!Number.isFinite(lon)||Math.abs(lat)>90||Math.abs(lon)>180)return;let marker=L.circleMarker([lat,lon],{radius:8,color:adminIsUp(p)?'#d9bd7a':'#d97872',fillOpacity:.8,weight:2}).addTo(adminMap);marker.bindPopup(`<b>${adminEsc(p.country||p.name||p.server)}</b><br>${adminEsc(p.server)}:${adminEsc(p.port)}<br>${adminIsUp(p)?'ACTIVE':'OFFLINE'}`);adminMarkers.push(marker);});setTimeout(()=>adminMap.invalidateSize(),120);}
+    function adminRenderEvents(){const ev=adminData?.events||adminData?.recent_events||[];$('adEvents').innerHTML=ev.length?ev.slice(0,30).map(e=>`<div class="admin-event"><i data-lucide="radio-tower"></i><span>${adminEsc(e.message||e.username||e.user||'حدث اتصال')} · ${adminEsc(e.proxy_name||e.proxy||'بروكسي غير محدد')} · ${adminEsc(e.created_at||e.time||'')}</span></div>`).join(''):'لا توجد أحداث اتصال مسجلة من الخادم.';if(window.lucide)lucide.createIcons();}
+    async function adminRefresh(){const d=await adminReq('/admin/overview');adminData=d;const stats=d.stats||d.overview||{};let proxies=adminProxies();$('adProxyTotal').textContent=stats.total_proxies??proxies.length??'—';$('adProxyUp').textContent=stats.active_proxies??proxies.filter(adminIsUp).length;$('adProxyDown').textContent=stats.inactive_proxies??proxies.filter(p=>!adminIsUp(p)).length;$('adUsers').textContent=stats.total_users??stats.total??d.users?.length??'—';$('adUserTotal').textContent=stats.total_users??stats.total??d.users?.length??'—';$('adNewUsers').textContent=stats.new_users??stats.new_users_today??'—';$('adConnections').textContent=stats.total_connections??stats.connections??'—';adminRenderProxies();adminRenderEvents();adminMapRender();$('adUpdated').textContent='آخر مزامنة: '+new Date().toLocaleString('ar-IQ');$('adminConsole').classList.add('open');adminNotify('تم تحديث مركز التحكم من الخادم');}
+    function adminInit(){const open=()=>{if(adminToken){$('adminConsole').classList.add('open');adminRefresh().catch(e=>adminNotify(e.message));}else{$('adminGate').classList.add('open');setTimeout(()=>$('adminPassword').focus(),150);}};$('adminLaunch').addEventListener('click',open);$('adminGateCancel').addEventListener('click',()=>$('adminGate').classList.remove('open'));$('adminClose').addEventListener('click',()=>$('adminConsole').classList.remove('open'));$('adminRefresh').addEventListener('click',()=>adminRefresh().catch(e=>adminNotify('فشل التحديث: '+e.message)));$('adminLoginButton').addEventListener('click',async()=>{let password=$('adminPassword').value;if(!password){$('adminMessage').textContent='أدخل كلمة المرور أولاً.';return;}let b=$('adminLoginButton');b.disabled=true;try{let d=await adminReq('/admin/login',{method:'POST',body:JSON.stringify({password})});if(!d.token)throw Error('الخادم لم يرجع رمز جلسة');adminToken=d.token;$('adminPassword').value='';$('adminGate').classList.remove('open');$('adminMessage').textContent='تم التحقق.';await adminRefresh();}catch(e){$('adminMessage').textContent='تعذر تسجيل الدخول: '+e.message;}finally{b.disabled=false;}});$('adminPassword').addEventListener('keydown',e=>{if(e.key==='Enter')$('adminLoginButton').click();});$('adProxyList').addEventListener('click',e=>{let card=e.target.closest('[data-admin-proxy]');if(card)adminShowProxy(card.dataset.adminProxy);});document.querySelectorAll('[data-proxy-filter]').forEach(b=>b.addEventListener('click',()=>{adminFilter=b.dataset.proxyFilter;adminRenderProxies();}));$('adminExport').addEventListener('click',()=>{if(!adminData)return adminNotify('لا توجد بيانات لتصديرها');let blob=new Blob([JSON.stringify({exported_at:new Date().toISOString(),...adminData},null,2)],{type:'text/plain;charset=utf-8'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='ONX-PROXY-REPORT-'+new Date().toISOString().slice(0,10)+'.txt';a.click();URL.revokeObjectURL(a.href);adminNotify('تم تجهيز ملف التقرير TXT');});}
 
     /* ==========================================
        APP INITIALIZATION
