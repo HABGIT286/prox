@@ -1,4 +1,8 @@
-
 name = "onx-proxy-api"
-main = "ONX-PROXY-CORS-WORKER.js"
-compatibility_date = "2026-11-17"
+main = "ONX-PROXY-CORS-WORKER-v7.js"
+compatibility_date = "2026-11-19"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "onx-proxy-analytics"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
