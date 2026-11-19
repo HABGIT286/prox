@@ -5,4 +5,4 @@ compatibility_date = "2026-11-19"
 [[d1_databases]]
 binding = "DB"
 database_name = "onx-proxy-analytics"
-database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+database_id = "0ce14593-502d-42f2-8dc3-120e08da99ef"
